@@ -9,7 +9,8 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@nuxt/content": "^3.11.0",
-    "nuxt": "^4.2.2"
+    "@nuxt/content": "^2.13.0",
+    "nuxt": "^3.17.5",
+    "nuxt-content-assets": "^1.8.0"
   }
 }
