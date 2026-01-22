@@ -10,5 +10,10 @@ export default defineNuxtConfig({
   // Content v2 設定
   content: {
     documentDriven: false,
+    markdown: {
+      remarkPlugins: {
+        'remark-gfm': {},
+      },
+    },
   },
 })
