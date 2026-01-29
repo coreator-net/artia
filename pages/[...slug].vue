@@ -27,14 +27,14 @@ const displayContent = computed(() => {
 </script>
 
 <template>
-  <div>
-    <div v-if="error">
+  <article>
+    <section v-if="error">
       <p>Error: {{ error.message }}</p>
-    </div>
-    <div v-else-if="!page">
+    </section>
+    <section v-else-if="!page">
       <p>Loading or not found: {{ route.path }} (normalized: {{ path }})</p>
-    </div>
-    <div v-else>
+    </section>
+    <section v-else>
       <!-- 顯示密碼提示 -->
       <PasswordPrompt 
         v-if="showPasswordPrompt"
@@ -50,6 +50,6 @@ const displayContent = computed(() => {
           <p>No content available</p>
         </template>
       </ContentRenderer>
-    </div>
-  </div>
+    </section>
+  </article>
 </template>
