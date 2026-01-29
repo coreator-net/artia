@@ -4,6 +4,13 @@
 // 取得環境變數配置
 const config = useRuntimeConfig()
 
+// DEBUG: 取得所有內容的完整結構
+const { data: allContent } = await useAsyncData('all-content-debug', () => {
+  return queryContent()
+    .find()
+    .catch(() => [])
+})
+
 // 取得最新的內容
 const { data: recentBooks } = await useAsyncData('recent-books', () => {
   return queryContent()
@@ -26,6 +33,12 @@ const { data: featuredWorks } = await useAsyncData('featured-works', () => {
 
 <template>
   <article class="space-y-8">
+    <!-- DEBUG: 顯示所有 content front matter -->
+    <section class="border p-4 bg-gray-100">
+      <h2 class="font-bold mb-2">DEBUG: Content Front Matter</h2>
+      <pre class="text-xs overflow-auto max-h-96">{{ JSON.stringify(allContent, null, 2) }}</pre>
+    </section>
+
     <!-- Hero Section -->
     <header class="border p-6 md:p-8">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ config.public.siteTitle }}</h1>
