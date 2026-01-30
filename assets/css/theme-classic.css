@@ -1,7 +1,8 @@
 /* ==========================================================================
    Artia Theme System - Classic Theme
    
-   經典主題 - 簡潔明亮的設計風格
+   經典主題 - 極簡線條風格
+   白底 + 透明元件 + 線條裝飾，hover 使用淡色背景
    
    使用方式：在 .env 中設定 NUXT_PUBLIC_THEME="classic"
    
@@ -44,9 +45,8 @@
    Header - 頂部導覽
    -------------------------------------------------------------------------- */
 .artia-header-theme-classic {
-  @apply border-b;
+  @apply border-b bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-header-nav-theme-classic {
@@ -63,12 +63,13 @@
 }
 
 .artia-header-link-theme-classic {
-  @apply transition-colors;
+  @apply px-2 py-1 transition-colors;
   color: var(--artia-color-text-secondary);
 }
 
 .artia-header-link-theme-classic:hover {
   color: var(--artia-color-text);
+  background-color: var(--artia-color-border-light);
 }
 
 .artia-header-mobile-btn-theme-classic {
@@ -79,9 +80,8 @@
    Footer - 底部區域
    -------------------------------------------------------------------------- */
 .artia-footer-theme-classic {
-  @apply border-t;
+  @apply border-t bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-footer-content-theme-classic {
@@ -127,10 +127,9 @@
 }
 
 .artia-sidebar-author-placeholder-theme-classic {
-  @apply w-20 h-20 mx-auto rounded-full border flex items-center justify-center text-2xl font-bold;
+  @apply w-20 h-20 mx-auto rounded-full border flex items-center justify-center text-2xl font-bold bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-primary-light);
-  color: var(--artia-color-primary);
+  color: var(--artia-color-text-secondary);
 }
 
 .artia-sidebar-author-name-theme-classic {
@@ -155,17 +154,17 @@
 }
 
 .artia-sidebar-content-list-theme-classic {
-  @apply space-y-1;
+  @apply space-y-0;
 }
 
 .artia-sidebar-content-folder-btn-theme-classic {
-  @apply w-full flex items-center justify-between text-sm py-1 border-b transition-colors bg-transparent cursor-pointer;
+  @apply w-full flex items-center justify-between text-sm py-2 px-2 border-b transition-colors bg-transparent cursor-pointer;
   border-color: var(--artia-color-border);
   color: var(--artia-color-text);
 }
 
 .artia-sidebar-content-folder-btn-theme-classic:hover {
-  color: var(--artia-color-primary);
+  background-color: var(--artia-color-border-light);
 }
 
 .artia-sidebar-content-children-theme-classic {
@@ -173,13 +172,14 @@
 }
 
 .artia-sidebar-content-link-theme-classic {
-  @apply block text-sm py-1 border-b transition-colors;
+  @apply block text-sm py-2 px-2 border-b transition-colors;
   border-color: var(--artia-color-border-light);
   color: var(--artia-color-text-secondary);
 }
 
 .artia-sidebar-content-link-theme-classic:hover {
-  color: var(--artia-color-primary);
+  background-color: var(--artia-color-border-light);
+  color: var(--artia-color-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -190,12 +190,13 @@
 }
 
 .artia-sidebar-toc-title-theme-classic {
-  @apply text-sm font-semibold mb-4;
+  @apply text-sm font-semibold mb-4 pb-2 border-b;
   color: var(--artia-color-text);
+  border-color: var(--artia-color-border);
 }
 
 .artia-sidebar-toc-list-theme-classic {
-  @apply space-y-1;
+  @apply space-y-0;
 }
 
 .artia-sidebar-toc-item-theme-classic {
@@ -204,21 +205,23 @@
 
 .artia-sidebar-toc-item-theme-classic.active .artia-sidebar-toc-link-theme-classic {
   @apply font-medium;
-  color: var(--artia-color-primary);
+  background-color: var(--artia-color-border-light);
+  color: var(--artia-color-text);
 }
 
 .artia-sidebar-toc-link-theme-classic {
-  @apply block py-1 transition-colors;
+  @apply block py-2 px-2 transition-colors bg-transparent;
   color: var(--artia-color-text-secondary);
 }
 
 .artia-sidebar-toc-link-theme-classic:hover {
-  color: var(--artia-color-primary);
+  background-color: var(--artia-color-border-light);
+  color: var(--artia-color-text);
 }
 
 .artia-sidebar-toc-nested-theme-classic {
-  @apply pl-3 mt-1 space-y-1 border-l-2;
-  border-color: var(--artia-color-border-light);
+  @apply pl-3 space-y-0 border-l;
+  border-color: var(--artia-color-border);
 }
 
 .artia-sidebar-toc-empty-theme-classic {
@@ -242,9 +245,8 @@
    Hero Section - 主視覺區塊
    -------------------------------------------------------------------------- */
 .artia-hero-theme-classic {
-  @apply border rounded-xl p-6 md:p-8;
+  @apply border p-6 md:p-8 bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-hero-title-theme-classic {
@@ -268,19 +270,21 @@
 }
 
 .artia-section-title-theme-classic {
-  @apply text-xl font-bold mb-4;
+  @apply text-xl font-bold mb-4 pb-2 border-b;
+  border-color: var(--artia-color-border);
 }
 
 /* --------------------------------------------------------------------------
    Debug Section - 開發除錯區塊
    -------------------------------------------------------------------------- */
 .artia-debug-theme-classic {
-  @apply border rounded-lg p-4 bg-gray-100;
+  @apply border p-4 bg-transparent;
   border-color: var(--artia-color-border);
 }
 
 .artia-debug-title-theme-classic {
-  @apply font-bold mb-2;
+  @apply font-bold mb-2 pb-2 border-b;
+  border-color: var(--artia-color-border);
 }
 
 .artia-debug-content-theme-classic {
@@ -291,25 +295,21 @@
    Cards - 卡片元件
    -------------------------------------------------------------------------- */
 .artia-card-theme-classic {
-  @apply block border rounded-lg p-4 transition-all;
+  @apply block border p-4 transition-colors bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-card-theme-classic:hover {
-  border-color: var(--artia-color-primary);
-  box-shadow: var(--artia-shadow-md);
+  background-color: var(--artia-color-border-light);
 }
 
 .artia-card-featured-theme-classic {
-  @apply block border rounded-lg p-4 transition-all;
+  @apply block border p-4 transition-colors bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-card-featured-theme-classic:hover {
-  border-color: var(--artia-color-primary);
-  box-shadow: var(--artia-shadow-md);
+  background-color: var(--artia-color-border-light);
 }
 
 .artia-card-header-theme-classic {
@@ -317,10 +317,9 @@
 }
 
 .artia-card-avatar-theme-classic {
-  @apply w-8 h-8 rounded border flex items-center justify-center text-sm font-bold;
+  @apply w-8 h-8 border flex items-center justify-center text-sm font-bold bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-primary-light);
-  color: var(--artia-color-primary);
+  color: var(--artia-color-text-secondary);
 }
 
 .artia-card-title-theme-classic {
@@ -350,60 +349,68 @@
    Card Grid - 卡片網格
    -------------------------------------------------------------------------- */
 .artia-card-list-theme-classic {
-  @apply space-y-4;
+  @apply space-y-0 divide-y;
+  border-color: var(--artia-color-border);
+}
+
+.artia-card-list-theme-classic > * {
+  @apply border-x border-b first:border-t;
+  border-color: var(--artia-color-border);
 }
 
 .artia-card-grid-theme-classic {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0;
+}
+
+.artia-card-grid-theme-classic > * {
+  @apply border-r border-b first:border-l sm:first:border-l-0 sm:[&:nth-child(-n+2)]:border-t lg:[&:nth-child(-n+3)]:border-t sm:[&:nth-child(2n+1)]:border-l lg:[&:nth-child(3n+1)]:border-l;
+  border-color: var(--artia-color-border);
 }
 
 /* --------------------------------------------------------------------------
    Buttons - 按鈕
    -------------------------------------------------------------------------- */
 .artia-btn-theme-classic {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-colors;
+  @apply inline-flex items-center justify-center px-4 py-2 font-medium transition-colors bg-transparent;
 }
 
 .artia-btn-primary-theme-classic {
-  @apply px-4 py-2 rounded-lg border font-medium transition-all;
-  background-color: var(--artia-color-primary);
-  color: white;
-  border-color: var(--artia-color-primary);
+  @apply px-4 py-2 border font-medium transition-colors bg-transparent;
+  color: var(--artia-color-text);
+  border-color: var(--artia-color-text);
 }
 
 .artia-btn-primary-theme-classic:hover {
-  background-color: var(--artia-color-primary-hover);
-  border-color: var(--artia-color-primary-hover);
+  background-color: var(--artia-color-text);
+  color: var(--artia-color-surface);
 }
 
 .artia-btn-secondary-theme-classic {
-  @apply px-4 py-2 rounded-lg border font-medium transition-all;
+  @apply px-4 py-2 border font-medium transition-colors bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
+  color: var(--artia-color-text);
 }
 
 .artia-btn-secondary-theme-classic:hover {
-  border-color: var(--artia-color-primary);
-  color: var(--artia-color-primary);
+  background-color: var(--artia-color-border-light);
 }
 
 /* --------------------------------------------------------------------------
    Forms - 表單元素
    -------------------------------------------------------------------------- */
 .artia-input-theme-classic {
-  @apply w-full px-3 py-2 rounded-lg border transition-all;
+  @apply w-full px-3 py-2 border transition-colors bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-input-theme-classic:focus {
-  @apply outline-none ring-2;
-  border-color: var(--artia-color-primary);
-  --tw-ring-color: var(--artia-color-primary-light);
+  @apply outline-none;
+  border-color: var(--artia-color-text);
 }
 
 .artia-input-theme-classic:disabled {
   @apply opacity-60 cursor-not-allowed;
+  background-color: var(--artia-color-border-light);
 }
 
 .artia-label-theme-classic {
@@ -418,10 +425,8 @@
 }
 
 .artia-password-box-theme-classic {
-  @apply max-w-md w-full p-8 rounded-xl border;
+  @apply max-w-md w-full p-8 border bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
-  box-shadow: var(--artia-shadow-md);
 }
 
 .artia-password-title-theme-classic {
@@ -438,13 +443,14 @@
 }
 
 .artia-password-submit-theme-classic {
-  @apply w-full py-3 rounded-lg font-medium transition-all border-none cursor-pointer;
-  background-color: var(--artia-color-primary);
-  color: white;
+  @apply w-full py-3 font-medium transition-colors border cursor-pointer bg-transparent;
+  color: var(--artia-color-text);
+  border-color: var(--artia-color-text);
 }
 
 .artia-password-submit-theme-classic:hover:not(:disabled) {
-  background-color: var(--artia-color-primary-hover);
+  background-color: var(--artia-color-text);
+  color: var(--artia-color-surface);
 }
 
 .artia-password-submit-theme-classic:disabled {
@@ -460,23 +466,20 @@
    Alert Component - 提示元件
    -------------------------------------------------------------------------- */
 .artia-alert-theme-classic {
-  @apply flex items-center p-4 rounded-xl border-2 transition-all;
-  background-color: var(--artia-color-surface);
-  box-shadow: var(--artia-shadow-md);
+  @apply flex items-center p-4 border transition-colors bg-transparent;
+  border-color: var(--artia-color-border);
 }
 
 .artia-alert-theme-classic:hover {
-  @apply -translate-y-0.5;
-  box-shadow: var(--artia-shadow-lg);
+  background-color: var(--artia-color-border-light);
 }
 
 /* --------------------------------------------------------------------------
    Counter Component - 計數器元件
    -------------------------------------------------------------------------- */
 .artia-counter-theme-classic {
-  @apply inline-flex items-center gap-2 p-4 rounded-lg border;
+  @apply inline-flex items-center gap-2 p-4 border bg-transparent;
   border-color: var(--artia-color-border);
-  background-color: var(--artia-color-surface);
 }
 
 .artia-counter-value-theme-classic {
@@ -484,14 +487,12 @@
 }
 
 .artia-counter-btn-theme-classic {
-  @apply w-8 h-8 rounded flex items-center justify-center border transition-colors bg-transparent cursor-pointer;
+  @apply w-8 h-8 flex items-center justify-center border transition-colors bg-transparent cursor-pointer;
   border-color: var(--artia-color-border);
 }
 
 .artia-counter-btn-theme-classic:hover {
-  background-color: var(--artia-color-primary-light);
-  border-color: var(--artia-color-primary);
-  color: var(--artia-color-primary);
+  background-color: var(--artia-color-border-light);
 }
 
 /* --------------------------------------------------------------------------

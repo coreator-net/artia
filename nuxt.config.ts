@@ -81,41 +81,42 @@ export default defineNuxtConfig({
   },
 
   // 環境變數配置
+  // 預設值定義 - .env 中的 NUXT_PUBLIC_* 會自動覆蓋這些值
   runtimeConfig: {
     public: {
-      // 主題設定
-      theme: 'classic',
+      // 主題
+      theme: '',
       
       // 網站基本資訊
-      siteName: 'Artia',
-      siteTitle: '歡迎來到 Artia',
-      siteDescription: '這裡是創作者的天地，每一個故事都值得被閱讀，每一個創意都值得被發現。',
-      siteSlogan: '一個為創作者打造的平台。',
+      siteName: '',
+      siteTitle: '',
+      siteDescription: '',
+      siteSlogan: '',
       siteUrl: '',
       siteLocale: 'zh-TW',
       
-      // CTA 按鈕
-      ctaPrimary: '探索作品',
-      ctaSecondary: '了解更多',
-      sectionFeatured: '精選作品',
-      sectionRecent: '最新內容',
-      copyright: '© 2026 Artia. All rights reserved.',
+      // CTA & 區塊標題
+      ctaPrimary: '',
+      ctaSecondary: '',
+      sectionFeatured: '',
+      sectionRecent: '',
+      copyright: '',
       
-      // 作者介紹
-      authorName: '梦',
-      authorBio: '專注於奇幻與都市傳說的創作者，用文字織出無限想像。',
+      // 作者
+      authorName: '',
+      authorBio: '',
       authorAvatar: '',
       
       // Google 服務
       gaId: '',
       gscVerification: '',
       adsenseId: '',
-      adsenseAutoAds: 'false',
+      adsenseAutoAds: '',
       gtmId: '',
       
       // SEO
       ogImage: '',
-      twitterCard: 'summary_large_image',
+      twitterCard: '',
       
       // 社群媒體
       socialTwitter: '',
@@ -126,22 +127,22 @@ export default defineNuxtConfig({
       socialYoutube: '',
       
       // 評論系統
-      commentsEnabled: 'false',
+      commentsEnabled: '',
       commentsProvider: '',
       disqusShortname: '',
       
-      // 頁面佈局設定
-      layoutMode: 'content',
-      layoutHomeTop: 'hero',
-      layoutHomeLeft: 'author',
-      layoutHomeCenter: 'featured',
-      layoutHomeRight: 'navigation',
-      layoutHomeBottom: 'recent',
-      layoutReadTop: 'navigation',
-      layoutReadLeft: 'author',
-      layoutReadCenter: 'toc',
-      layoutReadRight: 'recent',
-      layoutReadBottom: 'featured',
+      // 佈局
+      layoutMode: '',
+      layoutHomeTop: '',
+      layoutHomeLeft: '',
+      layoutHomeCenter: '',
+      layoutHomeRight: '',
+      layoutHomeBottom: '',
+      layoutReadTop: '',
+      layoutReadLeft: '',
+      layoutReadCenter: '',
+      layoutReadRight: '',
+      layoutReadBottom: '',
     },
   },
 })
