@@ -9,15 +9,15 @@ const { t } = useTheme()
 
 <template>
   <header :class="t('hero')">
-    <h1 :class="t('hero-title')">{{ config.public.siteTitle }}</h1>
+    <h1 :class="t('hero-title')">{{ config.public.heroTitle }}</h1>
     <p :class="t('hero-desc')">
-      {{ config.public.siteDescription }}
+      {{ config.public.heroDescription }}
     </p>
     <nav :class="t('hero-actions')">
-      <NuxtLink to="/content" :class="t('btn-primary')">
-        {{ config.public.ctaPrimary }}
+      <NuxtLink to="/" :class="t('btn-primary')">
+        {{ config.public.heroCtaPrimary }}
       </NuxtLink>
-      <button :class="t('btn-secondary')">{{ config.public.ctaSecondary }}</button>
+      <button :class="t('btn-secondary')">{{ config.public.heroCtaSecondary }}</button>
     </nav>
   </header>
 </template>

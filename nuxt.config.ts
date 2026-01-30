@@ -84,35 +84,48 @@ export default defineNuxtConfig({
   // 預設值定義 - .env 中的 NUXT_PUBLIC_* 會自動覆蓋這些值
   runtimeConfig: {
     public: {
-      // 主題
+      // 全域設定
       theme: '',
-      
-      // 網站基本資訊
       siteName: '',
-      siteTitle: '',
-      siteDescription: '',
       siteSlogan: '',
       siteUrl: '',
       siteLocale: 'zh-TW',
-      
-      // CTA & 區塊標題
-      ctaPrimary: '',
-      ctaSecondary: '',
-      sectionFeatured: '',
-      sectionRecent: '',
       copyright: '',
       
-      // 作者
+      // 佈局系統
+      layoutMode: '',
+      layoutHomeTop: '',
+      layoutHomeLeft: '',
+      layoutHomeCenter: '',
+      layoutHomeRight: '',
+      layoutHomeBottom: '',
+      layoutReadTop: '',
+      layoutReadLeft: '',
+      layoutReadCenter: '',
+      layoutReadRight: '',
+      layoutReadBottom: '',
+      
+      // 元件：Hero
+      heroTitle: '',
+      heroDescription: '',
+      heroCtaPrimary: '',
+      heroCtaSecondary: '',
+      
+      // 元件：Author
       authorName: '',
       authorBio: '',
       authorAvatar: '',
       
-      // Google 服務
-      gaId: '',
-      gscVerification: '',
-      adsenseId: '',
-      adsenseAutoAds: '',
-      gtmId: '',
+      // 元件：Featured
+      sectionFeatured: '',
+      
+      // 元件：Recent
+      sectionRecent: '',
+      
+      // 評論系統
+      commentsEnabled: '',
+      commentsProvider: '',
+      disqusShortname: '',
       
       // SEO
       ogImage: '',
@@ -126,23 +139,12 @@ export default defineNuxtConfig({
       socialDiscord: '',
       socialYoutube: '',
       
-      // 評論系統
-      commentsEnabled: '',
-      commentsProvider: '',
-      disqusShortname: '',
-      
-      // 佈局
-      layoutMode: '',
-      layoutHomeTop: '',
-      layoutHomeLeft: '',
-      layoutHomeCenter: '',
-      layoutHomeRight: '',
-      layoutHomeBottom: '',
-      layoutReadTop: '',
-      layoutReadLeft: '',
-      layoutReadCenter: '',
-      layoutReadRight: '',
-      layoutReadBottom: '',
+      // Google 服務
+      gaId: '',
+      gscVerification: '',
+      adsenseId: '',
+      adsenseAutoAds: '',
+      gtmId: '',
     },
   },
 })
