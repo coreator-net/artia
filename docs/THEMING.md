@@ -207,3 +207,133 @@ artia-{component}-{element?}-theme-{themeName}
   --artia-color-text-muted: #94a3b8;
 }
 ```
+
+## 使用 useTheme Composable
+
+Artia 提供 `useTheme` composable 來動態生成主題 class 名稱。
+
+### 基本用法
+
+```vue
+<script setup lang="ts">
+const { t } = useTheme()
+</script>
+
+<template>
+  <div :class="t('app')">
+    <header :class="t('header')">
+      <h1 :class="t('header', 'logo')">Logo</h1>
+    </header>
+  </div>
+</template>
+```
+
+### API 參考
+
+#### `t(component, element?)`
+
+生成主題 class 名稱。
+
+| 參數 | 類型 | 說明 |
+|------|------|------|
+| `component` | `string \| string[]` | 元件名稱或元件陣列 |
+| `element` | `string` | 可選的子元素名稱 |
+
+**範例：**
+
+```typescript
+const { t } = useTheme()
+
+// 單一元件
+t('header')              // => 'artia-header-theme-classic'
+
+// 元件 + 子元素
+t('header', 'logo')      // => 'artia-header-logo-theme-classic'
+
+// 多個 class
+t(['card', 'card-title']) // => 'artia-card-theme-classic artia-card-title-theme-classic'
+```
+
+#### `tc(component, extraClasses?)`
+
+生成主題 class 並附加額外的 class。
+
+```typescript
+const { tc } = useTheme()
+
+tc('btn-primary', 'w-full')  // => 'artia-btn-primary-theme-classic w-full'
+```
+
+#### `currentTheme`
+
+取得當前主題名稱的 computed ref。
+
+```typescript
+const { currentTheme } = useTheme()
+
+console.log(currentTheme.value)  // => 'classic' 或 'dark'
+```
+
+## 建立新主題
+
+### 步驟 1：建立主題 CSS 檔案
+
+複製 `assets/css/main.css` 並命名為 `assets/css/theme-{yourThemeName}.css`。
+
+### 步驟 2：修改主題名稱
+
+將所有 `theme-classic` 替換為 `theme-{yourThemeName}`：
+
+```css
+/* 原本 */
+.artia-header-theme-classic { ... }
+
+/* 改為 */
+.artia-header-theme-yourThemeName { ... }
+```
+
+### 步驟 3：更新 Tailwind safelist
+
+在 `assets/css/theme-safelist.txt` 中加入新主題的所有類別名稱：
+
+```
+artia-app-theme-yourThemeName
+artia-header-theme-yourThemeName
+...
+```
+
+### 步驟 4：引入新主題
+
+在 `nuxt.config.ts` 中加入新的 CSS 檔案：
+
+```typescript
+css: [
+  '~/assets/css/main.css',
+  '~/assets/css/theme-dark.css',
+  '~/assets/css/theme-yourThemeName.css', // 新增
+],
+```
+
+### 步驟 5：使用新主題
+
+在 `.env` 中設定：
+
+```bash
+NUXT_PUBLIC_THEME="yourThemeName"
+```
+
+## 注意事項
+
+### Tailwind CSS 與動態 class
+
+由於 Tailwind 的 JIT 模式無法識別動態生成的 class 名稱，所有主題類別都需要列在 `assets/css/theme-safelist.txt` 中，確保 Tailwind 不會將它們 purge 掉。
+
+### 響應式設計
+
+聖杯佈局在不同螢幕尺寸下的行為：
+
+| 螢幕寬度 | 作者側邊欄 | 內容側邊欄 |
+|----------|-----------|-----------|
+| < 1024px | 隱藏 | 隱藏 |
+| ≥ 1024px | 顯示 | 隱藏 |
+| ≥ 1280px | 顯示 | 顯示 |
