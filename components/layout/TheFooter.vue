@@ -3,27 +3,27 @@ const config = useRuntimeConfig()
 </script>
 
 <template>
-  <footer class="border-t">
-    <section class="max-w-7xl mx-auto px-4 py-8">
-      <nav class="grid grid-cols-1 md:grid-cols-4 gap-8">
+  <footer class="artia-footer-theme-classic">
+    <section class="artia-container-theme-classic artia-footer-content-theme-classic">
+      <nav class="artia-footer-grid-theme-classic">
         <!-- Brand -->
-        <address class="col-span-1 md:col-span-2 not-italic">
-          <strong class="font-bold text-xl mb-2 block">{{ config.public.siteName }}</strong>
-          <p>{{ config.public.siteSlogan }}</p>
+        <address class="artia-footer-brand-theme-classic">
+          <strong class="artia-footer-brand-name-theme-classic">{{ config.public.siteName }}</strong>
+          <p class="artia-text-body-theme-classic">{{ config.public.siteSlogan }}</p>
         </address>
 
         <!-- Links -->
         <section>
-          <h4 class="font-semibold mb-4">關於</h4>
-          <ul class="flex gap-4">
-            <li><a href="#">關於我們</a></li>
-            <li><a href="#">聯絡方式</a></li>
-            <li><a href="#">使用條款</a></li>
+          <h4 class="artia-footer-section-title-theme-classic">關於</h4>
+          <ul class="artia-footer-links-theme-classic">
+            <li><a href="#" class="artia-header-link-theme-classic">關於我們</a></li>
+            <li><a href="#" class="artia-header-link-theme-classic">聯絡方式</a></li>
+            <li><a href="#" class="artia-header-link-theme-classic">使用條款</a></li>
           </ul>
         </section>
       </nav>
 
-      <p class="mt-8 pt-8 border-t text-center text-sm">
+      <p class="artia-footer-copyright-theme-classic">
         {{ config.public.copyright }}
       </p>
     </section>

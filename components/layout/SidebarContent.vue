@@ -52,23 +52,23 @@ const isExpanded = (folder: string) => expandedFolders.value.has(folder)
 </script>
 
 <template>
-  <aside class="hidden xl:block w-60 shrink-0">
-    <h3 class="text-sm font-semibold mb-4">內容清單</h3>
+  <aside class="artia-sidebar-content-theme-classic">
+    <h3 class="artia-sidebar-content-title-theme-classic">內容清單</h3>
     <nav>
-      <ul class="space-y-1">
+      <ul class="artia-sidebar-content-list-theme-classic">
         <li v-for="folder in contentTree" :key="folder.path">
           <button 
             @click="toggleFolder(folder.name)"
-            class="w-full flex items-center justify-between text-sm py-1 border-b"
+            class="artia-sidebar-content-folder-btn-theme-classic"
           >
             <span>{{ folder.name }}</span>
             <span>{{ isExpanded(folder.name) ? '−' : '+' }}</span>
           </button>
-          <ul v-if="isExpanded(folder.name)" class="pl-3">
+          <ul v-if="isExpanded(folder.name)" class="artia-sidebar-content-children-theme-classic">
             <li v-for="child in folder.children" :key="child.path">
               <NuxtLink 
                 :to="child.path"
-                class="block text-sm py-1 border-b"
+                class="artia-sidebar-content-link-theme-classic"
               >
                 {{ child.title }}
               </NuxtLink>

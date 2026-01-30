@@ -3,17 +3,17 @@
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="artia-app-theme-classic">
     <LayoutTheHeader />
 
     <!-- Main Content Area - Holy Grail -->
-    <section class="flex-1">
-      <article class="max-w-7xl mx-auto px-4 py-8">
-        <section class="flex flex-col lg:flex-row gap-8">
+    <section class="artia-app-main-theme-classic">
+      <article class="artia-container-content-theme-classic">
+        <section class="artia-layout-holygrail-theme-classic">
           <LayoutSidebarAuthor />
 
           <!-- Main Content -->
-          <main class="flex-1 min-w-0 w-full">
+          <main class="artia-layout-main-theme-classic">
             <slot />
           </main>
 

@@ -1,10 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2026-01-30',
+
   modules: [
     'nuxt-content-assets',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
   ],
+
+  // 引入自訂 CSS
+  css: ['~/assets/css/main.css'],
 
   devtools: { enabled: true },
   

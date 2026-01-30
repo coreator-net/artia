@@ -1,0 +1,600 @@
+/* ==========================================================================
+   Artia Theme System - Classic Theme
+   
+   命名規則：artia-{component}-{element?}-theme-classic
+   
+   這是 Artia 的經典主題，開源用戶可以：
+   1. 複製此檔案並修改為自己的主題
+   2. 直接覆寫這些 class 的樣式
+   3. 建立新的 theme-{name}.css 檔案
+   
+   主題結構：
+   - Layout：佈局相關
+   - Header：頂部導覽
+   - Footer：底部區域
+   - Sidebar：側邊欄
+   - Card：卡片元件
+   - Button：按鈕
+   - Form：表單元素
+   - Typography：文字排版
+   - Utils：工具類別
+   ========================================================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   CSS Variables - 可自訂變數
+   用戶可以在這裡修改顏色、間距等設定
+   ========================================================================== */
+:root {
+  /* Primary Colors */
+  --artia-color-primary: #3b82f6;
+  --artia-color-primary-hover: #2563eb;
+  --artia-color-primary-light: #eff6ff;
+  
+  /* Neutral Colors */
+  --artia-color-bg: #f9fafb;
+  --artia-color-surface: #ffffff;
+  --artia-color-border: #e5e7eb;
+  --artia-color-border-light: #f3f4f6;
+  
+  /* Text Colors */
+  --artia-color-text: #111827;
+  --artia-color-text-secondary: #6b7280;
+  --artia-color-text-muted: #9ca3af;
+  
+  /* Feedback Colors */
+  --artia-color-success: #10b981;
+  --artia-color-warning: #f59e0b;
+  --artia-color-error: #ef4444;
+  
+  /* Spacing */
+  --artia-spacing-xs: 0.25rem;
+  --artia-spacing-sm: 0.5rem;
+  --artia-spacing-md: 1rem;
+  --artia-spacing-lg: 1.5rem;
+  --artia-spacing-xl: 2rem;
+  
+  /* Border Radius */
+  --artia-radius-sm: 0.25rem;
+  --artia-radius-md: 0.5rem;
+  --artia-radius-lg: 0.75rem;
+  --artia-radius-xl: 1rem;
+  
+  /* Shadows */
+  --artia-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --artia-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --artia-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Typography */
+  --artia-font-sans: 'Noto Sans TC', system-ui, sans-serif;
+  --artia-font-serif: 'Noto Serif TC', Georgia, serif;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+@layer base {
+  html {
+    @apply scroll-smooth;
+    font-family: var(--artia-font-sans);
+  }
+
+  body {
+    @apply antialiased;
+    background-color: var(--artia-color-bg);
+    color: var(--artia-color-text);
+  }
+}
+
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+@layer components {
+  /* --------------------------------------------------------------------------
+     App Layout - 整體應用佈局
+     -------------------------------------------------------------------------- */
+  .artia-app-theme-classic {
+    @apply min-h-screen flex flex-col;
+  }
+
+  .artia-app-main-theme-classic {
+    @apply flex-1;
+  }
+
+  .artia-container-theme-classic {
+    @apply max-w-7xl mx-auto px-4;
+  }
+
+  .artia-container-content-theme-classic {
+    @apply max-w-7xl mx-auto px-4 py-8;
+  }
+
+  /* --------------------------------------------------------------------------
+     Holy Grail Layout - 聖杯佈局（三欄式）
+     -------------------------------------------------------------------------- */
+  .artia-layout-holygrail-theme-classic {
+    @apply flex flex-col lg:flex-row gap-8;
+  }
+
+  .artia-layout-main-theme-classic {
+    @apply flex-1 min-w-0 w-full;
+  }
+
+  /* --------------------------------------------------------------------------
+     Header - 頂部導覽
+     -------------------------------------------------------------------------- */
+  .artia-header-theme-classic {
+    @apply border-b;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+  }
+
+  .artia-header-nav-theme-classic {
+    @apply flex items-center justify-between h-14;
+  }
+
+  .artia-header-logo-theme-classic {
+    @apply font-bold text-xl;
+    color: var(--artia-color-text);
+  }
+
+  .artia-header-menu-theme-classic {
+    @apply hidden md:flex items-center gap-4;
+  }
+
+  .artia-header-link-theme-classic {
+    @apply transition-colors;
+    color: var(--artia-color-text-secondary);
+  }
+
+  .artia-header-link-theme-classic:hover {
+    color: var(--artia-color-text);
+  }
+
+  .artia-header-mobile-btn-theme-classic {
+    @apply md:hidden p-2;
+  }
+
+  /* --------------------------------------------------------------------------
+     Footer - 底部區域
+     -------------------------------------------------------------------------- */
+  .artia-footer-theme-classic {
+    @apply border-t;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+  }
+
+  .artia-footer-content-theme-classic {
+    @apply py-8;
+  }
+
+  .artia-footer-grid-theme-classic {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-8;
+  }
+
+  .artia-footer-brand-theme-classic {
+    @apply col-span-1 md:col-span-2 not-italic;
+  }
+
+  .artia-footer-brand-name-theme-classic {
+    @apply font-bold text-xl mb-2 block;
+  }
+
+  .artia-footer-section-title-theme-classic {
+    @apply font-semibold mb-4;
+  }
+
+  .artia-footer-links-theme-classic {
+    @apply flex gap-4;
+  }
+
+  .artia-footer-copyright-theme-classic {
+    @apply mt-8 pt-8 border-t text-center text-sm;
+    border-color: var(--artia-color-border);
+    color: var(--artia-color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Sidebar Author - 作者側邊欄
+     -------------------------------------------------------------------------- */
+  .artia-sidebar-author-theme-classic {
+    @apply hidden lg:block w-56 shrink-0;
+  }
+
+  .artia-sidebar-author-avatar-theme-classic {
+    @apply w-20 h-20 mx-auto border;
+    border-color: var(--artia-color-border);
+  }
+
+  .artia-sidebar-author-placeholder-theme-classic {
+    @apply w-20 h-20 mx-auto border flex items-center justify-center text-2xl font-bold;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-primary-light);
+    color: var(--artia-color-primary);
+  }
+
+  .artia-sidebar-author-name-theme-classic {
+    @apply font-semibold text-center mb-2;
+  }
+
+  .artia-sidebar-author-bio-theme-classic {
+    @apply text-sm text-center;
+    color: var(--artia-color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Sidebar Content - 內容側邊欄
+     -------------------------------------------------------------------------- */
+  .artia-sidebar-content-theme-classic {
+    @apply hidden xl:block w-60 shrink-0;
+  }
+
+  .artia-sidebar-content-title-theme-classic {
+    @apply text-sm font-semibold mb-4;
+  }
+
+  .artia-sidebar-content-list-theme-classic {
+    @apply space-y-1;
+  }
+
+  .artia-sidebar-content-folder-btn-theme-classic {
+    @apply w-full flex items-center justify-between text-sm py-1 border-b transition-colors;
+    border-color: var(--artia-color-border);
+  }
+
+  .artia-sidebar-content-folder-btn-theme-classic:hover {
+    color: var(--artia-color-primary);
+  }
+
+  .artia-sidebar-content-children-theme-classic {
+    @apply pl-3;
+  }
+
+  .artia-sidebar-content-link-theme-classic {
+    @apply block text-sm py-1 border-b transition-colors;
+    border-color: var(--artia-color-border-light);
+  }
+
+  .artia-sidebar-content-link-theme-classic:hover {
+    color: var(--artia-color-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Page Content - 頁面內容區域
+     -------------------------------------------------------------------------- */
+  .artia-page-theme-classic {
+    @apply space-y-8;
+  }
+
+  .artia-page-article-theme-classic {
+    @apply overflow-y-auto;
+    max-height: calc(100vh - 200px);
+  }
+
+  /* --------------------------------------------------------------------------
+     Hero Section - 主視覺區塊
+     -------------------------------------------------------------------------- */
+  .artia-hero-theme-classic {
+    @apply border p-6 md:p-8;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-lg);
+  }
+
+  .artia-hero-title-theme-classic {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+
+  .artia-hero-desc-theme-classic {
+    @apply mb-6 max-w-2xl;
+    color: var(--artia-color-text-secondary);
+  }
+
+  .artia-hero-actions-theme-classic {
+    @apply flex flex-wrap gap-4;
+  }
+
+  /* --------------------------------------------------------------------------
+     Section - 區塊
+     -------------------------------------------------------------------------- */
+  .artia-section-theme-classic {
+    @apply py-6;
+  }
+
+  .artia-section-title-theme-classic {
+    @apply text-xl font-bold mb-4;
+  }
+
+  /* --------------------------------------------------------------------------
+     Debug Section - 開發除錯區塊
+     -------------------------------------------------------------------------- */
+  .artia-debug-theme-classic {
+    @apply border p-4 bg-gray-100;
+    border-color: var(--artia-color-border);
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-debug-title-theme-classic {
+    @apply font-bold mb-2;
+  }
+
+  .artia-debug-content-theme-classic {
+    @apply text-xs overflow-auto max-h-96;
+  }
+
+  /* --------------------------------------------------------------------------
+     Cards - 卡片元件
+     -------------------------------------------------------------------------- */
+  .artia-card-theme-classic {
+    @apply block border p-4 transition-all;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-card-theme-classic:hover {
+    border-color: var(--artia-color-primary);
+    box-shadow: var(--artia-shadow-md);
+  }
+
+  .artia-card-featured-theme-classic {
+    @apply block border p-4 transition-all;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-card-featured-theme-classic:hover {
+    border-color: var(--artia-color-primary);
+    box-shadow: var(--artia-shadow-md);
+  }
+
+  .artia-card-header-theme-classic {
+    @apply flex items-center gap-2 mb-2;
+  }
+
+  .artia-card-avatar-theme-classic {
+    @apply w-8 h-8 border flex items-center justify-center text-sm font-bold;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-primary-light);
+    color: var(--artia-color-primary);
+    border-radius: var(--artia-radius-sm);
+  }
+
+  .artia-card-title-theme-classic {
+    @apply font-semibold text-sm;
+  }
+
+  .artia-card-meta-theme-classic {
+    @apply text-xs;
+    color: var(--artia-color-text-muted);
+  }
+
+  .artia-card-desc-theme-classic {
+    @apply text-sm;
+    color: var(--artia-color-text-secondary);
+  }
+
+  .artia-card-type-theme-classic {
+    @apply text-xs block mb-2;
+    color: var(--artia-color-text-muted);
+  }
+
+  .artia-card-title-lg-theme-classic {
+    @apply font-semibold mb-1;
+  }
+
+  /* --------------------------------------------------------------------------
+     Card Grid - 卡片網格
+     -------------------------------------------------------------------------- */
+  .artia-card-list-theme-classic {
+    @apply space-y-4;
+  }
+
+  .artia-card-grid-theme-classic {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+
+  /* --------------------------------------------------------------------------
+     Buttons - 按鈕
+     -------------------------------------------------------------------------- */
+  .artia-btn-theme-classic {
+    @apply inline-flex items-center justify-center px-4 py-2 font-medium transition-colors;
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-btn-primary-theme-classic {
+    @apply px-4 py-2 border font-medium transition-all;
+    background-color: var(--artia-color-primary);
+    color: white;
+    border-color: var(--artia-color-primary);
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-btn-primary-theme-classic:hover {
+    background-color: var(--artia-color-primary-hover);
+    border-color: var(--artia-color-primary-hover);
+  }
+
+  .artia-btn-secondary-theme-classic {
+    @apply px-4 py-2 border font-medium transition-all;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-btn-secondary-theme-classic:hover {
+    border-color: var(--artia-color-primary);
+    color: var(--artia-color-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Forms - 表單元素
+     -------------------------------------------------------------------------- */
+  .artia-input-theme-classic {
+    @apply w-full px-3 py-2 border transition-all;
+    border-color: var(--artia-color-border);
+    border-radius: var(--artia-radius-md);
+    background-color: var(--artia-color-surface);
+  }
+
+  .artia-input-theme-classic:focus {
+    @apply outline-none ring-2;
+    border-color: var(--artia-color-primary);
+    --tw-ring-color: var(--artia-color-primary-light);
+  }
+
+  .artia-input-theme-classic:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  .artia-label-theme-classic {
+    @apply block text-sm font-medium mb-1;
+  }
+
+  /* --------------------------------------------------------------------------
+     Password Prompt - 密碼提示
+     -------------------------------------------------------------------------- */
+  .artia-password-prompt-theme-classic {
+    @apply flex justify-center items-center min-h-[400px] p-8;
+  }
+
+  .artia-password-box-theme-classic {
+    @apply max-w-md w-full p-8 border;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-lg);
+    box-shadow: var(--artia-shadow-md);
+  }
+
+  .artia-password-title-theme-classic {
+    @apply text-xl font-bold text-center mb-2;
+  }
+
+  .artia-password-hint-theme-classic {
+    @apply text-center mb-6;
+    color: var(--artia-color-text-secondary);
+  }
+
+  .artia-password-form-theme-classic {
+    @apply flex flex-col gap-4;
+  }
+
+  .artia-password-submit-theme-classic {
+    @apply w-full py-3 font-medium transition-all;
+    background-color: var(--artia-color-primary);
+    color: white;
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-password-submit-theme-classic:hover:not(:disabled) {
+    background-color: var(--artia-color-primary-hover);
+  }
+
+  .artia-password-submit-theme-classic:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  .artia-password-error-theme-classic {
+    @apply text-center text-sm mt-4;
+    color: var(--artia-color-error);
+  }
+
+  /* --------------------------------------------------------------------------
+     Alert Component - 提示元件
+     -------------------------------------------------------------------------- */
+  .artia-alert-theme-classic {
+    @apply flex items-center p-4 border-2 transition-all;
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-lg);
+    box-shadow: var(--artia-shadow-md);
+  }
+
+  .artia-alert-theme-classic:hover {
+    @apply -translate-y-0.5;
+    box-shadow: var(--artia-shadow-lg);
+  }
+
+  /* --------------------------------------------------------------------------
+     Counter Component - 計數器元件
+     -------------------------------------------------------------------------- */
+  .artia-counter-theme-classic {
+    @apply inline-flex items-center gap-2 p-4 border;
+    border-color: var(--artia-color-border);
+    background-color: var(--artia-color-surface);
+    border-radius: var(--artia-radius-md);
+  }
+
+  .artia-counter-value-theme-classic {
+    @apply font-bold text-lg min-w-[3rem] text-center;
+  }
+
+  .artia-counter-btn-theme-classic {
+    @apply w-8 h-8 flex items-center justify-center border transition-colors;
+    border-color: var(--artia-color-border);
+    border-radius: var(--artia-radius-sm);
+  }
+
+  .artia-counter-btn-theme-classic:hover {
+    background-color: var(--artia-color-primary-light);
+    border-color: var(--artia-color-primary);
+    color: var(--artia-color-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Typography - 文字排版
+     -------------------------------------------------------------------------- */
+  .artia-heading-1-theme-classic {
+    @apply text-4xl font-bold tracking-tight;
+  }
+
+  .artia-heading-2-theme-classic {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+
+  .artia-heading-3-theme-classic {
+    @apply text-2xl font-semibold;
+  }
+
+  .artia-text-body-theme-classic {
+    @apply text-base leading-relaxed;
+    color: var(--artia-color-text-secondary);
+  }
+
+  .artia-text-caption-theme-classic {
+    @apply text-sm;
+    color: var(--artia-color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Icon - 圖標
+     -------------------------------------------------------------------------- */
+  .artia-icon-theme-classic {
+    @apply w-6 h-6;
+  }
+
+  .artia-icon-sm-theme-classic {
+    @apply w-4 h-4;
+  }
+
+  .artia-icon-lg-theme-classic {
+    @apply w-8 h-8;
+  }
+}
+
+/* ==========================================================================
+   Utilities - 工具類別
+   ========================================================================== */
+@layer utilities {
+  .artia-scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .artia-scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

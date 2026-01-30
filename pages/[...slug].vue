@@ -27,7 +27,7 @@ const displayContent = computed(() => {
 </script>
 
 <template>
-  <article class="overflow-y-auto max-h-[calc(100vh-200px)]">
+  <article class="artia-page-article-theme-classic">
     <section v-if="error">
       <p>Error: {{ error.message }}</p>
     </section>
