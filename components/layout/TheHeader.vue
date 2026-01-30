@@ -17,7 +17,6 @@ const { t } = useTheme()
         <!-- Navigation -->
         <li :class="t('header-menu')">
           <NuxtLink to="/" :class="t('header-link')">首頁</NuxtLink>
-          <NuxtLink to="/content" :class="t('header-link')">作品集</NuxtLink>
           <NuxtLink to="/about" :class="t('header-link')">關於</NuxtLink>
         </li>
 
