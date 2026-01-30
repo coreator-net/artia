@@ -293,6 +293,70 @@
 }
 
 /* --------------------------------------------------------------------------
+   Sidebar TOC - 目錄側邊欄
+   -------------------------------------------------------------------------- */
+.artia-sidebar-toc-theme-dark {
+  display: none;
+  width: 15rem;
+  flex-shrink: 0;
+  position: sticky;
+  top: 1rem;
+}
+
+@media (min-width: 1280px) {
+  .artia-sidebar-toc-theme-dark {
+    display: block;
+  }
+}
+
+.artia-sidebar-toc-title-theme-dark {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+}
+
+.artia-sidebar-toc-list-theme-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.artia-sidebar-toc-item-theme-dark {
+  font-size: 0.875rem;
+}
+
+.artia-sidebar-toc-item-theme-dark.active .artia-sidebar-toc-link-theme-dark {
+  color: #60a5fa;
+  font-weight: 500;
+}
+
+.artia-sidebar-toc-link-theme-dark {
+  display: block;
+  padding: 0.25rem 0;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.artia-sidebar-toc-link-theme-dark:hover {
+  color: #60a5fa;
+}
+
+.artia-sidebar-toc-nested-theme-dark {
+  padding-left: 0.75rem;
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 2px solid #475569;
+}
+
+.artia-sidebar-toc-empty-theme-dark {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* --------------------------------------------------------------------------
    Page
    -------------------------------------------------------------------------- */
 .artia-page-theme-dark {

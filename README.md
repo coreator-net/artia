@@ -366,6 +366,7 @@ content/
 ## 📖 文件
 
 - [主題自訂指南](docs/THEMING.md) - 主題系統與自訂樣式說明
+- [佈局系統](docs/LAYOUT.md) - 頁面區域配置與元件擺放
 - [設定參考](docs/CONFIGURATION.md) - 完整的環境變數與設定說明
 - [部署指南](docs/DEPLOYMENT.md) - Docker、Vercel、Netlify 等部署方式
 - [環境變數範本](.env.example) - 快速開始的設定範本

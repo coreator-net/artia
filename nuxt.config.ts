@@ -127,11 +127,20 @@ export default defineNuxtConfig({
       // 評論系統
       commentsEnabled: 'false',
       commentsProvider: '',
-      giscusRepo: '',
-      giscusRepoId: '',
-      giscusCategory: '',
-      giscusCategoryId: '',
       disqusShortname: '',
+      
+      // 頁面佈局設定
+      layoutMode: 'content',
+      layoutHomeTop: 'hero',
+      layoutHomeLeft: 'author',
+      layoutHomeCenter: 'featured',
+      layoutHomeRight: 'navigation',
+      layoutHomeBottom: 'recent',
+      layoutReadTop: 'navigation',
+      layoutReadLeft: 'author',
+      layoutReadCenter: 'toc',
+      layoutReadRight: 'recent',
+      layoutReadBottom: 'featured',
     },
   },
 })

@@ -1,21 +1,19 @@
 <script setup lang="ts">
 /**
- * 閱讀頁 - 動態內容頁面
- * 使用 read layout，內容由 .env 中的 LAYOUT_READ_* 設定決定
+ * LayoutPageContent - 頁面主要內容
+ * 用於 layout 系統，渲染 Nuxt Content 內容
  */
-definePageMeta({
-  layout: 'read'
-})
-
 const route = useRoute()
 const { t } = useTheme()
 
 // 處理路徑（移除結尾斜線）
-const path = route.path === '/' ? '/' : route.path.replace(/\/$/, '')
+const path = computed(() => 
+  route.path === '/' ? '/' : route.path.replace(/\/$/, '')
+)
 
-// Nuxt Content v2 API - 使用 server API 來支援密碼保護
-const { data: page, error } = await useAsyncData('page-' + path, () => {
-  return $fetch<any>(`/api/content${path}`)
+// 使用 server API 來支援密碼保護
+const { data: page, error } = await useAsyncData('page-' + path.value, () => {
+  return $fetch<any>(`/api/content${path.value}`)
 })
 
 // 追蹤是否已驗證密碼

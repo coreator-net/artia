@@ -263,6 +263,50 @@
   }
 
   /* --------------------------------------------------------------------------
+     Sidebar TOC - 目錄側邊欄
+     -------------------------------------------------------------------------- */
+  .artia-sidebar-toc-theme-classic {
+    @apply hidden xl:block w-60 shrink-0 sticky top-4;
+  }
+
+  .artia-sidebar-toc-title-theme-classic {
+    @apply text-sm font-semibold mb-4;
+    color: var(--artia-color-text);
+  }
+
+  .artia-sidebar-toc-list-theme-classic {
+    @apply space-y-1;
+  }
+
+  .artia-sidebar-toc-item-theme-classic {
+    @apply text-sm;
+  }
+
+  .artia-sidebar-toc-item-theme-classic.active .artia-sidebar-toc-link-theme-classic {
+    color: var(--artia-color-primary);
+    font-weight: 500;
+  }
+
+  .artia-sidebar-toc-link-theme-classic {
+    @apply block py-1 transition-colors;
+    color: var(--artia-color-text-secondary);
+  }
+
+  .artia-sidebar-toc-link-theme-classic:hover {
+    color: var(--artia-color-primary);
+  }
+
+  .artia-sidebar-toc-nested-theme-classic {
+    @apply pl-3 mt-1 space-y-1 border-l-2;
+    border-color: var(--artia-color-border-light);
+  }
+
+  .artia-sidebar-toc-empty-theme-classic {
+    @apply text-sm;
+    color: var(--artia-color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
      Page Content - 頁面內容區域
      -------------------------------------------------------------------------- */
   .artia-page-theme-classic {
