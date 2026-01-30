@@ -1,21 +1,22 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
+const { t } = useTheme()
 </script>
 
 <template>
-  <aside class="artia-sidebar-author-theme-classic">
+  <aside :class="t('sidebar-author')">
     <figure class="text-center mb-4">
       <img 
         v-if="config.public.authorAvatar" 
         :src="config.public.authorAvatar" 
         :alt="config.public.authorName"
-        class="artia-sidebar-author-avatar-theme-classic"
+        :class="t('sidebar-author-avatar')"
       />
-      <figcaption class="artia-sidebar-author-placeholder-theme-classic" v-else>
+      <figcaption :class="t('sidebar-author-placeholder')" v-else>
         {{ config.public.authorName?.charAt(0) || 'A' }}
       </figcaption>
     </figure>
-    <h3 class="artia-sidebar-author-name-theme-classic">{{ config.public.authorName }}</h3>
-    <p class="artia-sidebar-author-bio-theme-classic">{{ config.public.authorBio }}</p>
+    <h3 :class="t('sidebar-author-name')">{{ config.public.authorName }}</h3>
+    <p :class="t('sidebar-author-bio')">{{ config.public.authorBio }}</p>
   </aside>
 </template>

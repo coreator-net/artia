@@ -49,26 +49,27 @@ const toggleFolder = (folder: string) => {
 }
 
 const isExpanded = (folder: string) => expandedFolders.value.has(folder)
+const { t } = useTheme()
 </script>
 
 <template>
-  <aside class="artia-sidebar-content-theme-classic">
-    <h3 class="artia-sidebar-content-title-theme-classic">內容清單</h3>
+  <aside :class="t('sidebar-content')">
+    <h3 :class="t('sidebar-content-title')">內容清單</h3>
     <nav>
-      <ul class="artia-sidebar-content-list-theme-classic">
+      <ul :class="t('sidebar-content-list')">
         <li v-for="folder in contentTree" :key="folder.path">
           <button 
             @click="toggleFolder(folder.name)"
-            class="artia-sidebar-content-folder-btn-theme-classic"
+            :class="t('sidebar-content-folder-btn')"
           >
             <span>{{ folder.name }}</span>
             <span>{{ isExpanded(folder.name) ? '−' : '+' }}</span>
           </button>
-          <ul v-if="isExpanded(folder.name)" class="artia-sidebar-content-children-theme-classic">
+          <ul v-if="isExpanded(folder.name)" :class="t('sidebar-content-children')">
             <li v-for="child in folder.children" :key="child.path">
               <NuxtLink 
                 :to="child.path"
-                class="artia-sidebar-content-link-theme-classic"
+                :class="t('sidebar-content-link')"
               >
                 {{ child.title }}
               </NuxtLink>

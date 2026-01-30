@@ -93,6 +93,19 @@ docker run -d -p 80:3000 --name artia your-registry.com/artia:v1.0.0
 
 Artia 使用模組化的主題系統，所有樣式都收攏在 CSS 檔案中，方便自訂。
 
+### 切換主題
+
+在 `.env` 檔案中設定主題：
+
+```bash
+# 可選值：classic, dark（或自訂主題名稱）
+NUXT_PUBLIC_THEME="classic"
+```
+
+目前內建主題：
+- `classic` - 經典淺色主題（預設）
+- `dark` - 深色主題
+
 ### 主題結構
 
 - **CSS 變數**：定義顏色、間距、圓角等基礎設定

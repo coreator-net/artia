@@ -8,6 +8,10 @@ export default <Config>{
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
     './app.vue',
+    // 確保 CSS 檔案中的類別被掃描
+    './assets/css/**/*.css',
+    // 主題類別 safelist - 確保動態生成的類別不被 purge
+    './assets/css/theme-safelist.txt',
   ],
   theme: {
     extend: {

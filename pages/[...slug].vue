@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
+const { t } = useTheme()
 
 // 處理路徑（移除結尾斜線）
 const path = route.path === '/' ? '/' : route.path.replace(/\/$/, '')
@@ -27,7 +28,7 @@ const displayContent = computed(() => {
 </script>
 
 <template>
-  <article class="artia-page-article-theme-classic">
+  <article :class="t('page-article')">
     <section v-if="error">
       <p>Error: {{ error.message }}</p>
     </section>

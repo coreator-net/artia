@@ -1,32 +1,9 @@
-<template>
-  <div class="artia-password-prompt-theme-classic">
-    <div class="artia-password-box-theme-classic">
-      <h2 class="artia-password-title-theme-classic">🔒 此內容受密碼保護</h2>
-      <p class="artia-password-hint-theme-classic">請輸入密碼以查看完整內容</p>
-      
-      <form @submit.prevent="handleSubmit" class="artia-password-form-theme-classic">
-        <input
-          v-model="password"
-          type="password"
-          placeholder="請輸入密碼"
-          :disabled="loading"
-          class="artia-input-theme-classic"
-        />
-        <button type="submit" :disabled="loading" class="artia-password-submit-theme-classic">
-          {{ loading ? '驗證中...' : '解鎖' }}
-        </button>
-      </form>
-      
-      <p v-if="error" class="artia-password-error-theme-classic">{{ error }}</p>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 const emit = defineEmits<{
   authenticated: [content: any]
 }>()
 
+const { t } = useTheme()
 const password = ref('')
 const loading = ref(false)
 const error = ref('')
@@ -58,3 +35,27 @@ const handleSubmit = async () => {
   }
 }
 </script>
+
+<template>
+  <div :class="t('password-prompt')">
+    <div :class="t('password-box')">
+      <h2 :class="t('password-title')">🔒 此內容受密碼保護</h2>
+      <p :class="t('password-hint')">請輸入密碼以查看完整內容</p>
+      
+      <form @submit.prevent="handleSubmit" :class="t('password-form')">
+        <input
+          v-model="password"
+          type="password"
+          placeholder="請輸入密碼"
+          :disabled="loading"
+          :class="t('input')"
+        />
+        <button type="submit" :disabled="loading" :class="t('password-submit')">
+          {{ loading ? '驗證中...' : '解鎖' }}
+        </button>
+      </form>
+      
+      <p v-if="error" :class="t('password-error')">{{ error }}</p>
+    </div>
+  </div>
+</template>

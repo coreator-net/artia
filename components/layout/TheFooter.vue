@@ -1,29 +1,30 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
+const { t } = useTheme()
 </script>
 
 <template>
-  <footer class="artia-footer-theme-classic">
-    <section class="artia-container-theme-classic artia-footer-content-theme-classic">
-      <nav class="artia-footer-grid-theme-classic">
+  <footer :class="t('footer')">
+    <section :class="[t('container'), t('footer-content')]">
+      <nav :class="t('footer-grid')">
         <!-- Brand -->
-        <address class="artia-footer-brand-theme-classic">
-          <strong class="artia-footer-brand-name-theme-classic">{{ config.public.siteName }}</strong>
-          <p class="artia-text-body-theme-classic">{{ config.public.siteSlogan }}</p>
+        <address :class="t('footer-brand')">
+          <strong :class="t('footer-brand-name')">{{ config.public.siteName }}</strong>
+          <p :class="t('text-body')">{{ config.public.siteSlogan }}</p>
         </address>
 
         <!-- Links -->
         <section>
-          <h4 class="artia-footer-section-title-theme-classic">關於</h4>
-          <ul class="artia-footer-links-theme-classic">
-            <li><a href="#" class="artia-header-link-theme-classic">關於我們</a></li>
-            <li><a href="#" class="artia-header-link-theme-classic">聯絡方式</a></li>
-            <li><a href="#" class="artia-header-link-theme-classic">使用條款</a></li>
+          <h4 :class="t('footer-section-title')">關於</h4>
+          <ul :class="t('footer-links')">
+            <li><a href="#" :class="t('header-link')">關於我們</a></li>
+            <li><a href="#" :class="t('header-link')">聯絡方式</a></li>
+            <li><a href="#" :class="t('header-link')">使用條款</a></li>
           </ul>
         </section>
       </nav>
 
-      <p class="artia-footer-copyright-theme-classic">
+      <p :class="t('footer-copyright')">
         {{ config.public.copyright }}
       </p>
     </section>

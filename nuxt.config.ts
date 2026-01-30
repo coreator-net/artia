@@ -8,8 +8,11 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
   ],
 
-  // 引入自訂 CSS
-  css: ['~/assets/css/main.css'],
+  // 引入自訂 CSS（主題系統）
+  css: [
+    '~/assets/css/main.css',      // Classic 主題（預設）
+    '~/assets/css/theme-dark.css', // Dark 主題
+  ],
 
   devtools: { enabled: true },
   
@@ -21,6 +24,9 @@ export default defineNuxtConfig({
   // 環境變數配置
   runtimeConfig: {
     public: {
+      // 主題設定
+      theme: 'classic',
+      
       siteName: 'Artia',
       siteTitle: '歡迎來到 Artia',
       siteDescription: '這裡是創作者的天地，每一個故事都值得被閱讀，每一個創意都值得被發現。',

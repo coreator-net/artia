@@ -1,0 +1,746 @@
+/* ==========================================================================
+   Artia Theme System - Dark Theme
+   
+   深色主題 - 優雅的夜間模式
+   
+   使用方式：
+   1. 在 .env 中設定 NUXT_PUBLIC_THEME="dark"
+   
+   注意：此檔案不使用 @tailwind 指令，因為 main.css 已經引入
+   ========================================================================== */
+
+/* ==========================================================================
+   Dark Theme Component Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   App Layout
+   -------------------------------------------------------------------------- */
+.artia-app-theme-dark {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.artia-app-main-theme-dark {
+  flex: 1;
+}
+
+.artia-container-theme-dark {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.artia-container-content-theme-dark {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1rem;
+}
+
+.artia-layout-holygrail-theme-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .artia-layout-holygrail-theme-dark {
+    flex-direction: row;
+  }
+}
+
+.artia-layout-main-theme-dark {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.artia-header-theme-dark {
+  border-bottom: 1px solid #334155;
+  background-color: #1e293b;
+}
+
+.artia-header-nav-theme-dark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+
+.artia-header-logo-theme-dark {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #60a5fa;
+}
+
+.artia-header-menu-theme-dark {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .artia-header-menu-theme-dark {
+    display: flex;
+  }
+}
+
+.artia-header-link-theme-dark {
+  color: #cbd5e1;
+  transition: color 0.2s;
+}
+
+.artia-header-link-theme-dark:hover {
+  color: #60a5fa;
+}
+
+.artia-header-mobile-btn-theme-dark {
+  display: block;
+  padding: 0.5rem;
+  color: #f1f5f9;
+}
+
+@media (min-width: 768px) {
+  .artia-header-mobile-btn-theme-dark {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.artia-footer-theme-dark {
+  border-top: 1px solid #334155;
+  background-color: #1e293b;
+}
+
+.artia-footer-content-theme-dark {
+  padding: 2rem 0;
+}
+
+.artia-footer-grid-theme-dark {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .artia-footer-grid-theme-dark {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.artia-footer-brand-theme-dark {
+  grid-column: span 1;
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+  .artia-footer-brand-theme-dark {
+    grid-column: span 2;
+  }
+}
+
+.artia-footer-brand-name-theme-dark {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #60a5fa;
+}
+
+.artia-footer-section-title-theme-dark {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+}
+
+.artia-footer-links-theme-dark {
+  display: flex;
+  gap: 1rem;
+}
+
+.artia-footer-copyright-theme-dark {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #334155;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Author
+   -------------------------------------------------------------------------- */
+.artia-sidebar-author-theme-dark {
+  display: none;
+  width: 14rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .artia-sidebar-author-theme-dark {
+    display: block;
+  }
+}
+
+.artia-sidebar-author-avatar-theme-dark {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+  border: 1px solid #334155;
+  border-radius: 9999px;
+}
+
+.artia-sidebar-author-placeholder-theme-dark {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+  border: 1px solid #60a5fa;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #1e3a5f;
+  color: #60a5fa;
+}
+
+.artia-sidebar-author-name-theme-dark {
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #f1f5f9;
+}
+
+.artia-sidebar-author-bio-theme-dark {
+  font-size: 0.875rem;
+  text-align: center;
+  color: #cbd5e1;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Content
+   -------------------------------------------------------------------------- */
+.artia-sidebar-content-theme-dark {
+  display: none;
+  width: 15rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1280px) {
+  .artia-sidebar-content-theme-dark {
+    display: block;
+  }
+}
+
+.artia-sidebar-content-title-theme-dark {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+}
+
+.artia-sidebar-content-list-theme-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.artia-sidebar-content-folder-btn-theme-dark {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #334155;
+  color: #cbd5e1;
+  transition: color 0.2s;
+  background: none;
+  cursor: pointer;
+}
+
+.artia-sidebar-content-folder-btn-theme-dark:hover {
+  color: #60a5fa;
+}
+
+.artia-sidebar-content-children-theme-dark {
+  padding-left: 0.75rem;
+}
+
+.artia-sidebar-content-link-theme-dark {
+  display: block;
+  font-size: 0.875rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #475569;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.artia-sidebar-content-link-theme-dark:hover {
+  color: #60a5fa;
+}
+
+/* --------------------------------------------------------------------------
+   Page
+   -------------------------------------------------------------------------- */
+.artia-page-theme-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.artia-page-article-theme-dark {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section
+   -------------------------------------------------------------------------- */
+.artia-hero-theme-dark {
+  border: 1px solid #334155;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+@media (min-width: 768px) {
+  .artia-hero-theme-dark {
+    padding: 2rem;
+  }
+}
+
+.artia-hero-title-theme-dark {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+}
+
+@media (min-width: 768px) {
+  .artia-hero-title-theme-dark {
+    font-size: 2.25rem;
+  }
+}
+
+.artia-hero-desc-theme-dark {
+  margin-bottom: 1.5rem;
+  max-width: 42rem;
+  color: #cbd5e1;
+}
+
+.artia-hero-actions-theme-dark {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Section
+   -------------------------------------------------------------------------- */
+.artia-section-theme-dark {
+  padding: 1.5rem 0;
+}
+
+.artia-section-title-theme-dark {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+}
+
+/* --------------------------------------------------------------------------
+   Debug
+   -------------------------------------------------------------------------- */
+.artia-debug-theme-dark {
+  border: 1px solid #334155;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #1e293b;
+}
+
+.artia-debug-title-theme-dark {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fbbf24;
+}
+
+.artia-debug-content-theme-dark {
+  font-size: 0.75rem;
+  overflow: auto;
+  max-height: 24rem;
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+.artia-card-theme-dark {
+  display: block;
+  border: 1px solid #334155;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #1e293b;
+  transition: all 0.2s;
+}
+
+.artia-card-theme-dark:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+}
+
+.artia-card-featured-theme-dark {
+  display: block;
+  border: 1px solid #334155;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #1e293b;
+  transition: all 0.2s;
+}
+
+.artia-card-featured-theme-dark:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+}
+
+.artia-card-header-theme-dark {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.artia-card-avatar-theme-dark {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #60a5fa;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  background-color: #1e3a5f;
+  color: #60a5fa;
+}
+
+.artia-card-title-theme-dark {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #f1f5f9;
+}
+
+.artia-card-meta-theme-dark {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.artia-card-desc-theme-dark {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+}
+
+.artia-card-type-theme-dark {
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #60a5fa;
+}
+
+.artia-card-title-lg-theme-dark {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #f1f5f9;
+}
+
+.artia-card-list-theme-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.artia-card-grid-theme-dark {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .artia-card-grid-theme-dark {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .artia-card-grid-theme-dark {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.artia-btn-theme-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.artia-btn-primary-theme-dark {
+  padding: 0.5rem 1rem;
+  border: 1px solid #60a5fa;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: #60a5fa;
+  color: #0f172a;
+  transition: all 0.2s;
+}
+
+.artia-btn-primary-theme-dark:hover {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.artia-btn-secondary-theme-dark {
+  padding: 0.5rem 1rem;
+  border: 1px solid #334155;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #f1f5f9;
+  transition: all 0.2s;
+}
+
+.artia-btn-secondary-theme-dark:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+.artia-input-theme-dark {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  transition: all 0.2s;
+}
+
+.artia-input-theme-dark:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.artia-input-theme-dark::placeholder {
+  color: #94a3b8;
+}
+
+.artia-label-theme-dark {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #f1f5f9;
+}
+
+/* --------------------------------------------------------------------------
+   Password Prompt
+   -------------------------------------------------------------------------- */
+.artia-password-prompt-theme-dark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.artia-password-box-theme-dark {
+  max-width: 28rem;
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  background-color: #1e293b;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.artia-password-title-theme-dark {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #f1f5f9;
+}
+
+.artia-password-hint-theme-dark {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #cbd5e1;
+}
+
+.artia-password-form-theme-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.artia-password-submit-theme-dark {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: #60a5fa;
+  color: #0f172a;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.artia-password-submit-theme-dark:hover:not(:disabled) {
+  background-color: #3b82f6;
+}
+
+.artia-password-submit-theme-dark:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.artia-password-error-theme-dark {
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  color: #f87171;
+}
+
+/* --------------------------------------------------------------------------
+   Alert
+   -------------------------------------------------------------------------- */
+.artia-alert-theme-dark {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid;
+  border-radius: 0.75rem;
+  background-color: #1e293b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+.artia-alert-theme-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Counter
+   -------------------------------------------------------------------------- */
+.artia-counter-theme-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  background-color: #1e293b;
+}
+
+.artia-counter-value-theme-dark {
+  font-weight: 700;
+  font-size: 1.125rem;
+  min-width: 3rem;
+  text-align: center;
+  color: #60a5fa;
+}
+
+.artia-counter-btn-theme-dark {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #334155;
+  border-radius: 0.25rem;
+  color: #f1f5f9;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.artia-counter-btn-theme-dark:hover {
+  background-color: #1e3a5f;
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+.artia-heading-1-theme-dark {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #f1f5f9;
+}
+
+.artia-heading-2-theme-dark {
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #f1f5f9;
+}
+
+.artia-heading-3-theme-dark {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.artia-text-body-theme-dark {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #cbd5e1;
+}
+
+.artia-text-caption-theme-dark {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   Icon
+   -------------------------------------------------------------------------- */
+.artia-icon-theme-dark {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #f1f5f9;
+}
+
+.artia-icon-sm-theme-dark {
+  width: 1rem;
+  height: 1rem;
+}
+
+.artia-icon-lg-theme-dark {
+  width: 2rem;
+  height: 2rem;
+}
