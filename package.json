@@ -6,7 +6,12 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "docker:build": "docker build -t artia .",
+    "docker:run": "docker run -p 3000:3000 artia",
+    "docker:up": "docker-compose up -d production",
+    "docker:down": "docker-compose down",
+    "docker:dev": "docker-compose up dev"
   },
   "dependencies": {
     "@nuxt/content": "^2.13.0",
