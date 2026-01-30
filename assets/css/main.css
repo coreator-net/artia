@@ -4,26 +4,22 @@
    這是 Artia 主題系統的入口檔案
    
    主題結構：
-   - main.css (本檔案) - Tailwind 基礎 + 全域樣式 + 主題引用
+   - main.css (本檔案) - Tailwind 基礎 + 全域樣式
    - theme-classic.css - 經典主題（明亮）
    - theme-dark.css    - 深色主題
+   
+   注意：主題檔案由 nuxt.config.ts 的 css 陣列引入
    
    開發新主題：
    1. 複製 theme-classic.css 為 theme-{name}.css
    2. 修改所有 -theme-classic 為 -theme-{name}
-   3. 在下方 @import 引入
+   3. 在 nuxt.config.ts 的 css 陣列加入 '~/assets/css/theme-{name}.css'
    4. 在 .env 設定 NUXT_PUBLIC_THEME="{name}"
    ========================================================================== */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* ==========================================================================
-   Theme Imports - 主題檔案引用
-   ========================================================================== */
-@import './theme-classic.css';
-@import './theme-dark.css';
 
 /* ==========================================================================
    Global CSS Variables - 全域預設變數
@@ -79,13 +75,12 @@
    ========================================================================== */
 @layer base {
   html {
-    scroll-behavior: smooth;
+    @apply scroll-smooth;
     font-family: var(--artia-font-sans);
   }
 
   body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply antialiased;
     background-color: var(--artia-color-bg);
     color: var(--artia-color-text);
   }
@@ -96,12 +91,13 @@
    ========================================================================== */
 @layer utilities {
   .artia-scrollbar-hide {
+    @apply overflow-hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
   .artia-scrollbar-hide::-webkit-scrollbar {
-    display: none;
+    @apply hidden;
   }
 }
 

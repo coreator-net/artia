@@ -3,100 +3,68 @@
    
    深色主題 - 優雅的夜間模式
    
-   使用方式：
-   1. 在 .env 中設定 NUXT_PUBLIC_THEME="dark"
+   使用方式：在 .env 中設定 NUXT_PUBLIC_THEME="dark"
    
-   注意：此檔案不使用 @tailwind 指令，因為 main.css 已經引入
-   ========================================================================== */
-
-/* ==========================================================================
-   Dark Theme Component Styles
+   命名規則：artia-{component}-{element?}-theme-dark
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   App Layout
+   App Layout - 整體應用佈局
    -------------------------------------------------------------------------- */
 .artia-app-theme-dark {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  @apply min-h-screen flex flex-col;
   background-color: #0f172a;
   color: #f1f5f9;
 }
 
 .artia-app-main-theme-dark {
-  flex: 1;
+  @apply flex-1;
 }
 
 .artia-container-theme-dark {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  @apply max-w-7xl mx-auto px-4;
 }
 
 .artia-container-content-theme-dark {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 1rem;
-}
-
-.artia-layout-holygrail-theme-dark {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-@media (min-width: 1024px) {
-  .artia-layout-holygrail-theme-dark {
-    flex-direction: row;
-  }
-}
-
-.artia-layout-main-theme-dark {
-  flex: 1;
-  min-width: 0;
-  width: 100%;
+  @apply max-w-7xl mx-auto px-4 py-8;
 }
 
 /* --------------------------------------------------------------------------
-   Header
+   Holy Grail Layout - 聖杯佈局（三欄式）
+   -------------------------------------------------------------------------- */
+.artia-layout-holygrail-theme-dark {
+  @apply flex flex-col lg:flex-row gap-8;
+}
+
+.artia-layout-main-theme-dark {
+  @apply flex-1 min-w-0 w-full;
+}
+
+/* --------------------------------------------------------------------------
+   Header - 頂部導覽
    -------------------------------------------------------------------------- */
 .artia-header-theme-dark {
-  border-bottom: 1px solid #334155;
+  @apply border-b;
+  border-color: #334155;
   background-color: #1e293b;
 }
 
 .artia-header-nav-theme-dark {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 3.5rem;
+  @apply flex items-center justify-between h-14;
 }
 
 .artia-header-logo-theme-dark {
-  font-weight: 700;
-  font-size: 1.25rem;
+  @apply font-bold text-xl;
   color: #60a5fa;
 }
 
 .artia-header-menu-theme-dark {
-  display: none;
-  align-items: center;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .artia-header-menu-theme-dark {
-    display: flex;
-  }
+  @apply hidden md:flex items-center gap-4;
 }
 
 .artia-header-link-theme-dark {
+  @apply transition-colors;
   color: #cbd5e1;
-  transition: color 0.2s;
 }
 
 .artia-header-link-theme-dark:hover {
@@ -104,171 +72,100 @@
 }
 
 .artia-header-mobile-btn-theme-dark {
-  display: block;
-  padding: 0.5rem;
+  @apply md:hidden p-2;
   color: #f1f5f9;
 }
 
-@media (min-width: 768px) {
-  .artia-header-mobile-btn-theme-dark {
-    display: none;
-  }
-}
-
 /* --------------------------------------------------------------------------
-   Footer
+   Footer - 底部區域
    -------------------------------------------------------------------------- */
 .artia-footer-theme-dark {
-  border-top: 1px solid #334155;
+  @apply border-t;
+  border-color: #334155;
   background-color: #1e293b;
 }
 
 .artia-footer-content-theme-dark {
-  padding: 2rem 0;
+  @apply py-8;
 }
 
 .artia-footer-grid-theme-dark {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .artia-footer-grid-theme-dark {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  @apply grid grid-cols-1 md:grid-cols-4 gap-8;
 }
 
 .artia-footer-brand-theme-dark {
-  grid-column: span 1;
-  font-style: normal;
-}
-
-@media (min-width: 768px) {
-  .artia-footer-brand-theme-dark {
-    grid-column: span 2;
-  }
+  @apply col-span-1 md:col-span-2 not-italic;
 }
 
 .artia-footer-brand-name-theme-dark {
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  display: block;
+  @apply font-bold text-xl mb-2 block;
   color: #60a5fa;
 }
 
 .artia-footer-section-title-theme-dark {
-  font-weight: 600;
-  margin-bottom: 1rem;
+  @apply font-semibold mb-4;
   color: #f1f5f9;
 }
 
 .artia-footer-links-theme-dark {
-  display: flex;
-  gap: 1rem;
+  @apply flex gap-4;
 }
 
 .artia-footer-copyright-theme-dark {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #334155;
-  text-align: center;
-  font-size: 0.875rem;
+  @apply mt-8 pt-8 border-t text-center text-sm;
+  border-color: #334155;
   color: #94a3b8;
 }
 
 /* --------------------------------------------------------------------------
-   Sidebar Author
+   Sidebar Author - 作者側邊欄
    -------------------------------------------------------------------------- */
 .artia-sidebar-author-theme-dark {
-  display: none;
-  width: 14rem;
-  flex-shrink: 0;
-}
-
-@media (min-width: 1024px) {
-  .artia-sidebar-author-theme-dark {
-    display: block;
-  }
+  @apply hidden lg:block w-56 shrink-0;
 }
 
 .artia-sidebar-author-avatar-theme-dark {
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto;
-  border: 1px solid #334155;
-  border-radius: 9999px;
+  @apply w-20 h-20 mx-auto rounded-full border;
+  border-color: #334155;
 }
 
 .artia-sidebar-author-placeholder-theme-dark {
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto;
-  border: 1px solid #60a5fa;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
+  @apply w-20 h-20 mx-auto rounded-full border flex items-center justify-center text-2xl font-bold;
+  border-color: #60a5fa;
   background-color: #1e3a5f;
   color: #60a5fa;
 }
 
 .artia-sidebar-author-name-theme-dark {
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 0.5rem;
+  @apply font-semibold text-center mb-2;
   color: #f1f5f9;
 }
 
 .artia-sidebar-author-bio-theme-dark {
-  font-size: 0.875rem;
-  text-align: center;
+  @apply text-sm text-center;
   color: #cbd5e1;
 }
 
 /* --------------------------------------------------------------------------
-   Sidebar Content
+   Sidebar Content - 內容側邊欄
    -------------------------------------------------------------------------- */
 .artia-sidebar-content-theme-dark {
-  display: none;
-  width: 15rem;
-  flex-shrink: 0;
-}
-
-@media (min-width: 1280px) {
-  .artia-sidebar-content-theme-dark {
-    display: block;
-  }
+  @apply hidden xl:block w-60 shrink-0;
 }
 
 .artia-sidebar-content-title-theme-dark {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  @apply text-sm font-semibold mb-4;
   color: #f1f5f9;
 }
 
 .artia-sidebar-content-list-theme-dark {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  @apply space-y-1;
 }
 
 .artia-sidebar-content-folder-btn-theme-dark {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  padding: 0.25rem 0;
-  border-bottom: 1px solid #334155;
+  @apply w-full flex items-center justify-between text-sm py-1 border-b transition-colors bg-transparent cursor-pointer;
+  border-color: #334155;
   color: #cbd5e1;
-  transition: color 0.2s;
-  background: none;
-  cursor: pointer;
 }
 
 .artia-sidebar-content-folder-btn-theme-dark:hover {
@@ -276,16 +173,13 @@
 }
 
 .artia-sidebar-content-children-theme-dark {
-  padding-left: 0.75rem;
+  @apply pl-3;
 }
 
 .artia-sidebar-content-link-theme-dark {
-  display: block;
-  font-size: 0.875rem;
-  padding: 0.25rem 0;
-  border-bottom: 1px solid #475569;
+  @apply block text-sm py-1 border-b transition-colors;
+  border-color: #475569;
   color: #94a3b8;
-  transition: color 0.2s;
 }
 
 .artia-sidebar-content-link-theme-dark:hover {
@@ -296,46 +190,30 @@
    Sidebar TOC - 目錄側邊欄
    -------------------------------------------------------------------------- */
 .artia-sidebar-toc-theme-dark {
-  display: none;
-  width: 15rem;
-  flex-shrink: 0;
-  position: sticky;
-  top: 1rem;
-}
-
-@media (min-width: 1280px) {
-  .artia-sidebar-toc-theme-dark {
-    display: block;
-  }
+  @apply hidden xl:block w-60 shrink-0 sticky top-4;
 }
 
 .artia-sidebar-toc-title-theme-dark {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  @apply text-sm font-semibold mb-4;
   color: #f1f5f9;
 }
 
 .artia-sidebar-toc-list-theme-dark {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  @apply space-y-1;
 }
 
 .artia-sidebar-toc-item-theme-dark {
-  font-size: 0.875rem;
+  @apply text-sm;
 }
 
 .artia-sidebar-toc-item-theme-dark.active .artia-sidebar-toc-link-theme-dark {
+  @apply font-medium;
   color: #60a5fa;
-  font-weight: 500;
 }
 
 .artia-sidebar-toc-link-theme-dark {
-  display: block;
-  padding: 0.25rem 0;
+  @apply block py-1 transition-colors;
   color: #94a3b8;
-  transition: color 0.2s;
 }
 
 .artia-sidebar-toc-link-theme-dark:hover {
@@ -343,121 +221,88 @@
 }
 
 .artia-sidebar-toc-nested-theme-dark {
-  padding-left: 0.75rem;
-  margin-top: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  border-left: 2px solid #475569;
+  @apply pl-3 mt-1 space-y-1 border-l-2;
+  border-color: #475569;
 }
 
 .artia-sidebar-toc-empty-theme-dark {
-  font-size: 0.875rem;
+  @apply text-sm;
   color: #64748b;
 }
 
 /* --------------------------------------------------------------------------
-   Page
+   Page Content - 頁面內容區域
    -------------------------------------------------------------------------- */
 .artia-page-theme-dark {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  @apply space-y-8;
 }
 
 .artia-page-article-theme-dark {
-  overflow-y: auto;
+  @apply overflow-y-auto;
   max-height: calc(100vh - 200px);
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section
+   Hero Section - 主視覺區塊
    -------------------------------------------------------------------------- */
 .artia-hero-theme-dark {
-  border: 1px solid #334155;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
+  @apply border rounded-xl p-6 md:p-8;
+  border-color: #334155;
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
-@media (min-width: 768px) {
-  .artia-hero-theme-dark {
-    padding: 2rem;
-  }
-}
-
 .artia-hero-title-theme-dark {
-  font-size: 1.875rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  @apply text-3xl md:text-4xl font-bold mb-4;
   color: #f1f5f9;
 }
 
-@media (min-width: 768px) {
-  .artia-hero-title-theme-dark {
-    font-size: 2.25rem;
-  }
-}
-
 .artia-hero-desc-theme-dark {
-  margin-bottom: 1.5rem;
-  max-width: 42rem;
+  @apply mb-6 max-w-2xl;
   color: #cbd5e1;
 }
 
 .artia-hero-actions-theme-dark {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  @apply flex flex-wrap gap-4;
 }
 
 /* --------------------------------------------------------------------------
-   Section
+   Section - 區塊
    -------------------------------------------------------------------------- */
 .artia-section-theme-dark {
-  padding: 1.5rem 0;
+  @apply py-6;
 }
 
 .artia-section-title-theme-dark {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  @apply text-xl font-bold mb-4;
   color: #f1f5f9;
 }
 
 /* --------------------------------------------------------------------------
-   Debug
+   Debug Section - 開發除錯區塊
    -------------------------------------------------------------------------- */
 .artia-debug-theme-dark {
-  border: 1px solid #334155;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  @apply border rounded-lg p-4;
+  border-color: #334155;
   background-color: #1e293b;
 }
 
 .artia-debug-title-theme-dark {
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  @apply font-bold mb-2;
   color: #fbbf24;
 }
 
 .artia-debug-content-theme-dark {
-  font-size: 0.75rem;
-  overflow: auto;
-  max-height: 24rem;
+  @apply text-xs overflow-auto max-h-96;
   color: #94a3b8;
 }
 
 /* --------------------------------------------------------------------------
-   Cards
+   Cards - 卡片元件
    -------------------------------------------------------------------------- */
 .artia-card-theme-dark {
-  display: block;
-  border: 1px solid #334155;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  @apply block border rounded-lg p-4 transition-all;
+  border-color: #334155;
   background-color: #1e293b;
-  transition: all 0.2s;
 }
 
 .artia-card-theme-dark:hover {
@@ -466,12 +311,9 @@
 }
 
 .artia-card-featured-theme-dark {
-  display: block;
-  border: 1px solid #334155;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  @apply block border rounded-lg p-4 transition-all;
+  border-color: #334155;
   background-color: #1e293b;
-  transition: all 0.2s;
 }
 
 .artia-card-featured-theme-dark:hover {
@@ -480,100 +322,64 @@
 }
 
 .artia-card-header-theme-dark {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  @apply flex items-center gap-2 mb-2;
 }
 
 .artia-card-avatar-theme-dark {
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid #60a5fa;
-  border-radius: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 700;
+  @apply w-8 h-8 rounded border flex items-center justify-center text-sm font-bold;
+  border-color: #60a5fa;
   background-color: #1e3a5f;
   color: #60a5fa;
 }
 
 .artia-card-title-theme-dark {
-  font-weight: 600;
-  font-size: 0.875rem;
+  @apply font-semibold text-sm;
   color: #f1f5f9;
 }
 
 .artia-card-meta-theme-dark {
-  font-size: 0.75rem;
+  @apply text-xs;
   color: #94a3b8;
 }
 
 .artia-card-desc-theme-dark {
-  font-size: 0.875rem;
+  @apply text-sm;
   color: #cbd5e1;
 }
 
 .artia-card-type-theme-dark {
-  font-size: 0.75rem;
-  display: block;
-  margin-bottom: 0.5rem;
+  @apply text-xs block mb-2;
   color: #60a5fa;
 }
 
 .artia-card-title-lg-theme-dark {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+  @apply font-semibold mb-1;
   color: #f1f5f9;
 }
 
+/* --------------------------------------------------------------------------
+   Card Grid - 卡片網格
+   -------------------------------------------------------------------------- */
 .artia-card-list-theme-dark {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @apply space-y-4;
 }
 
 .artia-card-grid-theme-dark {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 640px) {
-  .artia-card-grid-theme-dark {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .artia-card-grid-theme-dark {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
 }
 
 /* --------------------------------------------------------------------------
-   Buttons
+   Buttons - 按鈕
    -------------------------------------------------------------------------- */
 .artia-btn-theme-dark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  transition: all 0.2s;
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all;
 }
 
 .artia-btn-primary-theme-dark {
-  padding: 0.5rem 1rem;
-  border: 1px solid #60a5fa;
-  font-weight: 500;
-  border-radius: 0.5rem;
+  @apply px-4 py-2 rounded-lg border font-medium transition-all;
   background-color: #60a5fa;
   color: #0f172a;
-  transition: all 0.2s;
+  border-color: #60a5fa;
 }
 
 .artia-btn-primary-theme-dark:hover {
@@ -582,13 +388,9 @@
 }
 
 .artia-btn-secondary-theme-dark {
-  padding: 0.5rem 1rem;
-  border: 1px solid #334155;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  background-color: transparent;
+  @apply px-4 py-2 rounded-lg border font-medium transition-all bg-transparent;
+  border-color: #334155;
   color: #f1f5f9;
-  transition: all 0.2s;
 }
 
 .artia-btn-secondary-theme-dark:hover {
@@ -597,20 +399,17 @@
 }
 
 /* --------------------------------------------------------------------------
-   Forms
+   Forms - 表單元素
    -------------------------------------------------------------------------- */
 .artia-input-theme-dark {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #334155;
-  border-radius: 0.5rem;
+  @apply w-full px-3 py-2 rounded-lg border transition-all;
+  border-color: #334155;
   background-color: #0f172a;
   color: #f1f5f9;
-  transition: all 0.2s;
 }
 
 .artia-input-theme-dark:focus {
-  outline: none;
+  @apply outline-none;
   border-color: #60a5fa;
   box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
 }
@@ -620,64 +419,42 @@
 }
 
 .artia-label-theme-dark {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
+  @apply block text-sm font-medium mb-1;
   color: #f1f5f9;
 }
 
 /* --------------------------------------------------------------------------
-   Password Prompt
+   Password Prompt - 密碼提示
    -------------------------------------------------------------------------- */
 .artia-password-prompt-theme-dark {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  padding: 2rem;
+  @apply flex justify-center items-center min-h-[400px] p-8;
 }
 
 .artia-password-box-theme-dark {
-  max-width: 28rem;
-  width: 100%;
-  padding: 2rem;
-  border: 1px solid #334155;
-  border-radius: 0.75rem;
+  @apply max-w-md w-full p-8 rounded-xl border;
+  border-color: #334155;
   background-color: #1e293b;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .artia-password-title-theme-dark {
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0.5rem;
+  @apply text-xl font-bold text-center mb-2;
   color: #f1f5f9;
 }
 
 .artia-password-hint-theme-dark {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  @apply text-center mb-6;
   color: #cbd5e1;
 }
 
 .artia-password-form-theme-dark {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @apply flex flex-col gap-4;
 }
 
 .artia-password-submit-theme-dark {
-  width: 100%;
-  padding: 0.75rem;
-  font-weight: 500;
-  border-radius: 0.5rem;
+  @apply w-full py-3 rounded-lg font-medium transition-all border-none cursor-pointer;
   background-color: #60a5fa;
   color: #0f172a;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
 }
 
 .artia-password-submit-theme-dark:hover:not(:disabled) {
@@ -685,69 +462,46 @@
 }
 
 .artia-password-submit-theme-dark:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  @apply opacity-60 cursor-not-allowed;
 }
 
 .artia-password-error-theme-dark {
-  text-align: center;
-  font-size: 0.875rem;
-  margin-top: 1rem;
+  @apply text-center text-sm mt-4;
   color: #f87171;
 }
 
 /* --------------------------------------------------------------------------
-   Alert
+   Alert Component - 提示元件
    -------------------------------------------------------------------------- */
 .artia-alert-theme-dark {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  border: 2px solid;
-  border-radius: 0.75rem;
+  @apply flex items-center p-4 rounded-xl border-2 transition-all;
   background-color: #1e293b;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s;
 }
 
 .artia-alert-theme-dark:hover {
-  transform: translateY(-2px);
+  @apply -translate-y-0.5;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* --------------------------------------------------------------------------
-   Counter
+   Counter Component - 計數器元件
    -------------------------------------------------------------------------- */
 .artia-counter-theme-dark {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 1px solid #334155;
-  border-radius: 0.5rem;
+  @apply inline-flex items-center gap-2 p-4 rounded-lg border;
+  border-color: #334155;
   background-color: #1e293b;
 }
 
 .artia-counter-value-theme-dark {
-  font-weight: 700;
-  font-size: 1.125rem;
-  min-width: 3rem;
-  text-align: center;
+  @apply font-bold text-lg min-w-[3rem] text-center;
   color: #60a5fa;
 }
 
 .artia-counter-btn-theme-dark {
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #334155;
-  border-radius: 0.25rem;
+  @apply w-8 h-8 rounded flex items-center justify-center border transition-all bg-transparent cursor-pointer;
+  border-color: #334155;
   color: #f1f5f9;
-  background: none;
-  cursor: pointer;
-  transition: all 0.2s;
 }
 
 .artia-counter-btn-theme-dark:hover {
@@ -757,54 +511,45 @@
 }
 
 /* --------------------------------------------------------------------------
-   Typography
+   Typography - 文字排版
    -------------------------------------------------------------------------- */
 .artia-heading-1-theme-dark {
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  @apply text-4xl font-bold tracking-tight;
   color: #f1f5f9;
 }
 
 .artia-heading-2-theme-dark {
-  font-size: 1.875rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  @apply text-3xl font-semibold tracking-tight;
   color: #f1f5f9;
 }
 
 .artia-heading-3-theme-dark {
-  font-size: 1.5rem;
-  font-weight: 600;
+  @apply text-2xl font-semibold;
   color: #f1f5f9;
 }
 
 .artia-text-body-theme-dark {
-  font-size: 1rem;
-  line-height: 1.75;
+  @apply text-base leading-relaxed;
   color: #cbd5e1;
 }
 
 .artia-text-caption-theme-dark {
-  font-size: 0.875rem;
+  @apply text-sm;
   color: #94a3b8;
 }
 
 /* --------------------------------------------------------------------------
-   Icon
+   Icon - 圖標
    -------------------------------------------------------------------------- */
 .artia-icon-theme-dark {
-  width: 1.5rem;
-  height: 1.5rem;
+  @apply w-6 h-6;
   color: #f1f5f9;
 }
 
 .artia-icon-sm-theme-dark {
-  width: 1rem;
-  height: 1rem;
+  @apply w-4 h-4;
 }
 
 .artia-icon-lg-theme-dark {
-  width: 2rem;
-  height: 2rem;
+  @apply w-8 h-8;
 }

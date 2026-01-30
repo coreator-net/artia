@@ -10,8 +10,9 @@ export default defineNuxtConfig({
 
   // 引入自訂 CSS（主題系統）
   css: [
-    '~/assets/css/main.css',      // Classic 主題（預設）
-    '~/assets/css/theme-dark.css', // Dark 主題
+    '~/assets/css/main.css',         // Tailwind + 全域樣式
+    '~/assets/css/theme-classic.css', // Classic 主題
+    '~/assets/css/theme-dark.css',    // Dark 主題
   ],
 
   devtools: { enabled: true },
