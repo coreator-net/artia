@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li v-if="item.title">
     <!-- 有子項目的資料夾 -->
     <template v-if="item.children?.length">
       <button 
@@ -7,7 +7,7 @@
         :class="t('sidebar-content-folder-btn')"
         :style="{ paddingLeft: `${depth * 0.75}rem` }"
       >
-        <span>{{ item.title }}</span>
+        <span>{{ typeIcon }} {{ item.title }}</span>
         <span>{{ expanded ? '−' : '+' }}</span>
       </button>
       <ul v-if="expanded" :class="t('sidebar-content-children')">
@@ -29,7 +29,7 @@
         :class="t('sidebar-content-link')"
         :style="{ paddingLeft: `${depth * 0.75}rem` }"
       >
-        {{ item.title }}
+        {{ typeIcon }} {{ item.title }}
       </NuxtLink>
     </template>
   </li>
@@ -38,8 +38,12 @@
 <script setup lang="ts">
 import type { NavItem } from '@nuxt/content'
 
+interface ExtendedNavItem extends NavItem {
+  _type?: 'folder' | 'book' | 'page' | string
+}
+
 const props = defineProps<{
-  item: NavItem
+  item: ExtendedNavItem
   depth?: number
   expandedFolders: Set<string>
 }>()
@@ -57,4 +61,20 @@ const expanded = computed(() => props.expandedFolders.has(props.item._path))
 const toggle = () => {
   emit('toggle', props.item._path)
 }
+
+// 根據 _type 顯示對應的 emoji
+const typeIcon = computed(() => {
+  const type = props.item._type
+  switch (type) {
+    case 'folder':
+      return '📁'
+    case 'book':
+      return '📖'
+    case 'page':
+      return '📄'
+    default:
+      // 如果沒有 _type，根據是否有 children 判斷
+      return props.item.children?.length ? '📁' : '📄'
+  }
+})
 </script>

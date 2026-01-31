@@ -62,8 +62,7 @@ NUXT_PUBLIC_LAYOUT_READ_TOP="none"
 # 閱讀頁左側邊欄
 NUXT_PUBLIC_LAYOUT_READ_LEFT="author"
 
-# 閱讀頁中央區域（預設顯示文章內容）
-NUXT_PUBLIC_LAYOUT_READ_CENTER="none"
+# 閱讀頁中央區域固定為文章內容，不可配置
 
 # 閱讀頁右側邊欄
 NUXT_PUBLIC_LAYOUT_READ_RIGHT="toc"
