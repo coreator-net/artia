@@ -23,7 +23,7 @@ logs
 .env.*
 !.env.example
 
-# Content folder
-content/
+# Content folder (only root level)
+/content/
 
 pnpm-lock.yaml
