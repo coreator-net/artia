@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const { t } = useTheme()
+const { t } = useTheme();
 
 const { color } = defineProps({
   color: {
     type: String,
-    default: 'orange'
-  }
-})
+    default: "orange",
+  },
+});
 </script>
 
 <template>

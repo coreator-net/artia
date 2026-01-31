@@ -1,16 +1,3 @@
-<script setup lang="ts">
-const { t } = useTheme()
-const count = ref(0)
-
-const increment = () => {
-  count.value++
-}
-
-const decrement = () => {
-  count.value--
-}
-</script>
-
 <template>
   <div :class="t('counter')">
     <button @click="decrement" :class="t('counter-btn')">−</button>
@@ -18,3 +5,16 @@ const decrement = () => {
     <button @click="increment" :class="t('counter-btn')">+</button>
   </div>
 </template>
+
+<script setup lang="ts">
+const { t } = useTheme();
+const count = ref(0);
+
+const increment = () => {
+  count.value++;
+};
+
+const decrement = () => {
+  count.value--;
+};
+</script>
