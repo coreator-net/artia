@@ -27,6 +27,7 @@
  * - hero: 首頁 Hero 區塊
  * - featured: 精選作品
  * - recent: 最新內容
+ * - search: 搜尋欄
  * - none: 不顯示任何內容
  */
 export type LayoutComponent = 
@@ -36,6 +37,7 @@ export type LayoutComponent =
   | 'hero' 
   | 'featured' 
   | 'recent'
+  | 'search'
   | 'none'
 
 /**
@@ -73,6 +75,7 @@ const componentMap: Record<LayoutComponent, string> = {
   hero: 'LayoutHomeHero',
   featured: 'LayoutHomeFeatured',
   recent: 'LayoutHomeRecent',
+  search: 'LayoutSearchBar',
   none: '',
 }
 

@@ -178,3 +178,29 @@ artia-sidebar-toc-item-theme-dark
 artia-sidebar-toc-link-theme-dark
 artia-sidebar-toc-nested-theme-dark
 artia-sidebar-toc-empty-theme-dark
+
+<!-- Search Bar - Classic -->
+artia-search-bar-theme-classic
+artia-search-bar-input-wrapper-theme-classic
+artia-search-bar-input-theme-classic
+artia-search-bar-icon-theme-classic
+artia-search-bar-loading-theme-classic
+artia-search-bar-results-theme-classic
+artia-search-bar-no-results-theme-classic
+artia-search-bar-results-list-theme-classic
+artia-search-bar-result-item-theme-classic
+artia-search-bar-result-title-theme-classic
+artia-search-bar-result-desc-theme-classic
+
+<!-- Search Bar - Dark -->
+artia-search-bar-theme-dark
+artia-search-bar-input-wrapper-theme-dark
+artia-search-bar-input-theme-dark
+artia-search-bar-icon-theme-dark
+artia-search-bar-loading-theme-dark
+artia-search-bar-results-theme-dark
+artia-search-bar-no-results-theme-dark
+artia-search-bar-results-list-theme-dark
+artia-search-bar-result-item-theme-dark
+artia-search-bar-result-title-theme-dark
+artia-search-bar-result-desc-theme-dark

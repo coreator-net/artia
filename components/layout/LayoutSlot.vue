@@ -28,6 +28,7 @@ const slotTypes = computed(() => getRawSlotConfigs(props.page, props.position))
     <LayoutHomeHero v-else-if="slotType === 'hero'" />
     <LayoutHomeFeatured v-else-if="slotType === 'featured'" />
     <LayoutHomeRecent v-else-if="slotType === 'recent'" />
+    <LayoutSearchBar v-else-if="slotType === 'search'" />
     <!-- none 或無效值則不渲染任何東西 -->
   </template>
 </template>

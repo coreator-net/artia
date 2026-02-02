@@ -28,6 +28,7 @@ Artia 提供靈活的佈局系統，讓你可以透過 `.env` 設定頁面各區
 | `hero` | 首頁 Hero 區塊 | CENTER, TOP |
 | `featured` | 精選作品 | CENTER |
 | `recent` | 最新內容 | CENTER |
+| `search` | 搜尋欄 | TOP, LEFT, RIGHT |
 
 ## 環境變數
 

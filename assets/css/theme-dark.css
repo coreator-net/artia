@@ -553,3 +553,75 @@
 .artia-icon-lg-theme-dark {
   @apply w-8 h-8;
 }
+
+/* --------------------------------------------------------------------------
+   Search Bar - 搜尋欄
+   -------------------------------------------------------------------------- */
+.artia-search-bar-theme-dark {
+  @apply relative w-full max-w-2xl mx-auto py-4;
+}
+
+.artia-search-bar-input-wrapper-theme-dark {
+  @apply relative flex items-center;
+}
+
+.artia-search-bar-input-theme-dark {
+  @apply w-full px-4 py-3 pr-12 rounded-lg border transition-all text-base;
+  border-color: #334155;
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.artia-search-bar-input-theme-dark:focus {
+  @apply outline-none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.artia-search-bar-input-theme-dark::placeholder {
+  color: #64748b;
+}
+
+.artia-search-bar-icon-theme-dark {
+  @apply absolute right-4 text-lg pointer-events-none;
+  color: #64748b;
+}
+
+.artia-search-bar-loading-theme-dark {
+  @apply absolute right-4 text-lg pointer-events-none animate-spin;
+}
+
+.artia-search-bar-results-theme-dark {
+  @apply absolute top-full left-0 right-0 mt-1 rounded-lg border z-50 max-h-80 overflow-y-auto;
+  border-color: #334155;
+  background-color: #1e293b;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.artia-search-bar-no-results-theme-dark {
+  @apply p-4 text-center text-sm;
+  color: #64748b;
+}
+
+.artia-search-bar-results-list-theme-dark {
+  @apply divide-y;
+  border-color: #334155;
+}
+
+.artia-search-bar-result-item-theme-dark {
+  @apply p-3 cursor-pointer transition-colors;
+}
+
+.artia-search-bar-result-item-theme-dark:hover {
+  background-color: #0f172a;
+}
+
+.artia-search-bar-result-title-theme-dark {
+  @apply block font-medium text-sm mb-1;
+  color: #f1f5f9;
+}
+
+.artia-search-bar-result-desc-theme-dark {
+  @apply block text-xs;
+  color: #94a3b8;
+}
