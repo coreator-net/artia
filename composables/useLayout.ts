@@ -3,15 +3,18 @@
  * 
  * 透過環境變數設定頁面各區域要顯示的元件
  * 支援首頁(home)和閱讀頁(read)兩種佈局
+ * 支援單一元件或多個元件（用逗號分隔）
  * 
  * @example
  * ```vue
  * <script setup>
- * const { getSlotComponent, isSlotEnabled } = useLayout()
+ * const { getSlotComponents, isSlotEnabled } = useLayout()
  * </script>
  * 
  * <template>
- *   <component v-if="isSlotEnabled('home', 'left')" :is="getSlotComponent('home', 'left')" />
+ *   <template v-for="comp in getSlotComponents('home', 'left')">
+ *     <component :is="comp" />
+ *   </template>
  * </template>
  * ```
  */
@@ -53,11 +56,11 @@ export type SlotPosition = 'top' | 'left' | 'center' | 'right' | 'bottom'
 export type LayoutMode = 'content' | 'app'
 
 /**
- * 佈局設定介面
+ * 佈局設定介面 - 支援多個元件
  */
 export interface LayoutConfig {
-  home: Record<SlotPosition, LayoutComponent>
-  read: Record<SlotPosition, LayoutComponent>
+  home: Record<SlotPosition, LayoutComponent[]>
+  read: Record<SlotPosition, LayoutComponent[]>
 }
 
 /**
@@ -74,21 +77,18 @@ const componentMap: Record<LayoutComponent, string> = {
 }
 
 /**
- * 解析環境變數中的元件
- * @param value - 環境變數值
- * @returns 元件類型
+ * 解析環境變數中的元件（支援多個元件，用逗號分隔）
+ * @param value - 環境變數值，例如 "navigation,author" 或 "hero"
+ * @returns 元件類型陣列
  */
-function parseComponent(value: string | undefined): LayoutComponent {
-  if (!value) return 'none'
+function parseComponents(value: string | undefined): LayoutComponent[] {
+  if (!value || value.trim() === '') return []
   
-  const trimmed = value.trim().toLowerCase() as LayoutComponent
+  const components = value.split(',')
+    .map(v => v.trim().toLowerCase() as LayoutComponent)
+    .filter(v => v in componentMap && v !== 'none')
   
-  // 驗證是否為有效的元件類型
-  if (trimmed in componentMap) {
-    return trimmed
-  }
-  
-  return 'none'
+  return components
 }
 
 /**
@@ -105,18 +105,18 @@ export function useLayout() {
     
     return {
       home: {
-        top: parseComponent(pub.layoutHomeTop),
-        left: parseComponent(pub.layoutHomeLeft),
-        center: parseComponent(pub.layoutHomeCenter),
-        right: parseComponent(pub.layoutHomeRight),
-        bottom: parseComponent(pub.layoutHomeBottom),
+        top: parseComponents(pub.layoutHomeTop),
+        left: parseComponents(pub.layoutHomeLeft),
+        center: parseComponents(pub.layoutHomeCenter),
+        right: parseComponents(pub.layoutHomeRight),
+        bottom: parseComponents(pub.layoutHomeBottom),
       },
       read: {
-        top: parseComponent(pub.layoutReadTop),
-        left: parseComponent(pub.layoutReadLeft),
-        center: parseComponent(pub.layoutReadCenter),
-        right: parseComponent(pub.layoutReadRight),
-        bottom: parseComponent(pub.layoutReadBottom),
+        top: parseComponents(pub.layoutReadTop),
+        left: parseComponents(pub.layoutReadLeft),
+        center: parseComponents(pub.layoutReadCenter),
+        right: parseComponents(pub.layoutReadRight),
+        bottom: parseComponents(pub.layoutReadBottom),
       },
     }
   })
@@ -143,25 +143,37 @@ export function useLayout() {
   const isAppMode = computed(() => layoutMode.value === 'app')
 
   /**
-   * 取得特定位置的元件名稱
+   * 取得特定位置的所有元件名稱
+   * @param page - 頁面類型 ('home' | 'read')
+   * @param slot - 位置 ('top' | 'left' | 'center' | 'right' | 'bottom')
+   * @returns Vue 元件名稱陣列
+   */
+  function getSlotComponents(page: PageType, slot: SlotPosition): string[] {
+    const components = layoutConfig.value[page][slot]
+    return components
+      .map(comp => componentMap[comp])
+      .filter(name => name !== '')
+  }
+
+  /**
+   * 取得特定位置的第一個元件名稱（向後相容）
    * @param page - 頁面類型 ('home' | 'read')
    * @param slot - 位置 ('top' | 'left' | 'center' | 'right' | 'bottom')
    * @returns Vue 元件名稱或 null
    */
   function getSlotComponent(page: PageType, slot: SlotPosition): string | null {
-    const component = layoutConfig.value[page][slot]
-    return componentMap[component] || null
+    const components = getSlotComponents(page, slot)
+    return components[0] || null
   }
 
   /**
-   * 檢查特定位置是否有啟用元件（不是 none）
+   * 檢查特定位置是否有啟用元件
    * @param page - 頁面類型
    * @param slot - 位置
    * @returns 是否有啟用的元件
    */
   function isSlotEnabled(page: PageType, slot: SlotPosition): boolean {
-    const component = layoutConfig.value[page][slot]
-    return component !== 'none' && componentMap[component] !== ''
+    return layoutConfig.value[page][slot].length > 0
   }
 
   /**
@@ -179,12 +191,23 @@ export function useLayout() {
   }
 
   /**
-   * 取得元件的原始配置值
+   * 取得元件的原始配置值（向後相容，返回第一個）
    * @param page - 頁面類型
    * @param slot - 位置
    * @returns 原始的元件類型
    */
   function getRawSlotConfig(page: PageType, slot: SlotPosition): LayoutComponent {
+    const components = layoutConfig.value[page][slot]
+    return components[0] || 'none'
+  }
+
+  /**
+   * 取得元件的原始配置值陣列
+   * @param page - 頁面類型
+   * @param slot - 位置
+   * @returns 原始的元件類型陣列
+   */
+  function getRawSlotConfigs(page: PageType, slot: SlotPosition): LayoutComponent[] {
     return layoutConfig.value[page][slot]
   }
 
@@ -194,10 +217,12 @@ export function useLayout() {
     isContentMode,
     isAppMode,
     getSlotComponent,
+    getSlotComponents,
     isSlotEnabled,
     hasLeftSidebar,
     hasRightSidebar,
     getRawSlotConfig,
+    getRawSlotConfigs,
     componentMap,
   }
 }

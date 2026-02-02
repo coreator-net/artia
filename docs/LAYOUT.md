@@ -4,7 +4,7 @@ Artia 提供靈活的佈局系統，讓你可以透過 `.env` 設定頁面各區
 
 ## 概念
 
-頁面分為五個區域，每個區域只能放置一個元件：
+頁面分為五個區域，每個區域可放置一個或多個元件（用逗號分隔）：
 
 ```
 ┌─────────────────────────────────────┐
@@ -28,26 +28,26 @@ Artia 提供靈活的佈局系統，讓你可以透過 `.env` 設定頁面各區
 | `hero` | 首頁 Hero 區塊 | CENTER, TOP |
 | `featured` | 精選作品 | CENTER |
 | `recent` | 最新內容 | CENTER |
-| `none` | 不顯示任何內容 | 任何位置 |
 
 ## 環境變數
 
-**注意：所有欄位都必須填寫，不可留空。若不需要顯示請填 `none`。**
+**多元件設定：** 用逗號分隔多個元件，例如 `"navigation,author"`。
+**不顯示：** 留空 `""` 或填 `"none"`。
 
 ### 首頁佈局
 
 ```bash
 # 首頁上方區域
-NUXT_PUBLIC_LAYOUT_HOME_TOP="none"
+NUXT_PUBLIC_LAYOUT_HOME_TOP="hero"
 
-# 首頁左側邊欄
-NUXT_PUBLIC_LAYOUT_HOME_LEFT="author"
+# 首頁左側邊欄（可放多個元件）
+NUXT_PUBLIC_LAYOUT_HOME_LEFT="navigation,author"
 
 # 首頁中央區域
-NUXT_PUBLIC_LAYOUT_HOME_CENTER="none"
+NUXT_PUBLIC_LAYOUT_HOME_CENTER="featured"
 
 # 首頁右側邊欄
-NUXT_PUBLIC_LAYOUT_HOME_RIGHT="navigation"
+NUXT_PUBLIC_LAYOUT_HOME_RIGHT="toc"
 
 # 首頁下方區域
 NUXT_PUBLIC_LAYOUT_HOME_BOTTOM="none"
