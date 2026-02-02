@@ -9,7 +9,7 @@ const { t } = useTheme()
 // 取得最新的內容
 const { data: recentBooks } = await useAsyncData('recent-books', () => {
   return queryContent()
-    .where({ _type: { $in: ['Book', 'Folder'] } })
+    .where({ type: { $in: ['page'] } })
     .limit(6)
     .find()
     .catch(() => [])
@@ -26,7 +26,7 @@ const { data: recentBooks } = await useAsyncData('recent-books', () => {
           :to="book._path"
           :class="t('card')"
         >
-          <span :class="t('card-type')">{{ book._type || 'Content' }}</span>
+          <span :class="t('card-type')">{{ book.type || 'Content' }}</span>
           <h3 :class="t('card-title-lg')">{{ book.title || book._dir }}</h3>
           <p :class="t('card-desc')">{{ book.description || '點擊查看更多內容...' }}</p>
         </NuxtLink>

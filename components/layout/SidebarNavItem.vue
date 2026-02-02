@@ -40,7 +40,7 @@
 import type { NavItem } from '@nuxt/content'
 
 interface ExtendedNavItem extends NavItem {
-  _type?: 'folder' | 'book' | 'page' | string
+  type?: 'folder' | 'book' | 'page' | string
 }
 
 const props = defineProps<{
@@ -64,10 +64,10 @@ const toggle = () => {
   emit('toggle', props.item._path)
 }
 
-// 根據 _type 顯示對應的 emoji
+// 根據 type 顯示對應的 emoji
 const typeIcon = computed(() => {
-  const type = props.item._type
-  switch (type) {
+  const itemType = props.item.type
+  switch (itemType) {
     case 'folder':
       return '📁'
     case 'book':
@@ -75,7 +75,7 @@ const typeIcon = computed(() => {
     case 'page':
       return '📄'
     default:
-      // 如果沒有 _type，根據是否有 children 判斷
+      // 如果沒有 type，根據是否有 children 判斷
       return props.item.children?.length ? '📁' : '📄'
   }
 })

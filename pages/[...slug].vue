@@ -2,63 +2,13 @@
 /**
  * 閱讀頁 - 動態內容頁面
  * 使用 read layout，內容由 .env 中的 LAYOUT_READ_* 設定決定
+ * 將邏輯集中到 LayoutPageContent
  */
 definePageMeta({
   layout: 'read'
 })
-
-const route = useRoute()
-const { t } = useTheme()
-
-// 處理路徑（移除結尾斜線）
-const path = route.path === '/' ? '/' : route.path.replace(/\/$/, '')
-
-// Nuxt Content v2 API - 使用 server API 來支援密碼保護
-const { data: page, error } = await useAsyncData('page-' + path, () => {
-  return $fetch<any>(`/api/content${path}`)
-})
-
-// 追蹤是否已驗證密碼
-const authenticatedContent = ref<any>(null)
-const showPasswordPrompt = computed(() => {
-  return (page.value as any)?._passwordRequired && !authenticatedContent.value
-})
-
-// 處理密碼驗證成功
-const handleAuthenticated = (content: any) => {
-  authenticatedContent.value = content
-}
-
-// 決定要顯示的內容
-const displayContent = computed(() => {
-  return authenticatedContent.value || page.value
-})
 </script>
 
 <template>
-  <article :class="t('page-article')">
-    <section v-if="error">
-      <p>Error: {{ error.message }}</p>
-    </section>
-    <section v-else-if="!page">
-      <p>Loading or not found: {{ route.path }} (normalized: {{ path }})</p>
-    </section>
-    <section v-else>
-      <!-- 顯示密碼提示 -->
-      <PasswordPrompt 
-        v-if="showPasswordPrompt"
-        @authenticated="handleAuthenticated"
-      />
-      
-      <!-- 顯示內容 -->
-      <ContentRenderer
-        v-else
-        :value="displayContent"
-      >
-        <template #empty>
-          <p>No content available</p>
-        </template>
-      </ContentRenderer>
-    </section>
-  </article>
+  <LayoutPageContent />
 </template>

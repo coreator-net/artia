@@ -242,6 +242,27 @@
   max-height: calc(100vh - 200px);
 }
 
+/* Pagination - 前後頁導覽 */
+.artia-page-pagination-theme-dark {
+  @apply mt-8 pt-4 border-t flex items-center justify-between gap-4;
+  border-color: #334155;
+}
+
+.artia-page-pagination-prev-theme-dark,
+.artia-page-pagination-next-theme-dark {
+  @apply inline-flex items-center gap-2 text-sm font-medium transition-colors px-3 py-2 rounded;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+.artia-page-pagination-prev-theme-dark:hover,
+.artia-page-pagination-next-theme-dark:hover {
+  background-color: #60a5fa;
+  color: #0f172a;
+  border-color: #60a5fa;
+}
+
 /* --------------------------------------------------------------------------
    Hero Section - 主視覺區塊
    -------------------------------------------------------------------------- */
