@@ -1,5 +1,5 @@
 <template>
-  <li v-if="item.title">
+  <li v-if="!hideEmptyTitle || item.title">
     <!-- 有子項目的資料夾 -->
     <template v-if="item.children?.length">
       <button 
@@ -18,6 +18,7 @@
           :item="child"
           :depth="depth + 1"
           :expanded-folders="expandedFolders"
+          :hide-empty-title="hideEmptyTitle"
           @toggle="(path) => $emit('toggle', path)"
         />
       </ul>
@@ -46,6 +47,7 @@ const props = defineProps<{
   item: ExtendedNavItem
   depth?: number
   expandedFolders: Set<string>
+  hideEmptyTitle?: boolean
 }>()
 
 const emit = defineEmits<{

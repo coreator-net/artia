@@ -33,7 +33,7 @@
    Holy Grail Layout - 聖杯佈局（三欄式）
    -------------------------------------------------------------------------- */
 .artia-layout-holygrail-theme-dark {
-  @apply flex flex-col lg:flex-row gap-8;
+  @apply flex flex-col lg:flex-row gap-8 items-start;
 }
 
 .artia-layout-main-theme-dark {
@@ -121,7 +121,7 @@
    Sidebar Author - 作者側邊欄
    -------------------------------------------------------------------------- */
 .artia-sidebar-author-theme-dark {
-  @apply hidden lg:block w-56 shrink-0;
+  @apply hidden lg:block w-56 shrink-0 sticky top-4 overflow-y-auto max-h-[calc(100vh-8rem)];
 }
 
 .artia-sidebar-author-avatar-theme-dark {
@@ -150,7 +150,7 @@
    Sidebar Content - 內容側邊欄
    -------------------------------------------------------------------------- */
 .artia-sidebar-content-theme-dark {
-  @apply hidden xl:block w-60 shrink-0;
+  @apply hidden xl:block w-60 shrink-0 sticky top-4 overflow-y-auto max-h-[calc(100vh-8rem)];
 }
 
 .artia-sidebar-content-title-theme-dark {

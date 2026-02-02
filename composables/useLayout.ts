@@ -22,7 +22,8 @@
 /**
  * 可用的元件類型
  * - author: 作者介紹側邊欄
- * - navigation: 內容導航/作品清單
+ * - navigation: 內容導航/作品清單（含標題）
+ * - navigation-notitle: 內容導航（無標題）
  * - toc: 目錄 (Table of Contents)
  * - hero: 首頁 Hero 區塊
  * - featured: 精選作品
@@ -32,7 +33,8 @@
  */
 export type LayoutComponent = 
   | 'author' 
-  | 'navigation' 
+  | 'navigation'
+  | 'navigation-notitle'
   | 'toc' 
   | 'hero' 
   | 'featured' 
@@ -71,6 +73,7 @@ export interface LayoutConfig {
 const componentMap: Record<LayoutComponent, string> = {
   author: 'LayoutSidebarAuthor',
   navigation: 'LayoutSidebarContent',
+  'navigation-notitle': 'LayoutSidebarContentNoTitle',
   toc: 'LayoutTableOfContents',
   hero: 'LayoutHomeHero',
   featured: 'LayoutHomeFeatured',
