@@ -1,30 +1,18 @@
 ## Plan: 修復並啟用 Content Plugin（含多空行保留）
 
-改用兩階段處理：預處理階段處理換行與多空行，AST 層處理段落內文空白。
+使用預處理階段處理換行與多空行。Nuxt Content v2 不支援 `defineContentPlugin`，所以只使用 `server/plugins/content-preprocess.ts`。
 
 ### Steps
 
 1. **修改預處理**：改寫 `server/plugins/content-preprocess.ts`
    - 判斷 Markdown 語法行（標題、列表、引用等）：保持原樣
    - 非語法行（內文）：行尾加 `  `（兩個空格 = hard break）保留單一換行
-   - 連續空行（2 個以上）：直接產生對應數量的 `<br>` 標籤
+   - 空行處理：延遲處理，根據「下一個非空行」類型決定
    - 保留程式碼區塊排除邏輯
 
-2. **配置 plugins**：修改 `nuxt.config.ts`
-   ```typescript
-   content: {
-     documentDriven: false,
-     plugins: ['~/content/plugins/whitespace.ts'],
-   },
-   ```
+2. **刪除 whitespace.ts**：`content/plugins/whitespace.ts` 使用的是 v3 API，在 v2 中不會被載入，可以刪除
 
-3. **簡化 whitespace.ts**：修改 `content/plugins/whitespace.ts`
-   - 處理 `paragraph`、`blockquote`、`listItem` 中的文字節點
-   - 行首空白轉 `\u00a0`（NBSP）
-   - 連續空白轉 `\u00a0`（NBSP）
-   - （多空行已在預處理階段直接轉成 `<br>` 標籤，無需 AST 層處理）
-
-4. **測試驗證**：確認 Markdown 語法正常解析，內文空白與多空行保留
+3. **測試驗證**：確認 Markdown 語法正常解析，內文空白與多空行保留
 
 ### Implementation Details
 
@@ -44,27 +32,21 @@ function isMdSyntaxLine(line: string): boolean {
   if (/^```/.test(trimmed)) return true           // 程式碼區塊
   return false
 }
-
-// 處理每行
-// - 空行：累計數量
-// - 非空行前有多個空行：產生 N 個 <br>
-// - 語法行：保持原樣
-// - 內文行：行尾加兩個空格
 ```
 
-#### AST 層處理（whitespace.ts）
+#### 空行處理邏輯（延遲處理）
 
 ```typescript
-// 處理文字節點：保留空白
-visit(ctx.body, (node, _idx, parent) => {
-  if (!targets.has(parent.type)) return
-  if (node.type !== 'text') return
-  
-  // 行首空白轉 NBSP
-  value = value.replace(/^([ \u3000]+)/, (m) => m.replace(/ /g, nbsp))
-  // 連續空白轉 NBSP
-  value = value.replace(/ {2,}/g, (m) => m.replace(/ /g, nbsp))
-})
+// 處理每行
+// - 空行：累計 emptyLineCount，不立即輸出
+// - 非空行：先處理累積的空行，再處理當前行
+
+// 當遇到非空行時，根據「當前行」類型決定如何處理累積的空行：
+// - 當前行是內文行 → 用 <br> 保留所有空行（包含單一空行）
+// - 當前行是語法行 → 只需段落分隔（不加 <br>）
+
+// 這不是 peek，而是「延遲處理」：
+// 累積空行 → 等到遇到非空行 → 看非空行類型決定輸出
 ```
 
 ### Further Considerations
@@ -73,4 +55,4 @@ visit(ctx.body, (node, _idx, parent) => {
 
 2. **Frontmatter**：在預處理階段排除 frontmatter，只處理正文內容。
 
-3. **效能**：預處理在 `content:file:beforeParse` hook 執行，AST 處理在 `content:parsed` hook 執行，兩者分工明確。
+3. **Nuxt Content 版本**：目前使用 v2（`^2.13.0`），`defineContentPlugin` 是 v3 API。若升級到 v3，可恢復使用 `content/plugins/` 目錄機制。

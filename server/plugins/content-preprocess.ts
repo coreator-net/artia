@@ -67,15 +67,15 @@ export default defineNitroPlugin((nitroApp) => {
       
       // 非空行：先處理累積的空行
       if (emptyLineCount > 0) {
-        if (emptyLineCount === 1) {
-          // 單一空行：保持段落分隔
-          result.push('')
-        } else {
-          // 多個空行：產生對應數量的 <br> 標籤
+        const isCurrentContentLine = !isMdSyntaxLine(line) && !line.includes('<<<CODEBLOCK_')
+        
+        if (isCurrentContentLine) {
+          // 空行後面是內文行：用 <br> 保留所有空行
           const brs = Array(emptyLineCount).fill('<br>').join('')
           result.push(brs)
-          result.push('')
         }
+        // 空行後面是 Markdown 語法行：只需要段落分隔
+        result.push('')
         emptyLineCount = 0
       }
       
