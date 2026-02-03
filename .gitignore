@@ -25,5 +25,8 @@ logs
 
 # Content folder (only root level)
 /content/
+!/content/plugins/
+!/content/plugins/*.ts
+!/modules/
 
 pnpm-lock.yaml

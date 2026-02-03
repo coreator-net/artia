@@ -1,13 +1,35 @@
 /**
  * Server plugin 預處理 Markdown 內容
- * 完全複製 markdown-it 的 article_plugin 邏輯
- * 所見即所得：換行、空白完整保留
- * 但排除程式碼區塊
+ * 1. 非 Markdown 語法行：行尾加兩個空格（hard break）
+ * 2. 連續空行：直接產生多個 <br> 標籤
  */
 
 interface ContentFile {
   _id?: string
   body?: string
+}
+
+// 判斷是否為 Markdown 語法行
+function isMdSyntaxLine(line: string): boolean {
+  const trimmed = line.trim()
+  if (!trimmed) return false // 空行不是語法行
+  
+  // 標題
+  if (/^#{1,6}\s/.test(trimmed)) return true
+  // 無序列表
+  if (/^[\*\-\+]\s/.test(trimmed)) return true
+  // 有序列表
+  if (/^\d+\.\s/.test(trimmed)) return true
+  // 引用
+  if (/^>\s?/.test(trimmed)) return true
+  // 表格分隔
+  if (/^\|/.test(trimmed)) return true
+  // 水平線
+  if (/^(---|\*\*\*|___)/.test(trimmed)) return true
+  // 程式碼區塊開始/結束
+  if (/^```/.test(trimmed)) return true
+  
+  return false
 }
 
 export default defineNitroPlugin((nitroApp) => {
@@ -22,39 +44,62 @@ export default defineNitroPlugin((nitroApp) => {
     const frontmatter = frontmatterMatch ? frontmatterMatch[0] : ''
     let body = frontmatterMatch ? content.slice(frontmatter.length) : content
     
-    // 保護程式碼區塊：匹配 ```xxx...```
+    // 保護程式碼區塊
     const codeBlocks: string[] = []
-    
-    // 匹配完整的程式碼區塊
     body = body.replace(/```[\s\S]*?```/g, (match: string) => {
       codeBlocks.push(match)
-      return `\n<<<CODEBLOCK_${codeBlocks.length - 1}>>>\n`
+      return `<<<CODEBLOCK_${codeBlocks.length - 1}>>>`
     })
     
-    // 1. 行首空白保留：半形/全形空白轉為 HTML 實體
-    body = body.replace(/^([ \u3000]+)/gm, (match: string) =>
-      match.replace(/ /g, '&nbsp;').replace(/\u3000/g, '&#12288;')
-    )
+    // 處理每一行
+    const lines = body.split('\n')
+    const result: string[] = []
+    let emptyLineCount = 0
     
-    // 2. 換行保留：所有換行替換為 <br />
-    body = body.replace(/\n/g, '<br />')
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]
+      
+      // 空行：累計數量
+      if (line.trim() === '') {
+        emptyLineCount++
+        continue
+      }
+      
+      // 非空行：先處理累積的空行
+      if (emptyLineCount > 0) {
+        if (emptyLineCount === 1) {
+          // 單一空行：保持段落分隔
+          result.push('')
+        } else {
+          // 多個空行：產生對應數量的 <br> 標籤
+          const brs = Array(emptyLineCount).fill('<br>').join('')
+          result.push(brs)
+          result.push('')
+        }
+        emptyLineCount = 0
+      }
+      
+      // 處理當前行
+      if (isMdSyntaxLine(line) || line.includes('<<<CODEBLOCK_')) {
+        // Markdown 語法行：保持原樣
+        result.push(line)
+      } else {
+        // 內文行：行尾加兩個空格（hard break）
+        result.push(line + '  ')
+      }
+    }
     
-    // 3. 行內連續空白保留：兩個以上半形空白改成 &nbsp;
-    body = body.replace(/ {2,}/g, (match: string) =>
-      match.replace(/ /g, '&nbsp;')
-    )
+    // 處理結尾的空行
+    if (emptyLineCount > 1) {
+      const brs = Array(emptyLineCount).fill('<br>').join('')
+      result.push(brs)
+    }
     
-    // 4. Tab 保留：\t 轉成四個 &nbsp;
-    body = body.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')
+    body = result.join('\n')
     
-    // 還原程式碼區塊（移除周圍的 <br />，保持原始換行）
-    body = body.replace(/<br \/><<<CODEBLOCK_(\d+)>>><br \/>/g, (_: string, index: string) => {
-      return '\n' + codeBlocks[parseInt(index)] + '\n'
-    })
-    
-    // 如果上面沒匹配到（邊界情況），再試一次
+    // 還原程式碼區塊
     body = body.replace(/<<<CODEBLOCK_(\d+)>>>/g, (_: string, index: string) => {
-      return '\n' + codeBlocks[parseInt(index)] + '\n'
+      return codeBlocks[parseInt(index)]
     })
     
     file.body = frontmatter + body
