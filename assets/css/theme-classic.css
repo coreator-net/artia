@@ -237,8 +237,36 @@
 }
 
 .artia-page-article-theme-classic {
-  @apply overflow-y-auto;
+  @apply overflow-y-auto overflow-x-hidden w-full;
   max-height: calc(100vh - 200px);
+}
+
+.artia-content-renderer-theme-classic {
+  @apply w-full max-w-full p-8;
+  box-sizing: border-box;
+}
+
+.artia-content-renderer-theme-classic :deep(*) {
+  @apply max-w-full;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  line-height: 1.5rem;
+}
+
+.artia-content-renderer-theme-classic :deep(img),
+.artia-content-renderer-theme-classic :deep(video) {
+  @apply max-w-full h-auto;
+}
+
+.artia-content-renderer-theme-classic :deep(pre) {
+  @apply max-w-full overflow-x-auto;
+  white-space: pre;
+}
+
+.artia-content-renderer-theme-classic :deep(code:not(pre code)) {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* Pagination - 前後頁導覽 */
@@ -249,16 +277,41 @@
 
 .artia-page-pagination-prev-theme-classic,
 .artia-page-pagination-next-theme-classic {
-  @apply inline-flex items-center gap-2 text-sm font-medium transition-colors px-3 py-2 rounded;
+  @apply inline-flex items-center gap-2 text-sm font-medium transition-colors px-3 py-2 rounded border shrink-0;
   color: var(--artia-color-text);
-  border: 1px solid var(--artia-color-border);
-  background-color: var(--artia-color-border-light);
+  border-color: var(--artia-color-border);
+  background-color: transparent;
 }
 
 .artia-page-pagination-prev-theme-classic:hover,
 .artia-page-pagination-next-theme-classic:hover {
   background-color: var(--artia-color-text);
   color: var(--artia-color-surface);
+}
+
+/* Page Numbers - 頁碼選擇器 */
+.artia-page-numbers-theme-classic {
+  @apply flex gap-1 items-center px-2;
+  flex-wrap: nowrap;
+}
+
+.artia-page-number-theme-classic {
+  @apply px-2 py-1 text-sm border transition-colors shrink-0 min-w-[2rem] text-center;
+  color: var(--artia-color-text-secondary);
+  border-color: var(--artia-color-border);
+  background-color: transparent;
+}
+
+.artia-page-number-theme-classic:hover {
+  background-color: var(--artia-color-border-light);
+  color: var(--artia-color-text);
+}
+
+.artia-page-number-active-theme-classic {
+  @apply font-bold;
+  background-color: var(--artia-color-text);
+  color: var(--artia-color-surface);
+  border-color: var(--artia-color-text);
 }
 
 /* --------------------------------------------------------------------------

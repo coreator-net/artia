@@ -3,6 +3,17 @@
  * LayoutPageContent - 頁面主要內容
  * 用於 layout 系統，渲染 Nuxt Content 內容
  */
+
+interface ContentPage {
+  _path?: string
+  _dir?: string
+  title?: string
+  type?: string
+  sortAnchor?: number[]
+  bookCode?: string
+  [key: string]: any
+}
+
 const route = useRoute()
 const { t } = useTheme()
 
@@ -17,9 +28,9 @@ const { data: page, error } = await useAsyncData('page-' + path.value, () => {
 })
 
 // 取得同資料夾的 page 列表以便排序與前後頁導覽
-const siblings = ref<any[]>([])
+const siblings = ref<ContentPage[]>([])
 
-const compareAnchors = (aItem: any, bItem: any) => {
+const compareAnchors = (aItem: ContentPage, bItem: ContentPage) => {
   const aArr = Array.isArray(aItem?.sortAnchor)
     ? aItem.sortAnchor
     : aItem?.type === 'page'
@@ -39,7 +50,7 @@ const compareAnchors = (aItem: any, bItem: any) => {
   return 0
 }
 
-const sortPages = (items: any[] = []) => {
+const sortPages = (items: ContentPage[] = []) => {
   return [...items]
     .filter((item) => Array.isArray(item?.sortAnchor) || item?.type === 'page')
     .sort((a, b) => {
@@ -54,29 +65,20 @@ const sortPages = (items: any[] = []) => {
     })
 }
 
-const currentIndex = computed(() => {
-  return siblings.value.findIndex((item) => item._path === page.value?._path)
-})
-
-const prevPage = computed(() => {
-  const idx = currentIndex.value
-  if (idx > 0) return siblings.value[idx - 1]
-  return null
-})
-
-const nextPage = computed(() => {
-  const idx = currentIndex.value
-  if (idx >= 0 && idx < siblings.value.length - 1) return siblings.value[idx + 1]
-  return null
-})
-
 watchEffect(async () => {
-  if (!page.value || !page.value._dir) return
-  const dirRaw = page.value._dir as string
-  const dirWithSlash = dirRaw.startsWith('/') ? dirRaw : `/${dirRaw}`
-  const list = await queryContent().where({ _dir: dirWithSlash }).find()
-
-  siblings.value = sortPages(list)
+  if (!page.value) return
+  
+  // 優先使用 bookCode，否則用 _dir
+  const bookCode = page.value.bookCode
+  if (bookCode) {
+    const list = await queryContent().where({ bookCode }).find()
+    siblings.value = sortPages(list)
+  } else if (page.value._dir) {
+    const dirRaw = page.value._dir as string
+    const dirWithSlash = dirRaw.startsWith('/') ? dirRaw : `/${dirRaw}`
+    const list = await queryContent().where({ _dir: dirWithSlash }).find()
+    siblings.value = sortPages(list)
+  }
 })
 
 // 追蹤是否已驗證密碼
@@ -111,7 +113,7 @@ const isPageContent = computed(() => {
     </section>
     <section v-else>
       <!-- 顯示密碼提示 -->
-      <PasswordPrompt 
+      <LayoutPageContentPasswordPrompt 
         v-if="showPasswordPrompt"
         @authenticated="handleAuthenticated"
       />
@@ -120,28 +122,21 @@ const isPageContent = computed(() => {
       <ContentRenderer
         v-else
         :value="displayContent"
+        :class="t('content-renderer')"
       >
         <template #empty>
           <p>No content available</p>
         </template>
       </ContentRenderer>
+      
       <!-- 前後頁導覽（僅 page 類型顯示） -->
-      <nav v-if="isPageContent" :class="t('page-pagination')">
-        <NuxtLink
-          v-if="prevPage"
-          :to="prevPage._path"
-          :class="t('page-pagination-prev')"
-        >
-          ← {{ prevPage.title || '上一頁' }}
-        </NuxtLink>
-        <NuxtLink
-          v-if="nextPage"
-          :to="nextPage._path"
-          :class="t('page-pagination-next')"
-        >
-          {{ nextPage.title || '下一頁' }} →
-        </NuxtLink>
-      </nav>
+      <LayoutPageContentNavigation
+        v-if="isPageContent"
+        :siblings="siblings"
+        :current-path="page._path"
+      />
     </section>
   </article>
 </template>
+
+

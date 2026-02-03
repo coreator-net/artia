@@ -9,6 +9,7 @@ const { t } = useTheme();
 // 精選作品：最近更新的前三篇文章
 const { data: featuredWorks } = await useAsyncData("featured-works", () => {
   return queryContent()
+    .where({ type: "page" })
     .only(["_path", "title", "description", "modifyTime"])
     .sort({ modifyTime: -1 })
     .limit(3)
