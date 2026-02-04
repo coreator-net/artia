@@ -253,11 +253,17 @@
 
 .artia-page-article-theme-classic {
   @apply overflow-y-auto overflow-x-hidden w-full;
+  height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px);
   max-height: calc(100vh - 200px);
 }
 
+.artia-page-article-theme-classic > section {
+  @apply min-h-full flex flex-col;
+}
+
 .artia-content-renderer-theme-classic {
-  @apply w-full max-w-full p-8;
+  @apply w-full max-w-full p-8 flex-1;
   box-sizing: border-box;
 }
 
