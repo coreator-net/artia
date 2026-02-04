@@ -157,13 +157,28 @@
   @apply space-y-0;
 }
 
+.artia-sidebar-content-folder-row-theme-classic {
+  @apply flex items-center w-full;
+}
+
 .artia-sidebar-content-folder-btn-theme-classic {
-  @apply w-full flex items-center justify-between text-sm py-2 px-2 border-b transition-colors bg-transparent cursor-pointer;
+  @apply flex-1 flex items-center justify-between text-sm py-2 px-2 border-b transition-colors bg-transparent cursor-pointer;
   border-color: var(--artia-color-border);
   color: var(--artia-color-text);
 }
 
 .artia-sidebar-content-folder-btn-theme-classic:hover {
+  background-color: var(--artia-color-border-light);
+}
+
+.artia-sidebar-content-intro-btn-theme-classic {
+  @apply text-lg px-2 py-2 border-b transition-colors bg-transparent cursor-pointer;
+  border-color: var(--artia-color-border);
+  color: var(--artia-color-text-secondary);
+}
+
+.artia-sidebar-content-intro-btn-theme-classic:hover {
+  color: var(--artia-color-primary);
   background-color: var(--artia-color-border-light);
 }
 
