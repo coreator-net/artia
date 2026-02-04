@@ -20,6 +20,12 @@ export default defineNuxtConfig({
   // Content v2 設定
   content: {
     documentDriven: false,
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+      }
+    }
   },
 
   // 應用程式設定

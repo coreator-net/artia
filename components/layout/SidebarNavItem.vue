@@ -7,6 +7,7 @@
           @click="toggle"
           :class="t('sidebar-content-folder-btn')"
           :style="{ paddingLeft: `${depth * 0.75}rem` }"
+          :title="item.title"
         >
           <span>{{ typeIcon }} {{ item.title }}</span>
           <span>{{ expanded ? '−' : '+' }}</span>
@@ -39,6 +40,7 @@
         :to="item._path"
         :class="t('sidebar-content-link')"
         :style="{ paddingLeft: `${depth * 0.75}rem` }"
+        :title="item.title"
       >
         {{ typeIcon }} {{ item.title }}
       </NuxtLink>

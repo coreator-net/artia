@@ -167,8 +167,28 @@
   color: var(--artia-color-text);
 }
 
+.artia-sidebar-content-folder-btn-theme-classic > span:first-child {
+  @apply overflow-hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: calc(100% - 2rem);
+}
+
 .artia-sidebar-content-folder-btn-theme-classic:hover {
   background-color: var(--artia-color-border-light);
+}
+
+.artia-sidebar-content-folder-btn-theme-classic:hover > span:first-child {
+  white-space: normal;
+  overflow: visible;
+}
+
+/* 手機版保持折行 */
+@media (max-width: 768px) {
+  .artia-sidebar-content-folder-btn-theme-classic > span:first-child {
+    white-space: normal;
+    overflow: visible;
+  }
 }
 
 .artia-sidebar-content-intro-btn-theme-classic {
@@ -190,11 +210,24 @@
   @apply block text-sm py-2 px-2 border-b transition-colors;
   border-color: var(--artia-color-border-light);
   color: var(--artia-color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .artia-sidebar-content-link-theme-classic:hover {
   background-color: var(--artia-color-border-light);
   color: var(--artia-color-text);
+  white-space: normal;
+  overflow: visible;
+}
+
+/* 手機版保持折行 */
+@media (max-width: 768px) {
+  .artia-sidebar-content-link-theme-classic {
+    white-space: normal;
+    overflow: visible;
+  }
 }
 
 /* --------------------------------------------------------------------------
