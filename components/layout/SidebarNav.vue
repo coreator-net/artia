@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import type { NavItem } from '@nuxt/content'
+import { sortContentItems } from '~/utils/contentSort'
 
 interface ExtendedNavItem extends NavItem {
   type?: 'folder' | 'book' | 'page' | string
@@ -41,49 +42,46 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { t } = useTheme()
 
-// 使用 fetchContentNavigation 取得已結構化的導航樹
-const { data: navigation } = await useAsyncData('navigation', () => 
-  fetchContentNavigation()
-)
-
-// 依類型與 sortAnchor 進行排序：folder/book 優先，再按 sortAnchor 數列逐一比較（缺項視為 0），最後按標題與路徑
-const sortNavItems = (items: ExtendedNavItem[] = []): ExtendedNavItem[] => {
-  const typeWeight = (item: ExtendedNavItem) => (item.type === 'folder' || item.type === 'book' ? 0 : 1)
-
-  const compareAnchors = (aItem: ExtendedNavItem, bItem: ExtendedNavItem) => {
-    const aArr = Array.isArray(aItem.sortAnchor) ? aItem.sortAnchor : (aItem.type === 'page' ? [Number.POSITIVE_INFINITY] : [])
-    const bArr = Array.isArray(bItem.sortAnchor) ? bItem.sortAnchor : (bItem.type === 'page' ? [Number.POSITIVE_INFINITY] : [])
-    const maxLen = Math.max(aArr.length, bArr.length)
-    for (let i = 0; i < maxLen; i++) {
-      const aVal = aArr[i] ?? 0
-      const bVal = bArr[i] ?? 0
-      if (aVal !== bVal) return aVal - bVal
-    }
-    return 0
+// 結合 fetchContentNavigation 的樹狀結構 + queryContent 的自訂欄位
+const { data: navigation } = await useAsyncData('navigation', async () => {
+  // 1. 取得樹狀結構（包含資料夾）
+  const navTree = await fetchContentNavigation()
+  
+  // 2. 取得所有文件的自訂欄位
+  const content = await queryContent()
+    .where({ _draft: { $ne: true }, _partial: { $ne: true } })
+    .only(['_path', 'type', 'sortAnchor'])
+    .find()
+  
+  // 3. 建立 path -> metadata 的對應
+  const metadataMap = new Map(
+    content.map(item => [item._path, { type: item.type, sortAnchor: item.sortAnchor }])
+  )
+  
+  // 4. 將 metadata 合併到導航樹
+  const mergeMetadata = (items: any[]): ExtendedNavItem[] => {
+    return items.map(item => {
+      const metadata = metadataMap.get(item._path) || {}
+      const merged: ExtendedNavItem = {
+        ...item,
+        type: metadata.type || item.type,
+        sortAnchor: metadata.sortAnchor || item.sortAnchor,
+        children: item.children ? mergeMetadata(item.children) : undefined
+      }
+      return merged
+    })
   }
-
-  const sorted = [...items].sort((a, b) => {
-    const typeDiff = typeWeight(a) - typeWeight(b)
-    if (typeDiff !== 0) return typeDiff
-
-    const anchorDiff = compareAnchors(a, b)
-    if (anchorDiff !== 0) return anchorDiff
-
-    if (a.title && b.title) return a.title.localeCompare(b.title)
-    if (a.title) return -1
-    if (b.title) return 1
-
-    return (a._path || '').localeCompare(b._path || '')
-  })
-
-  return sorted.map(item => ({
-    ...item,
-    children: item.children ? sortNavItems(item.children as ExtendedNavItem[]) : undefined,
-  }))
-}
+  
+  return mergeMetadata(navTree)
+})
 
 const sortedNavigation = computed(() => {
-  return navigation.value ? sortNavItems(navigation.value as ExtendedNavItem[]) : []
+  return navigation.value 
+    ? sortContentItems(navigation.value as ExtendedNavItem[], {
+        prioritizeFolders: true,
+        recursive: true
+      })
+    : []
 })
 
 // 追蹤展開狀態
