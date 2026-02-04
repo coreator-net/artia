@@ -19,6 +19,7 @@
     "nuxt-content-assets": "^1.8.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.14.0"
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@tailwindcss/typography": "^0.5.19"
   }
 }

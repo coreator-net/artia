@@ -88,7 +88,7 @@ const isPageContent = computed(() => {
       <ContentRenderer
         v-else
         :value="displayContent"
-        :class="t('content-renderer')"
+        :class="[t('content-renderer'), 'prose prose-lg max-w-none']"
       >
         <template #empty>
           <p>No content available</p>

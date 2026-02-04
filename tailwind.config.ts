@@ -44,5 +44,7 @@ export default <Config>{
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
