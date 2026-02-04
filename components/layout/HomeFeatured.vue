@@ -4,7 +4,8 @@
  * 用於 layout 系統的可配置元件
  */
 const config = useRuntimeConfig();
-const { t } = useTheme();
+const { t: themeT } = useTheme();
+const { t, locale } = useI18n();
 
 // 精選作品：最近更新的前三篇文章
 const { data: featuredWorks } = await useAsyncData("featured-works", () => {
@@ -20,25 +21,25 @@ const { data: featuredWorks } = await useAsyncData("featured-works", () => {
 
 <template>
   <section v-if="featuredWorks && featuredWorks.length > 0">
-    <h2 :class="t('section-title')">{{ config.public.sectionFeatured }}</h2>
+    <h2 :class="themeT('section-title')">{{ config.public.sectionFeatured }}</h2>
 
-    <ul :class="t('card-list')">
+    <ul :class="themeT('card-list')">
       <li v-for="work in featuredWorks" :key="work._path">
-        <NuxtLink :to="work._path" :class="t('card-featured')">
-          <figure :class="t('card-header')">
-            <figcaption :class="t('card-avatar')">
+        <NuxtLink :to="work._path" :class="themeT('card-featured')">
+          <figure :class="themeT('card-header')">
+            <figcaption :class="themeT('card-avatar')">
               {{ work.title?.charAt(0) || "A" }}
             </figcaption>
             <hgroup>
-              <h3 :class="t('card-title')">{{ work.title }}</h3>
-              <time :class="t('card-meta')">{{
+              <h3 :class="themeT('card-title')">{{ work.title }}</h3>
+              <time :class="themeT('card-meta')">{{
                 work.modifyTime
-                  ? new Date(work.modifyTime).toLocaleDateString("zh-TW")
+                  ? new Date(work.modifyTime).toLocaleDateString(locale === 'zh-TW' ? 'zh-TW' : 'en-US')
                   : ""
               }}</time>
             </hgroup>
           </figure>
-          <p :class="t('card-desc')">{{ work.description || "點擊查看更多..." }}</p>
+          <p :class="themeT('card-desc')">{{ work.description || t('content.clickForDetails') }}</p>
         </NuxtLink>
       </li>
     </ul>

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     'nuxt-content-assets',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n',
   ],
 
   // 引入自訂 CSS（主題系統）
@@ -28,11 +29,23 @@ export default defineNuxtConfig({
     }
   },
 
+  // i18n 多語系設定
+  i18n: {
+    locales: [
+      { code: 'zh-TW', language: 'zh-TW', name: '繁體中文', file: 'zh-TW.json' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+    ],
+    defaultLocale: (process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'zh-TW') as 'zh-TW' | 'en',
+    strategy: 'no_prefix',
+    vueI18n: './i18n.config.ts',
+    detectBrowserLanguage: false,
+  },
+
   // 應用程式設定
   app: {
     head: {
       htmlAttrs: {
-        lang: process.env.NUXT_PUBLIC_SITE_LOCALE || 'zh-TW',
+        lang: process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'zh-TW',
       },
       title: process.env.NUXT_PUBLIC_SITE_NAME || 'Artia',
       meta: [
@@ -95,7 +108,7 @@ export default defineNuxtConfig({
       siteName: '',
       siteSlogan: '',
       siteUrl: '',
-      siteLocale: 'zh-TW',
+      defaultLocale: 'zh-TW',
       copyright: '',
       
       // 佈局系統

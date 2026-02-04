@@ -4,7 +4,8 @@
  * 用於 layout 系統的可配置元件
  */
 const config = useRuntimeConfig()
-const { t } = useTheme()
+const { t: themeT } = useTheme()
+const { t } = useI18n()
 
 // 取得最新的內容
 const { data: recentBooks } = await useAsyncData('recent-books', () => {
@@ -18,17 +19,17 @@ const { data: recentBooks } = await useAsyncData('recent-books', () => {
 
 <template>
   <section v-if="recentBooks && recentBooks.length > 0">
-    <h2 :class="t('section-title')">{{ config.public.sectionRecent }}</h2>
+    <h2 :class="themeT('section-title')">{{ config.public.sectionRecent }}</h2>
     
-    <ul :class="t('card-grid')">
+    <ul :class="themeT('card-grid')">
       <li v-for="book in recentBooks" :key="book._path">
         <NuxtLink 
           :to="book._path"
-          :class="t('card')"
+          :class="themeT('card')"
         >
-          <span :class="t('card-type')">{{ book.type || 'Content' }}</span>
-          <h3 :class="t('card-title-lg')">{{ book.title || book._dir }}</h3>
-          <p :class="t('card-desc')">{{ book.description || '點擊查看更多內容...' }}</p>
+          <span :class="themeT('card-type')">{{ book.type || 'Content' }}</span>
+          <h3 :class="themeT('card-title-lg')">{{ book.title || book._dir }}</h3>
+          <p :class="themeT('card-desc')">{{ book.description || t('content.clickForMore') }}</p>
         </NuxtLink>
       </li>
     </ul>

@@ -2,10 +2,10 @@
   <li v-if="!hideEmptyTitle || item.title">
     <!-- 有子項目的資料夾 -->
     <template v-if="hasChildren || introPath">
-      <div :class="t('sidebar-content-folder-row')">
+      <div :class="themeT('sidebar-content-folder-row')">
         <button 
           @click="toggle"
-          :class="t('sidebar-content-folder-btn')"
+          :class="themeT('sidebar-content-folder-btn')"
           :style="{ paddingLeft: `${depth * 0.75}rem` }"
           :title="item.title"
         >
@@ -15,13 +15,13 @@
         <button 
           v-if="introPath"
           @click="navigateToIntro"
-          :class="t('sidebar-content-intro-btn')"
-          title="查看介紹"
+          :class="themeT('sidebar-content-intro-btn')"
+          :title="t('sidebar.viewIntro')"
         >
           ℹ️
         </button>
       </div>
-      <ul v-if="expanded && hasChildren" :class="t('sidebar-content-children')">
+      <ul v-if="expanded && hasChildren" :class="themeT('sidebar-content-children')">
         <!-- 遞迴渲染子項目（過濾掉 _intro 和 _folder） -->
         <SidebarNavItem 
           v-for="child in filteredChildren" 
@@ -38,7 +38,7 @@
     <template v-else>
       <NuxtLink 
         :to="item._path"
-        :class="t('sidebar-content-link')"
+        :class="themeT('sidebar-content-link')"
         :style="{ paddingLeft: `${depth * 0.75}rem` }"
         :title="item.title"
       >
@@ -66,7 +66,8 @@ const emit = defineEmits<{
   toggle: [path: string]
 }>()
 
-const { t } = useTheme()
+const { t: themeT } = useTheme()
+const { t } = useI18n()
 
 const depth = computed(() => props.depth ?? 0)
 

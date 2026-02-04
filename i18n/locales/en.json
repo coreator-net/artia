@@ -1,0 +1,50 @@
+{
+  "site": {
+    "name": "Artia",
+    "slogan": "A platform built for creators."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "sidebar": {
+    "title": "Content List",
+    "loading": "Loading or No Data",
+    "viewIntro": "View Introduction"
+  },
+  "page": {
+    "loading": "Loading...",
+    "notFound": "Page Not Found",
+    "error": "Error",
+    "prev": "Previous",
+    "next": "Next",
+    "pageNumber": "Page",
+    "of": "of"
+  },
+  "content": {
+    "clickForMore": "Click to view more content...",
+    "clickForDetails": "Click for details...",
+    "noDescription": "No description available"
+  },
+  "section": {
+    "featured": "Featured Works",
+    "recent": "Recent Content",
+    "search": "Search"
+  },
+  "search": {
+    "placeholder": "Search content...",
+    "searching": "Searching...",
+    "noResults": "No results found",
+    "results": "Search Results",
+    "close": "Close"
+  },
+  "password": {
+    "prompt": "This content requires a password",
+    "placeholder": "Enter password",
+    "submit": "Submit",
+    "incorrect": "Incorrect password"
+  },
+  "date": {
+    "locale": "en-US"
+  }
+}

@@ -71,6 +71,22 @@
   color: #60a5fa;
 }
 
+/* Language Switcher */
+.artia-language-switcher-theme-dark {
+  @apply inline-flex gap-2 ml-4;
+}
+
+.artia-language-switcher-btn-theme-dark {
+  @apply px-2 py-1 text-sm transition-colors rounded;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.artia-language-switcher-btn-theme-dark:hover {
+  color: #60a5fa;
+  background-color: #1e293b;
+}
+
 .artia-header-mobile-btn-theme-dark {
   @apply md:hidden p-2;
   color: #f1f5f9;

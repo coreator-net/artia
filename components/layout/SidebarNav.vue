@@ -1,8 +1,8 @@
 <template>
-  <aside :class="t(classPrefix)">
-    <h3 :class="t(`${classPrefix}-title`)">{{ title }}</h3>
+  <aside :class="themeT(classPrefix)">
+    <h3 :class="themeT(`${classPrefix}-title`)">{{ displayTitle }}</h3>
     <nav>
-      <ul :class="t(`${classPrefix}-list`)">
+      <ul :class="themeT(`${classPrefix}-list`)">
         <!-- 使用遞迴元件渲染多層結構 -->
         <LayoutSidebarNavItem 
           v-for="item in sortedNavigation" 
@@ -16,7 +16,7 @@
       </ul>
       <!-- 調試信息 -->
       <div v-if="sortedNavigation.length === 0" style="padding: 1rem; color: #999;">
-        載入中或無資料 (navigation: {{ navigation ? 'exists' : 'null' }}, length: {{ navigation?.length || 0 }})
+        {{ t('sidebar.loading') }} (navigation: {{ navigation ? 'exists' : 'null' }}, length: {{ navigation?.length || 0 }})
       </div>
     </nav>
   </aside>
@@ -39,12 +39,15 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: '內容清單',
+  title: '',
   classPrefix: 'sidebar-content',
   hideEmptyTitle: true
 })
 
-const { t } = useTheme()
+const { t: themeT } = useTheme()
+const { t } = useI18n()
+
+const displayTitle = computed(() => props.title || t('sidebar.title'))
 
 // 直接在 setup 中載入資料
 const navigation = ref<ExtendedNavItem[]>([])

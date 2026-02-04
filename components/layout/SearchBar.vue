@@ -4,7 +4,8 @@
  * 
  * 提供內容搜尋功能，可放置於佈局系統的任何區塊
  */
-const { t } = useTheme()
+const { t: themeT } = useTheme()
+const { t } = useI18n()
 
 const searchQuery = ref('')
 const isSearching = ref(false)
@@ -76,34 +77,34 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="searchContainer" :class="t('search-bar')">
-    <div :class="t('search-bar-input-wrapper')">
+  <div ref="searchContainer" :class="themeT('search-bar')">
+    <div :class="themeT('search-bar-input-wrapper')">
       <input
         v-model="searchQuery"
         type="text"
-        :placeholder="'搜尋內容...'"
-        :class="t('search-bar-input')"
+        :placeholder="t('search.placeholder')"
+        :class="themeT('search-bar-input')"
         @input="debouncedSearch"
         @focus="searchQuery && (showResults = true)"
       />
-      <span v-if="isSearching" :class="t('search-bar-loading')">⏳</span>
-      <span v-else :class="t('search-bar-icon')">🔍</span>
+      <span v-if="isSearching" :class="themeT('search-bar-loading')">⏳</span>
+      <span v-else :class="themeT('search-bar-icon')">🔍</span>
     </div>
     
     <!-- 搜尋結果下拉 -->
-    <div v-if="showResults" :class="t('search-bar-results')">
-      <div v-if="searchResults.length === 0" :class="t('search-bar-no-results')">
-        找不到相關內容
+    <div v-if="showResults" :class="themeT('search-bar-results')">
+      <div v-if="searchResults.length === 0" :class="themeT('search-bar-no-results')">
+        {{ t('search.noResults') }}
       </div>
-      <ul v-else :class="t('search-bar-results-list')">
+      <ul v-else :class="themeT('search-bar-results-list')">
         <li
           v-for="result in searchResults"
           :key="result._path"
-          :class="t('search-bar-result-item')"
+          :class="themeT('search-bar-result-item')"
           @click="selectResult(result._path)"
         >
-          <span :class="t('search-bar-result-title')">{{ result.title || '無標題' }}</span>
-          <span v-if="result.description" :class="t('search-bar-result-desc')">
+          <span :class="themeT('search-bar-result-title')">{{ result.title || t('content.noDescription') }}</span>
+          <span v-if="result.description" :class="themeT('search-bar-result-desc')">
             {{ result.description.slice(0, 60) }}{{ result.description.length > 60 ? '...' : '' }}
           </span>
         </li>

@@ -20,7 +20,8 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { t } = useTheme()
+const { t: themeT } = useTheme()
+const { t } = useI18n()
 const router = useRouter()
 
 // 滑動手勢處理
@@ -125,28 +126,28 @@ const displayPageNumbers = computed(() => {
 </script>
 
 <template>
-  <nav v-if="siblings.length > 0" :class="t('page-pagination')">
+  <nav v-if="siblings.length > 0" :class="themeT('page-pagination')">
     <NuxtLink
       v-if="prevPage"
       :to="prevPage._path"
-      :class="t('page-pagination-prev')"
+      :class="themeT('page-pagination-prev')"
     >
-      ← {{ prevPage.title || '上一頁' }}
+      ← {{ prevPage.title || t('page.prev') }}
     </NuxtLink>
     <span v-else></span>
     
     <!-- 頁碼選擇器 -->
-    <div :class="t('page-numbers')">
+    <div :class="themeT('page-numbers')">
       <template v-for="(pageItem, idx) in displayPageNumbers" :key="idx">
-        <span v-if="pageItem.isEllipsis" :class="t('page-ellipsis')">
+        <span v-if="pageItem.isEllipsis" :class="themeT('page-ellipsis')">
           ...
         </span>
         <NuxtLink
           v-else
           :to="siblings[pageItem.index]._path"
           :class="[
-            t('page-number'),
-            currentIndex === pageItem.index ? t('page-number-active') : ''
+            themeT('page-number'),
+            currentIndex === pageItem.index ? themeT('page-number-active') : ''
           ]"
         >
           {{ pageItem.index + 1 }}
@@ -157,9 +158,9 @@ const displayPageNumbers = computed(() => {
     <NuxtLink
       v-if="nextPage"
       :to="nextPage._path"
-      :class="t('page-pagination-next')"
+      :class="themeT('page-pagination-next')"
     >
-      {{ nextPage.title || '下一頁' }} →
+      {{ nextPage.title || t('page.next') }} →
     </NuxtLink>
     <span v-else></span>
   </nav>
