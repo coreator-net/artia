@@ -112,7 +112,6 @@ export default defineNuxtConfig({
       copyright: '',
       
       // 佈局系統
-      layoutMode: '',
       layoutHomeTop: '',
       layoutHomeLeft: '',
       layoutHomeCenter: '',

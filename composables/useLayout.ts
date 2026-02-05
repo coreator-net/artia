@@ -53,13 +53,6 @@ export type PageType = 'home' | 'read'
 export type SlotPosition = 'top' | 'left' | 'center' | 'right' | 'bottom'
 
 /**
- * 佈局模式
- * - content: TOP/BOTTOM 為全寬，擠掉 LEFT/RIGHT（適合內容網站、部落格）
- * - app: LEFT/RIGHT 延伸到頂部（適合後台、工具型應用）
- */
-export type LayoutMode = 'content' | 'app'
-
-/**
  * 佈局設定介面 - 支援多個元件
  */
 export interface LayoutConfig {
@@ -126,27 +119,6 @@ export function useLayout() {
       },
     }
   })
-
-  /**
-   * 取得佈局模式
-   * - content: TOP/BOTTOM 為全寬，擠掉 LEFT/RIGHT
-   * - app: LEFT/RIGHT 延伸到頂部
-   */
-  const layoutMode = computed<LayoutMode>(() => {
-    const pub = config.public as Record<string, any>
-    const mode = pub.layoutMode?.toLowerCase()
-    return mode === 'app' ? 'app' : 'content'
-  })
-
-  /**
-   * 是否為 content 模式（TOP/BOTTOM 全寬）
-   */
-  const isContentMode = computed(() => layoutMode.value === 'content')
-
-  /**
-   * 是否為 app 模式（LEFT/RIGHT 延伸）
-   */
-  const isAppMode = computed(() => layoutMode.value === 'app')
 
   /**
    * 取得特定位置的所有元件名稱
@@ -219,9 +191,6 @@ export function useLayout() {
 
   return {
     layoutConfig,
-    layoutMode,
-    isContentMode,
-    isAppMode,
     getSlotComponent,
     getSlotComponents,
     isSlotEnabled,
