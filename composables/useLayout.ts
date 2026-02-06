@@ -36,6 +36,7 @@ export type LayoutComponent =
   | 'navigation'
   | 'navigation-notitle'
   | 'toc' 
+  | 'history'
   | 'hero' 
   | 'featured' 
   | 'recent'
@@ -68,6 +69,7 @@ const componentMap: Record<LayoutComponent, string> = {
   navigation: 'LayoutSidebarContent',
   'navigation-notitle': 'LayoutSidebarContentNoTitle',
   toc: 'LayoutTableOfContents',
+  history: 'LayoutHistoryTimeline',
   hero: 'LayoutHomeHero',
   featured: 'LayoutHomeFeatured',
   recent: 'LayoutHomeRecent',

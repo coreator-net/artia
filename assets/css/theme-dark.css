@@ -770,3 +770,77 @@
   @apply block text-xs;
   color: #94a3b8;
 }
+
+/* --------------------------------------------------------------------------
+   Sidebar History Timeline - 歷史記錄時間線
+   -------------------------------------------------------------------------- */
+.artia-sidebar-history-theme-dark {
+  @apply hidden xl:block w-60 shrink-0 sticky top-4 overflow-y-auto max-h-[calc(100vh-8rem)];
+}
+
+.artia-sidebar-history-title-theme-dark {
+  @apply text-sm font-semibold mb-4 pb-2 border-b;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+.artia-sidebar-history-timeline-theme-dark {
+  @apply relative;
+}
+
+.artia-sidebar-history-item-theme-dark {
+  @apply flex gap-3 pb-4 last:pb-0;
+}
+
+.artia-sidebar-history-node-theme-dark {
+  @apply flex flex-col items-center;
+}
+
+.artia-sidebar-history-dot-theme-dark {
+  @apply w-2.5 h-2.5 rounded-full border-2 shrink-0;
+  border-color: #475569;
+  background-color: #1e293b;
+}
+
+.artia-sidebar-history-item-theme-dark:first-child .artia-sidebar-history-dot-theme-dark {
+  border-color: #60a5fa;
+  background-color: #60a5fa;
+}
+
+.artia-sidebar-history-line-theme-dark {
+  @apply w-px flex-1 mt-1;
+  background-color: #334155;
+}
+
+.artia-sidebar-history-content-theme-dark {
+  @apply flex-1 min-w-0 -mt-0.5;
+}
+
+.artia-sidebar-history-header-theme-dark {
+  @apply flex items-center justify-between gap-2 mb-1;
+}
+
+.artia-sidebar-history-author-theme-dark {
+  @apply text-sm font-medium truncate;
+  color: #f1f5f9;
+}
+
+.artia-sidebar-history-time-theme-dark {
+  @apply text-xs shrink-0;
+  color: #64748b;
+}
+
+.artia-sidebar-history-commit-theme-dark {
+  @apply text-sm mb-1 break-words;
+  color: #cbd5e1;
+}
+
+.artia-sidebar-history-datetime-theme-dark {
+  @apply text-xs;
+  color: #64748b;
+}
+
+.artia-sidebar-history-empty-theme-dark {
+  @apply text-sm;
+  color: #64748b;
+}

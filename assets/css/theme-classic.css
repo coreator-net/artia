@@ -745,3 +745,76 @@
   @apply block text-xs;
   color: var(--artia-color-text-secondary);
 }
+
+/* --------------------------------------------------------------------------
+   Sidebar History Timeline - 歷史記錄時間線
+   -------------------------------------------------------------------------- */
+.artia-sidebar-history-theme-classic {
+  @apply hidden xl:block w-60 shrink-0 sticky top-4 overflow-y-auto max-h-[calc(100vh-8rem)];
+}
+
+.artia-sidebar-history-title-theme-classic {
+  @apply text-sm font-semibold mb-4 pb-2 border-b;
+  color: var(--artia-color-text);
+  border-color: var(--artia-color-border);
+}
+
+.artia-sidebar-history-timeline-theme-classic {
+  @apply relative;
+}
+
+.artia-sidebar-history-item-theme-classic {
+  @apply flex gap-3 pb-4 last:pb-0;
+}
+
+.artia-sidebar-history-node-theme-classic {
+  @apply flex flex-col items-center;
+}
+
+.artia-sidebar-history-dot-theme-classic {
+  @apply w-2.5 h-2.5 rounded-full border-2 bg-transparent shrink-0;
+  border-color: var(--artia-color-border);
+}
+
+.artia-sidebar-history-item-theme-classic:first-child .artia-sidebar-history-dot-theme-classic {
+  border-color: var(--artia-color-text);
+  background-color: var(--artia-color-text);
+}
+
+.artia-sidebar-history-line-theme-classic {
+  @apply w-px flex-1 mt-1;
+  background-color: var(--artia-color-border);
+}
+
+.artia-sidebar-history-content-theme-classic {
+  @apply flex-1 min-w-0 -mt-0.5;
+}
+
+.artia-sidebar-history-header-theme-classic {
+  @apply flex items-center justify-between gap-2 mb-1;
+}
+
+.artia-sidebar-history-author-theme-classic {
+  @apply text-sm font-medium truncate;
+  color: var(--artia-color-text);
+}
+
+.artia-sidebar-history-time-theme-classic {
+  @apply text-xs shrink-0;
+  color: var(--artia-color-text-muted);
+}
+
+.artia-sidebar-history-commit-theme-classic {
+  @apply text-sm mb-1 break-words;
+  color: var(--artia-color-text-secondary);
+}
+
+.artia-sidebar-history-datetime-theme-classic {
+  @apply text-xs;
+  color: var(--artia-color-text-muted);
+}
+
+.artia-sidebar-history-empty-theme-classic {
+  @apply text-sm;
+  color: var(--artia-color-text-muted);
+}

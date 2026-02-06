@@ -44,6 +44,16 @@
     "submit": "確認",
     "incorrect": "密碼錯誤"
   },
+  "history": {
+    "title": "歷史記錄",
+    "empty": "沒有歷史記錄",
+    "today": "今天",
+    "yesterday": "昨天",
+    "daysAgo": "{count} 天前",
+    "weeksAgo": "{count} 週前",
+    "monthsAgo": "{count} 個月前",
+    "yearsAgo": "{count} 年前"
+  },
   "date": {
     "locale": "zh-TW"
   }

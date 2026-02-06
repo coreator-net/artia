@@ -44,6 +44,16 @@
     "submit": "Submit",
     "incorrect": "Incorrect password"
   },
+  "history": {
+    "title": "History",
+    "empty": "No history records",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "{count} days ago",
+    "weeksAgo": "{count} weeks ago",
+    "monthsAgo": "{count} months ago",
+    "yearsAgo": "{count} years ago"
+  },
   "date": {
     "locale": "en-US"
   }
