@@ -5,7 +5,8 @@
   },
   "nav": {
     "home": "首頁",
-    "about": "關於"
+    "about": "關於",
+    "contact": "聯絡我們"
   },
   "sidebar": {
     "title": "內容清單",
@@ -62,5 +63,28 @@
   },
   "date": {
     "locale": "zh-TW"
+  },
+  "contact": {
+    "title": "聯絡我們",
+    "subtitle": "有任何問題或建議？歡迎與我們聯繫。",
+    "name": "您的姓名",
+    "namePlaceholder": "請輸入姓名",
+    "email": "電子郵件",
+    "emailPlaceholder": "請輸入電子郵件",
+    "subject": "主旨",
+    "subjectPlaceholder": "請輸入主旨",
+    "message": "訊息內容",
+    "messagePlaceholder": "請輸入您的訊息...",
+    "submit": "送出訊息",
+    "sending": "傳送中...",
+    "success": "訊息已成功送出！我們會盡快回覆您。",
+    "error": "送出失敗，請稍後再試。",
+    "validation": {
+      "nameRequired": "請輸入姓名",
+      "emailRequired": "請輸入電子郵件",
+      "emailInvalid": "請輸入有效的電子郵件",
+      "subjectRequired": "請輸入主旨",
+      "messageRequired": "請輸入訊息內容"
+    }
   }
 }

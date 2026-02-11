@@ -5,7 +5,8 @@
   },
   "nav": {
     "home": "Home",
-    "about": "About"
+    "about": "About",
+    "contact": "Contact"
   },
   "sidebar": {
     "title": "Content List",
@@ -62,5 +63,28 @@
   },
   "date": {
     "locale": "en-US"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have questions or suggestions? Feel free to reach out.",
+    "name": "Your Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message...",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully! We will get back to you soon.",
+    "error": "Failed to send message. Please try again later.",
+    "validation": {
+      "nameRequired": "Please enter your name",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Please enter a valid email",
+      "subjectRequired": "Please enter a subject",
+      "messageRequired": "Please enter your message"
+    }
   }
 }

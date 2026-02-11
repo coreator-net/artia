@@ -102,6 +102,18 @@ export default defineNuxtConfig({
   // 環境變數配置
   // 預設值定義 - .env 中的 NUXT_PUBLIC_* 會自動覆蓋這些值
   runtimeConfig: {
+    // 私有設定（僅伺服器端可用）
+    contactEnabled: process.env.NUXT_CONTACT_ENABLED || 'false',
+    smtpHost: process.env.NUXT_SMTP_HOST || '',
+    smtpPort: process.env.NUXT_SMTP_PORT || '587',
+    smtpSecure: process.env.NUXT_SMTP_SECURE || 'false',
+    smtpUser: process.env.NUXT_SMTP_USER || '',
+    smtpPass: process.env.NUXT_SMTP_PASS || '',
+    smtpFromName: process.env.NUXT_SMTP_FROM_NAME || '',
+    smtpFromEmail: process.env.NUXT_SMTP_FROM_EMAIL || '',
+    smtpToEmail: process.env.NUXT_SMTP_TO_EMAIL || '',
+    smtpSubjectPrefix: process.env.NUXT_SMTP_SUBJECT_PREFIX || '',
+    
     public: {
       // 全域設定
       theme: '',

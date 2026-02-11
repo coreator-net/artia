@@ -929,3 +929,64 @@
   @apply text-sm;
   color: #64748b;
 }
+
+/* --------------------------------------------------------------------------
+   Contact Page - 聯絡頁面
+   -------------------------------------------------------------------------- */
+.artia-contact-page-theme-dark {
+  @apply py-12 px-4;
+}
+
+.artia-contact-container-theme-dark {
+  @apply max-w-2xl mx-auto;
+}
+
+.artia-contact-header-theme-dark {
+  @apply text-center mb-10;
+}
+
+.artia-contact-title-theme-dark {
+  @apply text-3xl font-bold mb-3;
+  color: #f1f5f9;
+}
+
+.artia-contact-subtitle-theme-dark {
+  color: #94a3b8;
+}
+
+.artia-contact-form-theme-dark {
+  @apply flex flex-col gap-6;
+}
+
+.artia-contact-field-theme-dark {
+  @apply flex flex-col gap-1;
+}
+
+.artia-contact-field-error-theme-dark {
+  @apply text-sm;
+  color: #f87171;
+}
+
+.artia-contact-textarea-theme-dark {
+  @apply resize-y min-h-[150px];
+}
+
+.artia-contact-success-theme-dark {
+  @apply flex flex-col items-center justify-center gap-4 p-8 border text-center;
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.artia-contact-success-icon-theme-dark {
+  @apply w-12 h-12;
+}
+
+.artia-contact-error-theme-dark {
+  @apply p-4 border text-center;
+  border-color: #f87171;
+  color: #f87171;
+}
+
+.artia-input-error-theme-dark {
+  border-color: #f87171 !important;
+}

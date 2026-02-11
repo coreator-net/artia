@@ -19,6 +19,7 @@ const { t } = useI18n()
         <li :class="themeT('header-menu')">
           <NuxtLink to="/" :class="themeT('header-link')">{{ t('nav.home') }}</NuxtLink>
           <NuxtLink to="/about" :class="themeT('header-link')">{{ t('nav.about') }}</NuxtLink>
+          <NuxtLink to="/contact" :class="themeT('header-link')">{{ t('nav.contact') }}</NuxtLink>
         </li>
 
         <!-- Mobile Menu Button -->
