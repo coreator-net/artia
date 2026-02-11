@@ -7,6 +7,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "docker:build": "docker build -t artia .",
     "docker:run": "docker run -p 3000:3000 artia",
     "docker:up": "docker-compose up -d production",
@@ -21,7 +24,12 @@
     "nuxt-content-assets": "^1.8.0"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^4.0.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
-    "@tailwindcss/typography": "^0.5.19"
+    "@tailwindcss/typography": "^0.5.19",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^20.6.1",
+    "vitest": "^4.0.18"
   }
 }
