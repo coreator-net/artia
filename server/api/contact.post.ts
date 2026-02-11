@@ -1,48 +1,14 @@
 /**
  * 聯絡表單 API 端點
- * 處理聯絡表單提交並發送電子郵件
+ * 使用 nuxt-mail 發送電子郵件
  */
-import { defineEventHandler, readBody, createError } from 'h3'
+import { defineEventHandler, readBody, createError} from 'h3'
 
 interface ContactFormData {
   name: string
   email: string
   subject: string
   message: string
-}
-
-interface SmtpConfig {
-  host: string
-  port: number
-  secure: boolean
-  user: string
-  pass: string
-  fromName: string
-  fromEmail: string
-  toEmail: string
-  subjectPrefix: string
-}
-
-// 取得 SMTP 設定
-function getSmtpConfig(): SmtpConfig | null {
-  const config = useRuntimeConfig()
-  
-  // 檢查是否啟用聯絡表單
-  if (config.contactEnabled !== 'true') {
-    return null
-  }
-  
-  return {
-    host: config.smtpHost || 'smtp.gmail.com',
-    port: parseInt(config.smtpPort || '587', 10),
-    secure: config.smtpSecure === 'true',
-    user: config.smtpUser || '',
-    pass: config.smtpPass || '',
-    fromName: config.smtpFromName || 'Contact Form',
-    fromEmail: config.smtpFromEmail || config.smtpUser || '',
-    toEmail: config.smtpToEmail || config.smtpUser || '',
-    subjectPrefix: config.smtpSubjectPrefix || '[Contact]',
-  }
 }
 
 // 驗證表單資料
@@ -76,9 +42,10 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // 取得 SMTP 設定
-  const smtpConfig = getSmtpConfig()
-  if (!smtpConfig) {
+  const config = useRuntimeConfig()
+  
+  // 檢查是否啟用聯絡表單
+  if (config.contactEnabled !== 'true') {
     return {
       success: false,
       error: 'Contact form is not enabled',
@@ -96,40 +63,16 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    // 動態載入 nodemailer（如果已安裝）
-    let nodemailer: any
-    try {
-      // @ts-expect-error nodemailer 是可選依賴
-      nodemailer = await import('nodemailer')
-    } catch {
-      // 如果 nodemailer 未安裝，返回模擬成功（開發模式）
-      console.log('📧 Contact form submission (nodemailer not installed):')
-      console.log('  From:', body.name, `<${body.email}>`)
-      console.log('  Subject:', body.subject)
-      console.log('  Message:', body.message)
-      
-      return {
-        success: true,
-        message: 'Message received (development mode)',
-      }
-    }
-
-    // 建立 SMTP 傳輸
-    const transporter = nodemailer.default.createTransport({
-      host: smtpConfig.host,
-      port: smtpConfig.port,
-      secure: smtpConfig.secure,
-      auth: {
-        user: smtpConfig.user,
-        pass: smtpConfig.pass,
-      },
-    })
+    // 組合郵件主旨
+    const subjectPrefix = config.mailSubjectPrefix || '[Contact]'
+    const mailSubject = `${subjectPrefix} ${body.subject}`
+    
+    // 組合寄件者資訊
+    const fromName = config.mailFromName || 'Contact Form'
+    const fromEmail = config.mailFromEmail || ''
+    const from = fromEmail ? `"${fromName}" <${fromEmail}>` : undefined
 
     // 組合郵件內容
-    const mailSubject = smtpConfig.subjectPrefix
-      ? `${smtpConfig.subjectPrefix} ${body.subject}`
-      : body.subject
-
     const mailBody = `
 新的聯絡表單訊息
 
@@ -146,13 +89,15 @@ ${body.message}
 此郵件由 Artia 聯絡表單自動發送
     `.trim()
 
-    // 發送郵件
-    await transporter.sendMail({
-      from: `"${smtpConfig.fromName}" <${smtpConfig.fromEmail}>`,
-      to: smtpConfig.toEmail,
-      replyTo: body.email,
-      subject: mailSubject,
-      text: mailBody,
+    // 使用 nuxt-mail 提供的 /mail/send 端點發送郵件
+    await $fetch('/mail/send', {
+      method: 'POST',
+      body: {
+        from,
+        replyTo: body.email,
+        subject: mailSubject,
+        text: mailBody,
+      },
     })
 
     return {

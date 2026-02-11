@@ -7,6 +7,19 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
+    ['nuxt-mail', {
+      message: {
+        to: process.env.NUXT_MAIL_TO || '',
+      },
+      smtp: {
+        host: process.env.NUXT_MAIL_SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.NUXT_MAIL_SMTP_PORT || '587', 10),
+        auth: {
+          user: process.env.NUXT_MAIL_SMTP_USER || '',
+          pass: process.env.NUXT_MAIL_SMTP_PASS || '',
+        },
+      },
+    }],
   ],
 
   // 引入自訂 CSS（主題系統）
@@ -104,15 +117,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // 私有設定（僅伺服器端可用）
     contactEnabled: process.env.NUXT_CONTACT_ENABLED || 'false',
-    smtpHost: process.env.NUXT_SMTP_HOST || '',
-    smtpPort: process.env.NUXT_SMTP_PORT || '587',
-    smtpSecure: process.env.NUXT_SMTP_SECURE || 'false',
-    smtpUser: process.env.NUXT_SMTP_USER || '',
-    smtpPass: process.env.NUXT_SMTP_PASS || '',
-    smtpFromName: process.env.NUXT_SMTP_FROM_NAME || '',
-    smtpFromEmail: process.env.NUXT_SMTP_FROM_EMAIL || '',
-    smtpToEmail: process.env.NUXT_SMTP_TO_EMAIL || '',
-    smtpSubjectPrefix: process.env.NUXT_SMTP_SUBJECT_PREFIX || '',
+    mailFromName: process.env.NUXT_MAIL_FROM_NAME || 'Contact Form',
+    mailFromEmail: process.env.NUXT_MAIL_FROM_EMAIL || '',
+    mailSubjectPrefix: process.env.NUXT_MAIL_SUBJECT_PREFIX || '[Contact]',
     
     public: {
       // 全域設定
