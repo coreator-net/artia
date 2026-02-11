@@ -62,7 +62,6 @@ const wrapperClass = computed(() => {
       <LayoutHomeHero v-else-if="config.type === 'hero'" />
       <LayoutFeaturedBooks v-else-if="config.type === 'featured'" />
       <LayoutHomeRecent v-else-if="config.type === 'recent'" />
-      <LayoutSearchBar v-else-if="config.type === 'search'" />
       <!-- none 或無效值則不渲染任何東西 -->
     </template>
   </div>

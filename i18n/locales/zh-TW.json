@@ -31,7 +31,11 @@
   "section": {
     "featured": "精選作品",
     "recent": "最新內容",
-    "search": "搜尋"
+    "oldest": "最舊內容"
+  },
+  "sort": {
+    "newest": "最新優先",
+    "oldest": "最舊優先"
   },
   "search": {
     "placeholder": "搜尋內容...",

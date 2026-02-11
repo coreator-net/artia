@@ -179,28 +179,18 @@ artia-sidebar-toc-link-theme-dark
 artia-sidebar-toc-nested-theme-dark
 artia-sidebar-toc-empty-theme-dark
 
-<!-- Search Bar - Classic -->
-artia-search-bar-theme-classic
-artia-search-bar-input-wrapper-theme-classic
-artia-search-bar-input-theme-classic
-artia-search-bar-icon-theme-classic
-artia-search-bar-loading-theme-classic
-artia-search-bar-results-theme-classic
-artia-search-bar-no-results-theme-classic
-artia-search-bar-results-list-theme-classic
-artia-search-bar-result-item-theme-classic
-artia-search-bar-result-title-theme-classic
-artia-search-bar-result-desc-theme-classic
+<!-- Recent Search - Classic -->
+artia-recent-search-theme-classic
+artia-recent-search-input-theme-classic
+artia-recent-search-clear-theme-classic
+artia-recent-search-icon-theme-classic
+artia-recent-search-count-theme-classic
+artia-recent-no-results-theme-classic
 
-<!-- Search Bar - Dark -->
-artia-search-bar-theme-dark
-artia-search-bar-input-wrapper-theme-dark
-artia-search-bar-input-theme-dark
-artia-search-bar-icon-theme-dark
-artia-search-bar-loading-theme-dark
-artia-search-bar-results-theme-dark
-artia-search-bar-no-results-theme-dark
-artia-search-bar-results-list-theme-dark
-artia-search-bar-result-item-theme-dark
-artia-search-bar-result-title-theme-dark
-artia-search-bar-result-desc-theme-dark
+<!-- Recent Search - Dark -->
+artia-recent-search-theme-dark
+artia-recent-search-input-theme-dark
+artia-recent-search-clear-theme-dark
+artia-recent-search-icon-theme-dark
+artia-recent-search-count-theme-dark
+artia-recent-no-results-theme-dark

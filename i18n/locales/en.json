@@ -31,7 +31,11 @@
   "section": {
     "featured": "Featured Works",
     "recent": "Recent Content",
-    "search": "Search"
+    "oldest": "Oldest Content"
+  },
+  "sort": {
+    "newest": "Newest First",
+    "oldest": "Oldest First"
   },
   "search": {
     "placeholder": "Search content...",
