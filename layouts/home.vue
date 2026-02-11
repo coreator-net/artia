@@ -4,12 +4,12 @@
  * 支援動態配置各區域顯示的元件
  * TOP/BOTTOM 全寬，LEFT/RIGHT 三欄佈局
  */
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 const { isSlotEnabled, hasLeftSidebar, hasRightSidebar } = useLayout()
 
 // 計算佈局 class
 const layoutClass = computed(() => {
-  const classes = [t('layout-holygrail')]
+  const classes = [themeT('layout-holygrail')]
   
   if (!hasLeftSidebar('home')) {
     classes.push('no-left-sidebar')
@@ -23,12 +23,12 @@ const layoutClass = computed(() => {
 </script>
 
 <template>
-  <div :class="t('app')">
+  <div :class="themeT('app')">
     <LayoutTheHeader />
 
     <!-- Main Content Area - Holy Grail -->
-    <section :class="t('app-main')">
-      <article :class="t('container-content')">
+    <section :class="themeT('app-main')">
+      <article :class="themeT('container-content')">
 
         <!-- Top Slot (全寬，在三欄之上) -->
         <LayoutSlot 
@@ -48,7 +48,7 @@ const layoutClass = computed(() => {
           />
 
           <!-- Main Content -->
-          <main :class="t('layout-main')">
+          <main :class="themeT('layout-main')">
             <LayoutSlot page="home" position="center" />
             <slot />
           </main>

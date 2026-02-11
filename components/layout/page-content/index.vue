@@ -16,7 +16,7 @@ interface ContentPage {
 }
 
 const route = useRoute()
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 
 // 處理路徑（移除結尾斜線）
 const path = computed(() => 
@@ -70,7 +70,7 @@ const isPageContent = computed(() => {
 </script>
 
 <template>
-  <article :class="t('page-article')">
+  <article :class="themeT('page-article')">
     <section v-if="error">
       <p>Error: {{ error.message }}</p>
     </section>
@@ -88,7 +88,7 @@ const isPageContent = computed(() => {
       <ContentRenderer
         v-else
         :value="displayContent"
-        :class="[t('content-renderer'), 'prose prose-lg max-w-none']"
+        :class="[themeT('content-renderer'), 'prose prose-lg max-w-none']"
       >
         <template #empty>
           <p>No content available</p>

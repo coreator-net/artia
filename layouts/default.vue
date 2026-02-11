@@ -1,20 +1,20 @@
 <script setup lang="ts">
 // 預設 Layout - 聖杯架構
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 </script>
 
 <template>
-  <div :class="t('app')">
+  <div :class="themeT('app')">
     <LayoutTheHeader />
 
     <!-- Main Content Area - Holy Grail -->
-    <section :class="t('app-main')">
-      <article :class="t('container-content')">
-        <section :class="t('layout-holygrail')">
+    <section :class="themeT('app-main')">
+      <article :class="themeT('container-content')">
+        <section :class="themeT('layout-holygrail')">
           <LayoutSidebarAuthor />
 
           <!-- Main Content -->
-          <main :class="t('layout-main')">
+          <main :class="themeT('layout-main')">
             <slot />
           </main>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useTheme();
+const { t: themeT } = useTheme();
 
 const { color } = defineProps({
   color: {
@@ -10,7 +10,7 @@ const { color } = defineProps({
 </script>
 
 <template>
-  <div :class="t('alert')" :style="{ 'border-color': color }">
+  <div :class="themeT('alert')" :style="{ 'border-color': color }">
     <slot></slot>
   </div>
 </template>

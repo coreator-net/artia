@@ -7,7 +7,7 @@ definePageMeta({
   layout: 'home'
 })
 
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 const { isSlotEnabled } = useLayout()
 
 // 檢查中央區域是否有配置元件
@@ -16,7 +16,7 @@ const hasCenterConfig = computed(() => isSlotEnabled('home', 'center'))
 </script>
 
 <template>
-  <article :class="t('page')">
+  <article :class="themeT('page')">
     <!-- 如果中央區域沒有配置，使用預設內容 -->
     <template v-if="!hasCenterConfig">
       <LayoutHeroSection />

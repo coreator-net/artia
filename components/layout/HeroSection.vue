@@ -4,20 +4,20 @@
  * 用於 layout 系統的可配置元件
  */
 const config = useRuntimeConfig()
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 </script>
 
 <template>
-  <header :class="t('hero')">
-    <h1 :class="t('hero-title')">{{ config.public.heroTitle }}</h1>
-    <p :class="t('hero-desc')">
+  <header :class="themeT('hero')">
+    <h1 :class="themeT('hero-title')">{{ config.public.heroTitle }}</h1>
+    <p :class="themeT('hero-desc')">
       {{ config.public.heroDescription }}
     </p>
-    <nav :class="t('hero-actions')">
-      <NuxtLink to="/" :class="t('btn-primary')">
+    <nav :class="themeT('hero-actions')">
+      <NuxtLink to="/" :class="themeT('btn-primary')">
         {{ config.public.heroCtaPrimary }}
       </NuxtLink>
-      <button :class="t('btn-secondary')">{{ config.public.heroCtaSecondary }}</button>
+      <button :class="themeT('btn-secondary')">{{ config.public.heroCtaSecondary }}</button>
     </nav>
   </header>
 </template>

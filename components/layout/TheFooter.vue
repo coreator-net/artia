@@ -1,30 +1,30 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 </script>
 
 <template>
-  <footer :class="t('footer')">
-    <section :class="[t('container'), t('footer-content')]">
-      <nav :class="t('footer-grid')">
+  <footer :class="themeT('footer')">
+    <section :class="[themeT('container'), themeT('footer-content')]">
+      <nav :class="themeT('footer-grid')">
         <!-- Brand -->
-        <address :class="t('footer-brand')">
-          <strong :class="t('footer-brand-name')">{{ config.public.siteName }}</strong>
-          <p :class="t('text-body')">{{ config.public.siteSlogan }}</p>
+        <address :class="themeT('footer-brand')">
+          <strong :class="themeT('footer-brand-name')">{{ config.public.siteName }}</strong>
+          <p :class="themeT('text-body')">{{ config.public.siteSlogan }}</p>
         </address>
 
         <!-- Links -->
         <section>
-          <h4 :class="t('footer-section-title')">關於</h4>
-          <ul :class="t('footer-links')">
-            <li><a href="#" :class="t('header-link')">關於我們</a></li>
-            <li><a href="#" :class="t('header-link')">聯絡方式</a></li>
-            <li><a href="#" :class="t('header-link')">使用條款</a></li>
+          <h4 :class="themeT('footer-section-title')">關於</h4>
+          <ul :class="themeT('footer-links')">
+            <li><a href="#" :class="themeT('header-link')">關於我們</a></li>
+            <li><a href="#" :class="themeT('header-link')">聯絡方式</a></li>
+            <li><a href="#" :class="themeT('header-link')">使用條款</a></li>
           </ul>
         </section>
       </nav>
 
-      <p :class="t('footer-copyright')">
+      <p :class="themeT('footer-copyright')">
         {{ config.public.copyright }}
       </p>
     </section>

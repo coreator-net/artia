@@ -3,7 +3,7 @@
  * LayoutTableOfContents - 目錄側邊欄
  * 顯示當前頁面的目錄結構
  */
-const { t } = useTheme()
+const { t: themeT } = useTheme()
 const route = useRoute()
 
 // 取得當前頁面的 TOC
@@ -26,32 +26,32 @@ const scrollToHeading = (id: string) => {
 </script>
 
 <template>
-  <aside :class="t('sidebar-toc')">
-    <h3 :class="t('sidebar-toc-title')">目錄</h3>
+  <aside :class="themeT('sidebar-toc')">
+    <h3 :class="themeT('sidebar-toc-title')">目錄</h3>
     <nav v-if="toc && toc.length > 0">
-      <ul :class="t('sidebar-toc-list')">
+      <ul :class="themeT('sidebar-toc-list')">
         <li 
           v-for="item in toc" 
           :key="item.id"
-          :class="[t('sidebar-toc-item'), { 'active': activeId === item.id }]"
+          :class="[themeT('sidebar-toc-item'), { 'active': activeId === item.id }]"
         >
           <a 
             :href="`#${item.id}`"
-            :class="t('sidebar-toc-link')"
+            :class="themeT('sidebar-toc-link')"
             @click.prevent="scrollToHeading(item.id)"
           >
             {{ item.text }}
           </a>
           <!-- 巢狀標題 -->
-          <ul v-if="item.children?.length" :class="t('sidebar-toc-nested')">
+          <ul v-if="item.children?.length" :class="themeT('sidebar-toc-nested')">
             <li 
               v-for="child in item.children" 
               :key="child.id"
-              :class="t('sidebar-toc-item')"
+              :class="themeT('sidebar-toc-item')"
             >
               <a 
                 :href="`#${child.id}`"
-                :class="t('sidebar-toc-link')"
+                :class="themeT('sidebar-toc-link')"
                 @click.prevent="scrollToHeading(child.id)"
               >
                 {{ child.text }}
@@ -61,7 +61,7 @@ const scrollToHeading = (id: string) => {
         </li>
       </ul>
     </nav>
-    <p v-else :class="t('sidebar-toc-empty')">
+    <p v-else :class="themeT('sidebar-toc-empty')">
       此頁面沒有目錄
     </p>
   </aside>

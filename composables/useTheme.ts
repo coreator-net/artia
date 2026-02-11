@@ -3,17 +3,17 @@
  * 
  * 提供動態主題 class 生成功能
  * 
- * 使用方式：
- * const { t } = useTheme()
+ * 使用方式（建議使用 themeT 避免與 i18n 的 t 衝突）：
+ * const { t: themeT } = useTheme()
  * 
  * // 單一元件
- * t('header')              // => 'artia-header-theme-classic'
+ * themeT('header')              // => 'artia-header-theme-classic'
  * 
  * // 元件 + 子元素
- * t('header', 'logo')      // => 'artia-header-logo-theme-classic'
+ * themeT('header', 'logo')      // => 'artia-header-logo-theme-classic'
  * 
  * // 多個 class
- * t(['card', 'card-title']) // => 'artia-card-theme-classic artia-card-title-theme-classic'
+ * themeT(['card', 'card-title']) // => 'artia-card-theme-classic artia-card-title-theme-classic'
  */
 
 export const useTheme = () => {
