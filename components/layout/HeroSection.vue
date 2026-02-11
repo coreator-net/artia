@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * LayoutHomeHero - 首頁 Hero 區塊
+ * LayoutHeroSection - Hero 區塊
  * 用於 layout 系統的可配置元件
  */
 const config = useRuntimeConfig()

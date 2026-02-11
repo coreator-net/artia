@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * LayoutHomeRecent - 最新內容區塊
+ * LayoutRecentContent - 最新內容區塊
  * 用於 layout 系統的可配置元件，清單式顯示，支援無限載入與搜尋
  */
 const config = useRuntimeConfig()

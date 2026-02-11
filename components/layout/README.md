@@ -66,9 +66,9 @@ components/layout/
 ├── SidebarAuthor.vue         # 作者介紹元件
 ├── SidebarContent.vue        # 內容導航元件
 ├── TableOfContents.vue       # 目錄元件
-├── HomeHero.vue              # 首頁 Hero 元件
-├── HomeFeatured.vue          # 精選作品元件
-├── HomeRecent.vue            # 最新內容元件
+├── HeroSection.vue           # Hero 區塊元件
+├── FeaturedBooks.vue         # 精選作品元件
+├── RecentContent.vue         # 最新內容元件
 └── PageContent.vue           # 頁面內容元件
 ```
 
@@ -118,9 +118,9 @@ const componentMap: Record<LayoutComponent, string> = {
   author: 'LayoutSidebarAuthor',
   navigation: 'LayoutSidebarContent',
   toc: 'LayoutTableOfContents',
-  hero: 'LayoutHomeHero',
-  featured: 'LayoutHomeFeatured',
-  recent: 'LayoutHomeRecent',
+  hero: 'LayoutHeroSection',
+  featured: 'LayoutFeaturedBooks',
+  recent: 'LayoutRecentContent',
   mywidget: 'LayoutMyWidget',  // 新增：檔名 MyWidget.vue → LayoutMyWidget
   none: '',
 }

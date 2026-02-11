@@ -59,9 +59,9 @@ const wrapperClass = computed(() => {
       />
       <LayoutTableOfContents v-else-if="config.type === 'toc'" />
       <LayoutHistoryTimeline v-else-if="config.type === 'history'" />
-      <LayoutHomeHero v-else-if="config.type === 'hero'" />
+      <LayoutHeroSection v-else-if="config.type === 'hero'" />
       <LayoutFeaturedBooks v-else-if="config.type === 'featured'" />
-      <LayoutHomeRecent v-else-if="config.type === 'recent'" />
+      <LayoutRecentContent v-else-if="config.type === 'recent'" />
       <!-- none 或無效值則不渲染任何東西 -->
     </template>
   </div>

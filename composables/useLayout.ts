@@ -88,9 +88,9 @@ const componentMap: Record<LayoutComponent, string> = {
   bookmenu: 'LayoutSidebarBookMenu',
   toc: 'LayoutTableOfContents',
   history: 'LayoutHistoryTimeline',
-  hero: 'LayoutHomeHero',
+  hero: 'LayoutHeroSection',
   featured: 'LayoutFeaturedBooks',
-  recent: 'LayoutHomeRecent',
+  recent: 'LayoutRecentContent',
   search: 'LayoutSearchBar',
   none: '',
 }
