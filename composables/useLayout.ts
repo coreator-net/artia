@@ -44,6 +44,24 @@ export type LayoutComponent =
   | 'none'
 
 /**
+ * 元件參數介面
+ */
+export interface ComponentProps {
+  root?: string
+  hideEmptyTitle?: boolean
+  title?: string
+  [key: string]: any
+}
+
+/**
+ * 解析後的元件設定
+ */
+export interface ParsedComponent {
+  type: LayoutComponent
+  props: ComponentProps
+}
+
+/**
  * 頁面類型
  */
 export type PageType = 'home' | 'read'
@@ -57,8 +75,8 @@ export type SlotPosition = 'top' | 'left' | 'center' | 'right' | 'bottom'
  * 佈局設定介面 - 支援多個元件
  */
 export interface LayoutConfig {
-  home: Record<SlotPosition, LayoutComponent[]>
-  read: Record<SlotPosition, LayoutComponent[]>
+  home: Record<SlotPosition, ParsedComponent[]>
+  read: Record<SlotPosition, ParsedComponent[]>
 }
 
 /**
@@ -66,8 +84,8 @@ export interface LayoutConfig {
  */
 const componentMap: Record<LayoutComponent, string> = {
   author: 'LayoutSidebarAuthor',
-  navigation: 'LayoutSidebarContent',
-  'navigation-notitle': 'LayoutSidebarContentNoTitle',
+  navigation: 'LayoutSidebarNav',
+  'navigation-notitle': 'LayoutSidebarNav',
   toc: 'LayoutTableOfContents',
   history: 'LayoutHistoryTimeline',
   hero: 'LayoutHomeHero',
@@ -78,16 +96,76 @@ const componentMap: Record<LayoutComponent, string> = {
 }
 
 /**
- * 解析環境變數中的元件（支援多個元件，用逗號分隔）
- * @param value - 環境變數值，例如 "navigation,author" 或 "hero"
- * @returns 元件類型陣列
+ * 解析單一元件設定（包含參數）
+ * 支援格式：
+ * - "navigation" - 無參數
+ * - "navigation:root=/content" - 單一參數
+ * - "navigation:root=/content;title=我的導航" - 多參數用 ; 分隔
+ * 
+ * @param value - 單一元件設定字串
+ * @returns 解析後的元件設定
  */
-function parseComponents(value: string | undefined): LayoutComponent[] {
+function parseSingleComponent(value: string): ParsedComponent | null {
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  
+  // 分離元件名稱和參數
+  const colonIndex = trimmed.indexOf(':')
+  let componentName: string
+  let paramsStr: string | null = null
+  
+  if (colonIndex === -1) {
+    componentName = trimmed
+  } else {
+    componentName = trimmed.substring(0, colonIndex)
+    paramsStr = trimmed.substring(colonIndex + 1)
+  }
+  
+  const type = componentName.toLowerCase() as LayoutComponent
+  
+  // 檢查元件是否有效
+  if (!(type in componentMap) || type === 'none') {
+    return null
+  }
+  
+  // 解析參數
+  const props: ComponentProps = {}
+  
+  if (paramsStr) {
+    // 格式：key1=value1;key2=value2
+    const pairs = paramsStr.split(';')
+    for (const pair of pairs) {
+      const eqIndex = pair.indexOf('=')
+      if (eqIndex !== -1) {
+        const key = pair.substring(0, eqIndex).trim()
+        const val = pair.substring(eqIndex + 1).trim()
+        
+        // 處理布林值
+        if (val === 'true') {
+          props[key] = true
+        } else if (val === 'false') {
+          props[key] = false
+        } else {
+          props[key] = val
+        }
+      }
+    }
+  }
+  
+  return { type, props }
+}
+
+/**
+ * 解析環境變數中的元件（支援多個元件，用逗號分隔）
+ * @param value - 環境變數值，例如 "navigation:root=/content,author" 或 "hero"
+ * @returns 解析後的元件設定陣列
+ */
+function parseComponents(value: string | undefined): ParsedComponent[] {
   if (!value || value.trim() === '') return []
   
   const components = value.split(',')
-    .map(v => v.trim().toLowerCase() as LayoutComponent)
-    .filter(v => v in componentMap && v !== 'none')
+    .map(v => parseSingleComponent(v))
+    .filter((v): v is ParsedComponent => v !== null)
   
   return components
 }
@@ -131,7 +209,7 @@ export function useLayout() {
   function getSlotComponents(page: PageType, slot: SlotPosition): string[] {
     const components = layoutConfig.value[page][slot]
     return components
-      .map(comp => componentMap[comp])
+      .map(comp => componentMap[comp.type])
       .filter(name => name !== '')
   }
 
@@ -178,16 +256,26 @@ export function useLayout() {
    */
   function getRawSlotConfig(page: PageType, slot: SlotPosition): LayoutComponent {
     const components = layoutConfig.value[page][slot]
-    return components[0] || 'none'
+    return components[0]?.type || 'none'
   }
 
   /**
-   * 取得元件的原始配置值陣列
+   * 取得元件的原始配置值陣列（向後相容，只返回類型）
    * @param page - 頁面類型
    * @param slot - 位置
    * @returns 原始的元件類型陣列
    */
   function getRawSlotConfigs(page: PageType, slot: SlotPosition): LayoutComponent[] {
+    return layoutConfig.value[page][slot].map(c => c.type)
+  }
+
+  /**
+   * 取得解析後的完整元件設定（包含 props）
+   * @param page - 頁面類型
+   * @param slot - 位置
+   * @returns 解析後的元件設定陣列
+   */
+  function getParsedSlotConfigs(page: PageType, slot: SlotPosition): ParsedComponent[] {
     return layoutConfig.value[page][slot]
   }
 
@@ -200,6 +288,7 @@ export function useLayout() {
     hasRightSidebar,
     getRawSlotConfig,
     getRawSlotConfigs,
+    getParsedSlotConfigs,
     componentMap,
   }
 }

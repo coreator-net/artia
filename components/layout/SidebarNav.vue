@@ -36,12 +36,14 @@ interface Props {
   title?: string
   classPrefix?: string
   hideEmptyTitle?: boolean
+  rootPath?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: '',
   classPrefix: 'sidebar-content',
-  hideEmptyTitle: true
+  hideEmptyTitle: true,
+  rootPath: ''
 })
 
 const { t: themeT } = useTheme()
@@ -84,10 +86,38 @@ const mergeMetadata = (items: any[]): ExtendedNavItem[] => {
 
 navigation.value = mergeMetadata(navTree)
 
+// 根據 rootPath 過濾導航樹
+const filterByRootPath = (items: ExtendedNavItem[], rootPath: string): ExtendedNavItem[] => {
+  if (!rootPath) return items
+  
+  // 標準化路徑（確保以 / 開頭）
+  const normalizedRoot = rootPath.startsWith('/') ? rootPath : `/${rootPath}`
+  
+  // 尋找匹配根路徑的節點
+  for (const item of items) {
+    if (item._path === normalizedRoot) {
+      // 找到根節點，返回其子節點
+      return item.children || []
+    }
+    // 遞迴搜尋子節點
+    if (item.children) {
+      const found = filterByRootPath(item.children, rootPath)
+      if (found.length > 0 || item.children.some(child => child._path === normalizedRoot)) {
+        return found
+      }
+    }
+  }
+  
+  return items
+}
+
 const sortedNavigation = computed(() => {
   if (!navigation.value || navigation.value.length === 0) return []
   
-  return sortContentItems(navigation.value as ExtendedNavItem[], {
+  // 先根據 rootPath 過濾
+  const filtered = filterByRootPath(navigation.value, props.rootPath)
+  
+  return sortContentItems(filtered as ExtendedNavItem[], {
     prioritizeFolders: true,
     recursive: true
   })
