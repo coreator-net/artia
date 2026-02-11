@@ -136,9 +136,11 @@ export default defineNuxtConfig({
       
       // 元件：Featured
       sectionFeatured: '',
+      featuredBookCodes: '',
       
       // 元件：Recent
       sectionRecent: '',
+      recentLimit: '',
       
       // 評論系統
       commentsEnabled: '',

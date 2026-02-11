@@ -435,6 +435,88 @@
 }
 
 /* --------------------------------------------------------------------------
+   Featured Books - 精選書籍區塊
+   -------------------------------------------------------------------------- */
+.artia-featured-section-theme-classic {
+  @apply w-full;
+}
+
+.artia-featured-list-theme-classic {
+  @apply w-full space-y-0 divide-y;
+  border-color: var(--artia-color-border);
+}
+
+.artia-featured-list-theme-classic > * {
+  @apply w-full border-x border-b first:border-t;
+  border-color: var(--artia-color-border);
+}
+
+.artia-featured-card-theme-classic {
+  @apply block w-full p-4 transition-colors bg-transparent;
+}
+
+.artia-featured-card-theme-classic:hover {
+  background-color: var(--artia-color-border-light);
+}
+
+/* --------------------------------------------------------------------------
+   Recent - 最新內容區塊
+   -------------------------------------------------------------------------- */
+.artia-recent-section-theme-classic {
+  @apply w-full;
+}
+
+.artia-recent-list-theme-classic {
+  @apply w-full space-y-0 divide-y overflow-y-auto;
+  max-height: 60vh;
+  border-color: var(--artia-color-border);
+}
+
+.artia-recent-list-theme-classic > * {
+  @apply w-full border-x border-b first:border-t;
+  border-color: var(--artia-color-border);
+}
+
+.artia-recent-item-theme-classic {
+  @apply block w-full p-4 transition-colors bg-transparent;
+}
+
+.artia-recent-item-theme-classic:hover {
+  background-color: var(--artia-color-border-light);
+}
+
+.artia-recent-item-header-theme-classic {
+  @apply flex items-baseline justify-between gap-2 mb-1;
+}
+
+.artia-recent-item-title-theme-classic {
+  @apply font-medium text-base;
+  color: var(--artia-color-text);
+}
+
+.artia-recent-item-time-theme-classic {
+  @apply text-xs shrink-0;
+  color: var(--artia-color-text-secondary);
+}
+
+.artia-recent-item-desc-theme-classic {
+  @apply text-sm line-clamp-2;
+  color: var(--artia-color-text-secondary);
+}
+
+.artia-recent-load-more-theme-classic {
+  @apply w-full mt-4 py-2 px-4 border text-sm transition-colors cursor-pointer;
+  border-color: var(--artia-color-border);
+  color: var(--artia-color-text-secondary);
+  background-color: transparent;
+}
+
+.artia-recent-load-more-theme-classic:hover {
+  background-color: var(--artia-color-border-light);
+  color: var(--artia-color-text);
+}
+
+/* --------------------------------------------------------------------------
    Cards - 卡片元件
    -------------------------------------------------------------------------- */
 .artia-card-theme-classic {

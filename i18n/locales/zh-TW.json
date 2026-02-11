@@ -25,7 +25,8 @@
   "content": {
     "clickForMore": "點擊查看更多內容...",
     "clickForDetails": "點擊查看更多...",
-    "noDescription": "暫無描述"
+    "noDescription": "暫無描述",
+    "loadMore": "載入更多"
   },
   "section": {
     "featured": "精選作品",

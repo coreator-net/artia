@@ -28,9 +28,9 @@ const wrapperClass = computed(() => {
   const base = 'flex flex-col gap-6'
 
   // 在 Holy Grail（lg:flex-row）中，left/right slot 是「欄位」。
-  // 這裡若用 w-full 會把欄位撐到全寬，導致 CENTER 看起來「壞掉」。
+  // 需要固定寬度，避免內容撐開整個 sidebar
   if (props.position === 'left' || props.position === 'right') {
-    return `${base} shrink-0`
+    return `${base} w-56 shrink-0`
   }
 
   // top/center/bottom 需要撐滿容器寬度
@@ -60,7 +60,7 @@ const wrapperClass = computed(() => {
       <LayoutTableOfContents v-else-if="config.type === 'toc'" />
       <LayoutHistoryTimeline v-else-if="config.type === 'history'" />
       <LayoutHomeHero v-else-if="config.type === 'hero'" />
-      <LayoutHomeFeatured v-else-if="config.type === 'featured'" />
+      <LayoutFeaturedBooks v-else-if="config.type === 'featured'" />
       <LayoutHomeRecent v-else-if="config.type === 'recent'" />
       <LayoutSearchBar v-else-if="config.type === 'search'" />
       <!-- none 或無效值則不渲染任何東西 -->

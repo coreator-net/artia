@@ -89,7 +89,7 @@ const componentMap: Record<LayoutComponent, string> = {
   toc: 'LayoutTableOfContents',
   history: 'LayoutHistoryTimeline',
   hero: 'LayoutHomeHero',
-  featured: 'LayoutHomeFeatured',
+  featured: 'LayoutFeaturedBooks',
   recent: 'LayoutHomeRecent',
   search: 'LayoutSearchBar',
   none: '',

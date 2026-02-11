@@ -442,6 +442,91 @@
 }
 
 /* --------------------------------------------------------------------------
+   Featured Books - 精選書籍區塊
+   -------------------------------------------------------------------------- */
+.artia-featured-section-theme-dark {
+  @apply w-full;
+}
+
+.artia-featured-list-theme-dark {
+  @apply w-full space-y-4;
+}
+
+.artia-featured-list-theme-dark > * {
+  @apply w-full;
+}
+
+.artia-featured-card-theme-dark {
+  @apply block w-full border rounded-lg p-4 transition-all;
+  border-color: #334155;
+  background-color: #1e293b;
+}
+
+.artia-featured-card-theme-dark:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Recent - 最新內容區塊
+   -------------------------------------------------------------------------- */
+.artia-recent-section-theme-dark {
+  @apply w-full;
+}
+
+.artia-recent-list-theme-dark {
+  @apply w-full space-y-3 overflow-y-auto;
+  max-height: 60vh;
+}
+
+.artia-recent-list-theme-dark > * {
+  @apply w-full;
+}
+
+.artia-recent-item-theme-dark {
+  @apply block w-full border rounded-lg p-4 transition-all;
+  border-color: #334155;
+  background-color: #1e293b;
+}
+
+.artia-recent-item-theme-dark:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 0 15px rgba(96, 165, 250, 0.15);
+}
+
+.artia-recent-item-header-theme-dark {
+  @apply flex items-baseline justify-between gap-2 mb-1;
+}
+
+.artia-recent-item-title-theme-dark {
+  @apply font-medium text-base;
+  color: #f1f5f9;
+}
+
+.artia-recent-item-time-theme-dark {
+  @apply text-xs shrink-0;
+  color: #94a3b8;
+}
+
+.artia-recent-item-desc-theme-dark {
+  @apply text-sm line-clamp-2;
+  color: #94a3b8;
+}
+
+.artia-recent-load-more-theme-dark {
+  @apply w-full mt-4 py-2 px-4 border rounded-lg text-sm transition-all cursor-pointer;
+  border-color: #334155;
+  color: #94a3b8;
+  background-color: #1e293b;
+}
+
+.artia-recent-load-more-theme-dark:hover {
+  border-color: #60a5fa;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.15);
+}
+
+/* --------------------------------------------------------------------------
    Cards - 卡片元件
    -------------------------------------------------------------------------- */
 .artia-card-theme-dark {

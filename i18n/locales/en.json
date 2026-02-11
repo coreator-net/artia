@@ -25,7 +25,8 @@
   "content": {
     "clickForMore": "Click to view more content...",
     "clickForDetails": "Click for details...",
-    "noDescription": "No description available"
+    "noDescription": "No description available",
+    "loadMore": "Load More"
   },
   "section": {
     "featured": "Featured Works",
