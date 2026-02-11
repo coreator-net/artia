@@ -1,5 +1,5 @@
 <template>
-  <li v-if="!hideEmptyTitle || item.title">
+  <li v-if="item.title">
     <!-- 有子項目的資料夾 -->
     <template v-if="hasChildren || introPath">
       <div :class="themeT('sidebar-content-folder-row')">
@@ -29,7 +29,6 @@
           :item="child"
           :depth="depth + 1"
           :expanded-folders="expandedFolders"
-          :hide-empty-title="hideEmptyTitle"
           @toggle="(path) => $emit('toggle', path)"
         />
       </ul>
@@ -59,7 +58,6 @@ const props = defineProps<{
   item: ExtendedNavItem
   depth?: number
   expandedFolders: Set<string>
-  hideEmptyTitle?: boolean
 }>()
 
 const emit = defineEmits<{

@@ -10,7 +10,8 @@
   "sidebar": {
     "title": "Content List",
     "loading": "Loading or No Data",
-    "viewIntro": "View Introduction"
+    "viewIntro": "View Introduction",
+    "bookMenu": "Chapters"
   },
   "page": {
     "loading": "Loading...",

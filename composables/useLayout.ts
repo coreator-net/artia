@@ -22,8 +22,8 @@
 /**
  * 可用的元件類型
  * - author: 作者介紹側邊欄
- * - navigation: 內容導航/作品清單（含標題）
- * - navigation-notitle: 內容導航（無標題）
+ * - navigation: 內容導航/作品清單
+ * - bookmenu: 當前書籍的章節目錄（動態根據當前頁面所屬 book）
  * - toc: 目錄 (Table of Contents)
  * - hero: 首頁 Hero 區塊
  * - featured: 精選作品
@@ -34,7 +34,7 @@
 export type LayoutComponent = 
   | 'author' 
   | 'navigation'
-  | 'navigation-notitle'
+  | 'bookmenu'
   | 'toc' 
   | 'history'
   | 'hero' 
@@ -85,7 +85,7 @@ export interface LayoutConfig {
 const componentMap: Record<LayoutComponent, string> = {
   author: 'LayoutSidebarAuthor',
   navigation: 'LayoutSidebarNav',
-  'navigation-notitle': 'LayoutSidebarNav',
+  bookmenu: 'LayoutSidebarBookMenu',
   toc: 'LayoutTableOfContents',
   history: 'LayoutHistoryTimeline',
   hero: 'LayoutHomeHero',

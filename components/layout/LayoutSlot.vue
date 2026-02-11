@@ -8,8 +8,8 @@
  * 
  * 格式範例：
  * - navigation - 無參數
- * - navigation:/content - 簡寫格式（root 參數）
- * - navigation:root=/content;hideEmptyTitle=true - 完整格式
+ * - navigation:root=/content - 帶參數
+ * - navigation:root=/content;title=我的導航 - 多參數
  */
 
 const props = defineProps<{
@@ -50,14 +50,11 @@ const wrapperClass = computed(() => {
       <LayoutSidebarAuthor v-if="config.type === 'author'" />
       <LayoutSidebarNav 
         v-else-if="config.type === 'navigation'" 
-        :hide-empty-title="true"
         :root-path="config.props.root"
         :title="config.props.title"
       />
-      <LayoutSidebarNav 
-        v-else-if="config.type === 'navigation-notitle'" 
-        :hide-empty-title="false"
-        :root-path="config.props.root"
+      <LayoutSidebarBookMenu 
+        v-else-if="config.type === 'bookmenu'" 
         :title="config.props.title"
       />
       <LayoutTableOfContents v-else-if="config.type === 'toc'" />

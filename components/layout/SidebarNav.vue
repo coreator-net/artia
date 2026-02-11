@@ -10,7 +10,6 @@
           :item="item"
           :depth="0"
           :expanded-folders="expandedFolders"
-          :hide-empty-title="hideEmptyTitle"
           @toggle="toggleFolder"
         />
       </ul>
@@ -35,14 +34,12 @@ interface ExtendedNavItem extends NavItem {
 interface Props {
   title?: string
   classPrefix?: string
-  hideEmptyTitle?: boolean
   rootPath?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: '',
   classPrefix: 'sidebar-content',
-  hideEmptyTitle: true,
   rootPath: ''
 })
 

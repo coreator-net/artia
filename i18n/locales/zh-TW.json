@@ -10,7 +10,8 @@
   "sidebar": {
     "title": "內容清單",
     "loading": "載入中或無資料",
-    "viewIntro": "查看介紹"
+    "viewIntro": "查看介紹",
+    "bookMenu": "章節目錄"
   },
   "page": {
     "loading": "載入中...",
